@@ -1,0 +1,23 @@
+#! /usr/bin/env bash
+# filename: mdbgtstst
+# last edit: 20240227_d
+
+CURRDIR=$PWD
+cd ~/majstaf/mdbgit
+for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_mdb'); do
+	echo "[INFO] checking git status in ${DDD} ..."
+	cd $DDD
+	/usr/bin/git status
+	cd ..
+	echo -e "\n---"
+done
+cd ${CURRDIR}
+
+
+MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_mdb"
+MDBVOLWORKDIR="${HOME}/majstaf/majvolpejpers"
+echo "[INFO] checking git status in ${MDBVOLGITDIR} ..."
+MDBVCMD="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKDIR}"
+${MDBVCMD} status
+echo -e "\n---"
+
