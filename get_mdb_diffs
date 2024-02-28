@@ -1,0 +1,37 @@
+#! /usr/bin/env bash
+# last change 20240227 (en)
+
+MJSTF_MDB=/home/rgregor/majstaf
+GMDBDOT=${MJSTF_MDB}/mdbgit/dotfiles_mdb
+GMDBBIN=${MJSTF_MDB}/mdbgit/majbin_mdb
+GMDBRCS=${MJSTF_MDB}/mdbgit/majrcs_mdb
+GMDBMTS=${MJSTF_MDB}/mdbgit/metsys_mdb
+
+MDBDOT=${MJSTF_MDB}/dotfiles_mdb
+MDBBIN=${MJSTF_MDB}/majbin_mdb
+MDBRCS=${MJSTF_MDB}/majrcs_mdb
+MDBMTS=${MJSTF_MDB}/metsys_mdb
+
+cd ${GMDBDOT}
+echo "[INFO] diffs: dotfiles_mdb ..."
+for FFF in $(find .* -type f -iname ".*"); do diff -q ${FFF} ${HOME}/${FFF}; done 2>/dev/null;
+echo "---"
+# ---
+cd ${GMDBBIN}
+echo "[INFO] diffs: majbin_mdb ..."
+for FFF in $(find * -type f | grep -v '\.dat' 2>/dev/null); do diff -q ${FFF} ${MDBBIN}/${FFF} | grep -vi 'common'; done 2>/dev/null
+echo "---"
+cd $HOME
+#---
+cd ${GMDBRCS}
+echo "[INFO] diffs: majrcs_mdb ..."
+for FFF in $(find * -type f 2>/dev/null); do diff -q ${FFF} ${MDBRCS}/${FFF} | grep -vi 'common'; done 2>/dev/null
+echo "---"
+cd $HOME
+#---
+cd ${GMDBMTS}
+echo "[INFO] diffs: metsys_mdb ..."
+for FFF in $(find * -type f 2>/dev/null); do diff -q ${FFF} ${MDBMTS}/${FFF} | greMDB -vi 'common'; done 2>/dev/null
+echo "---"
+cd $HOME
+
