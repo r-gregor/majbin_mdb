@@ -1,0 +1,64 @@
+#! /usr/bin/env bash
+# last change 20240227 (en)
+
+### 
+### MJSTF_MDB=/home/rgregor/majstaf
+### GMDBDOT=${MJSTF_MDB}/mdbgit/dotfiles_mdb
+### GMDBBIN=${MJSTF_MDB}/mdbgit/majbin_mdb
+### GMDBRCS=${MJSTF_MDB}/mdbgit/majrcs_mdb
+### GMDBMTS=${MJSTF_MDB}/mdbgit/metsys_mdb
+### 
+### MDBDOT=${MJSTF_MDB}/dotfiles_mdb
+### MDBBIN=${MJSTF_MDB}/majbin_mdb
+### MDBRCS=${MJSTF_MDB}/majrcs_mdb
+### MDBMTS=${MJSTF_MDB}/metsys_mdb
+### 
+### cd ${GMDBDOT}
+### echo "[INFO] diffs: dotfiles_mdb ..."
+### # for FFF in $(find .* -type f -iname ".*"); do diff -q ${FFF} ${HOME}/${FFF}; done 2>/dev/null;
+### for DDD in $(ls -1A); do diff -q $DDD ${HOME}/$DDD 2>/dev/null; done | grep -vi "common\|only"
+### echo "---"
+### # ---
+### cd ${GMDBBIN}
+### echo "[INFO] diffs: majbin_mdb ..."
+### for FFF in $(find * -type f | grep -v '\.dat' 2>/dev/null); do diff -q ${FFF} ${MDBBIN}/${FFF} | grep -vi 'common'; done 2>/dev/null
+### echo "---"
+### cd $HOME
+### #---
+### cd ${GMDBRCS}
+### echo "[INFO] diffs: majrcs_mdb ..."
+### for FFF in $(find * -type f 2>/dev/null); do diff -q ${FFF} ${MDBRCS}/${FFF} | grep -vi 'common'; done 2>/dev/null
+### echo "---"
+### cd $HOME
+### #---
+### cd ${GMDBMTS}
+### echo "[INFO] diffs: metsys_mdb ..."
+### for FFF in $(find * -type f 2>/dev/null); do diff -q ${FFF} ${MDBMTS}/${FFF} | greMDB -vi 'common'; done 2>/dev/null
+### echo "---"
+### cd $HOME
+### 
+### #####################################################################################################################
+
+#! /usr/bin/env bash
+# get_ndiffs
+# last change 20240229 (en)
+
+CURRDIR=$PWD
+MJSTFMDB=${HOME}/majstaf
+MJSTFMDB_G=${MJSTFMDB}/mdbgit
+
+cd ${MJSTFMDB_G}/dotfiles_mdb
+echo "[INFO] diffs: dotfiles_en ..."
+for FFF in $(ls -1A); do diff -qr $FFF ${HOME}/${FFF} 2>/dev/null | grep -iv 'only'; done
+echo "---"
+
+for check_dir in majbin majrcs metsys; do
+	cd ${MJSTFMDB_G}/${check_dir}_mdb
+	echo "[INFO] diffs: ${check_dir} ..."
+	for FFF in $(ls -1); do diff -qr $FFF ${MJSTFMDB}/${check_dir}/${FFF} | grep -iv 'only'; done
+	echo "---"
+	cd $HOME
+done
+
+cd ${CURRDIR}
+
