@@ -49,7 +49,7 @@ MJSTFMDB_G=${MJSTFMDB}/mdbgit
 
 cd ${MJSTFMDB_G}/dotfiles_mdb
 echo "[INFO] diffs: dotfiles_en ..."
-for FFF in $(ls -1A); do diff -qr $FFF ${HOME}/${FFF} 2>/dev/null | grep -iv 'only'; done
+for FFF in $(ls -1A); do diff -qr -x ".git" $FFF ${HOME}/${FFF} 2>/dev/null | grep -iv 'only'; done
 echo "---"
 
 for check_dir in majbin majrcs metsys; do
