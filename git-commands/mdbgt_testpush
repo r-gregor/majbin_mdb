@@ -1,12 +1,17 @@
 #! /usr/bin/env bash
 # mdbgttestpush
-# last edit: 20240228_en
+# last edit: 20240319_d
+
+COLOR_SET="\e[1;94m"
+COLOR_RESET="\e[0m"
 
 CURRDIR=$PWD
 cd ~/majstaf/mdbgit/
 for DDD in $(find * -maxdepth 0 -type d); do
 	echo ""
+	printf "${COLOR_SET}"
 	echo "*** git testpush in ${DDD} ... ***"
+	printf "${COLOR_RESET}"
 	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_mdb && cd ..
 # echo -e "\n---"
 done
