@@ -38,7 +38,8 @@ gr_FROMCDNG=$HOME/majstaf
 
 gFromBrc="$HOME/.[hidden files]"
 gFromSzn=$HOME/majstaf/seznami
-gFromMtss=$HOME/majstaf/metsys_muadib
+# gFromMtss=$HOME/majstaf/metsys
+gFromMtss=$HOME/majstaf/metsys
 
 # destination folder
 # !!! PAZI-  POT ZA ARHIVO !!!
@@ -90,7 +91,7 @@ tar -czf ${gDest}/${gCurrSzn} -C ${HOME}/majstaf seznami
 echo "[OK]"
 
 tms; echo -n "Creating archive: ${gDest}/${gCurrMtss} ... "
-tar -czf ${gDest}/${gCurrMtss} -C ${HOME}/majstaf metsys_muadib
+tar -czf ${gDest}/${gCurrMtss} -C ${HOME}/majstaf metsys
 echo "[OK]"
 
 tms; echo -n "Creating archive: ${gDest}/${gCurrBrc} ... "
