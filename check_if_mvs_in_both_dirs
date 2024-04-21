@@ -7,7 +7,7 @@ if [ $# -ne 1 ]; then
 fi
 YR=$1
 
-if [ ! -d Movies ] && [ ! -d Seivom ]; then
+if [ ! -d ./Movies ] && [ ! -d ./Seivom ]; then
 	echo "There are no dirs: 'Movies' and 'Seivom'!"
 	exit
 fi
@@ -16,10 +16,11 @@ fi
 IFS=$'\n'
 
 # echo "List of movies that are in both dirs: Movies and Seivom"
-for VSM in $(find /media/rgregor/EKSFAT/majmedia/Seivom/ -type d -name "*(${YR})"); do
-	for MVS in $(find /media/rgregor/EKSFAT/majmedia/Movies/ -type d -name "*(${YR})"); do
+for VSM in $(find ./Seivom/ -type d -name "*(${YR})"); do
+	for MVS in $(find ./Movies/ -type d -name "*(${YR})"); do
 		if [ $(basename $MVS) == $(basename $VSM) ]; then
-			echo "$(basename $MVS)"
+			# echo "$(basename $MVS)"
+			echo "$MVS : $VSM"
 		fi
 	done
 done
