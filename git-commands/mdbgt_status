@@ -30,7 +30,7 @@ function get_status() {
 }
 
 cd ~/majstaf/mdbgit/
-for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_jbe'); do
+for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_mdb'); do
 	cd $DDD &> /dev/null
 
 	get_status "/usr/bin/git"
@@ -38,10 +38,10 @@ for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_jbe'); do
 done
 
 # volpejpers
-DDD="vlpprs_jbe"
-JBEVOLGITDIR="${HOME}/majstaf/jbegit/vlpprs_mdb"
-JBEVOLWORKTREE="${HOME}/majstaf/majvolpejpers"
-get_status="/usr/bin/git --git-dir=${JBEVOLGITDIR} --work-tree=${JBEVOLWORKTREE}"
+DDD="vlpprs_mdb"
+MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_mdb"
+MDBVOLWORKTREE="${HOME}/majstaf/majvolpejpers"
+get_status="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKTREE}"
 
 echo ""
 printf "${COLOR_SET}"
