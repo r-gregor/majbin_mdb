@@ -1,15 +1,17 @@
 #! /usr/bin/env bash
+# mvol_testpush_all
+# last update: 20240821_mdb
 
 export MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_mdb"
 export MDBVOLWORKDIR="${HOME}/majstaf/majvolpejpers"
 
-git_dvol="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKDIR}"
+mdbg_vol="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKDIR}"
 
 echo "[INFO] Testpush to d_GITHUB ..."
-${git_dvol} push --dry-run git@github.com:r-gregor/vlpprs_mdb.git main
+${mdbg_vol} push --dry-run git@github.com:r-gregor/vlpprs_mdb.git main
 echo "---"
 
 echo "[INFO] Testpush to d_GITLAB ..."
-${git_dvol} push --dry-run git@gitlab.com:r-gregor/vlpprs_mdb.git main
+${mdbg_vol} push --dry-run git@gitlab.com:r-gregor/vlpprs_mdb.git main
 echo "---"
 

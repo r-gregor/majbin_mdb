@@ -1,30 +1,30 @@
 #! /usr/bin/env bash
-# filename: mdbgt_testpush
-# last edit: 20240601_mdb
+# mdbgt_testpush
+# last change: 20240821_mdb
 
 # COLOR_SET="\e[1;94m"
 # COLOR_SET="\e[1;34m"
 COLOR_SET="\e[1;38;5;75m"
 COLOR_RESET="\e[0m"
-MDEST=${HOME}/majstaf/mdbgit/
-MSTTS=${TMP}/mdbgit_status
-MRPRT=${TMP}/mdbgit_report
-> ${MSTTS}
-> ${MRPRT}
+JDEST=${HOME}/majstaf/mdbgit/
+JSTTS=${TMP}/mdbgit_status
+JRPRT=${TMP}/mdbgit_report
+> ${JSTTS}
+> ${JRPRT}
 
 CURRDIR=$PWD
-cd ${MDEST}
+cd ${JDEST}
 for DDD in $(find * -maxdepth 0 -type d); do
 	echo ""
 	printf "${COLOR_SET}"
 	echo "*** git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
-	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_mdb | tee -a ${MSTTS}
-	grep -i 'pull' ${MSTTS} > /dev/null
+	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_mdb | tee -a ${JSTTS}
+	grep -i 'pull' ${JSTTS} > /dev/null
 	if [[ $? -eq 0 ]]; then
-		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE!\n" >> ${MRPRT}
+		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${JRPRT}
 	fi
-	> ${MSTTS}
+	> ${JSTTS}
 	cd ..
 done
 
@@ -32,12 +32,12 @@ echo ""
 printf "${COLOR_SET}"
 echo "*** REPORT ***"
 printf "${COLOR_RESET}"
-if [ -s ${MRPRT} ]; then
-	cat ${MRPRT}
+if [ -s ${JRPRT} ]; then
+	cat ${JRPRT}
 else
-	echo "[INFO] Nothing to push!"
+	echo "[INFO] No action required"
 fi
-rm ${MRPRT} ${MSTTS} 2>/dev/null
+rm ${JRPRT} ${JSTTS} 2>/dev/null
 
 cd ${CURRDIR}
 

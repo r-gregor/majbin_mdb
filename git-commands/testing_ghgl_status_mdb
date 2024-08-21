@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
-# mdbgt_status
+# testing_ghgl_status_mdb
 # last change: 20240821_mdb
-
 
 COLOR_SET="\e[1;92m"
 COLOR_RESET="\e[0m"
@@ -9,12 +8,11 @@ CURRDIR=$PWD
 TRPRT=${TMP}/testing_report
 > ${TRPRT}
 
-
 function get_status() {
 	cmd=$1
 	OUTPUT=$(${cmd} status)
 
-	echo $OUTPUT | grep -i "git push\|untracked\|modified\|deleted" > /dev/null
+	echo $OUTPUT | grep -i "git push\|untracked\|modifiedi\|deleted" > /dev/null
 
 	if [[ $? -ne 0 ]]; then
 		echo -n "[INFO] checking git status in ${DDD} ..."
@@ -29,19 +27,13 @@ function get_status() {
 	fi
 }
 
-cd ~/majstaf/mdbgit/
-for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_jbe'); do
+cd ~/majstaf/coding2/testing
+for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_en'); do
 	cd $DDD &> /dev/null
 
 	get_status "/usr/bin/git"
 	cd ..
 done
-
-# volpejpers
-DDD="vlpprs_jbe"
-JBEVOLGITDIR="${HOME}/majstaf/jbegit/vlpprs_mdb"
-JBEVOLWORKTREE="${HOME}/majstaf/majvolpejpers"
-get_status="/usr/bin/git --git-dir=${JBEVOLGITDIR} --work-tree=${JBEVOLWORKTREE}"
 
 echo ""
 printf "${COLOR_SET}"
