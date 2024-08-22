@@ -2,16 +2,18 @@
 # mvol_push_all
 # last update: 20240821_mdb
 
-export MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_mdb"
+USR="mdb"
+
+export MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_${USR}"
 export MDBVOLWORKDIR="${HOME}/majstaf/majvolpejpers"
 
 mdbg_vol="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKDIR}"
 
 echo "[INFO] Push to d_GITHUB ..."
-${mdbg_vol} push git@github.com:r-gregor/vlpprs_mdb.git main
+${mdbg_vol} push git@github.com:r-gregor/vlpprs_${USR}.git main
 echo "---"
 
 echo "[INFO] Push to d_GITLAB ..."
-${mdbg_vol} push git@gitlab.com:r-gregor/vlpprs_mdb.git main
+${mdbg_vol} push git@gitlab.com:r-gregor/vlpprs_${USR}.git main
 echo "---"
 

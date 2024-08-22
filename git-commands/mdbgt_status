@@ -3,6 +3,7 @@
 # last change: 20240821_mdb
 
 
+USR="mdb"
 COLOR_SET="\e[1;92m"
 COLOR_RESET="\e[0m"
 CURRDIR=$PWD
@@ -30,7 +31,7 @@ function get_status() {
 }
 
 cd ~/majstaf/mdbgit/
-for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_mdb'); do
+for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_${USR}'); do
 	cd $DDD &> /dev/null
 
 	get_status "/usr/bin/git"
@@ -38,8 +39,8 @@ for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_mdb'); do
 done
 
 # volpejpers
-DDD="vlpprs_mdb"
-MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_mdb"
+DDD="vlpprs_${USR}"
+MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_${USR}"
 MDBVOLWORKTREE="${HOME}/majstaf/majvolpejpers"
 get_status="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKTREE}"
 
