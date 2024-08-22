@@ -1,0 +1,27 @@
+#! /usr/bin/env bash
+# gcommit_timestamp_mdb
+
+cmd="/usr/bin/git commit"
+usr="mdb"
+
+if [ $# -eq 1 ]; then
+	if [ $1 == "-a" ]; then
+		echo "/usr/bin/git commit -a"
+		read -p "OK?"
+		$cmd -a
+		exit
+	else
+		msg=$1
+	fi
+else
+	msg="update"
+fi
+
+tmpstmp=$(date +"%Y%m%d_%H%M")_${usr}
+desc="$msg ${tmpstmp}"
+
+# /usr/bin/git commit --dry-run -m "$desc"
+echo "/usr/bin/git commit -m \"$desc\""
+read -p "OK?"
+$cmd --dry-run -m "$desc"
+
