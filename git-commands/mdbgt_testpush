@@ -9,6 +9,7 @@ COLOR_RESET="\e[0m"
 JDEST=${HOME}/majstaf/mdbgit/
 JSTTS=${TMP}/mdbgit_status
 JRPRT=${TMP}/mdbgit_report
+USR="mdb"
 > ${JSTTS}
 > ${JRPRT}
 
@@ -19,7 +20,7 @@ for DDD in $(find * -maxdepth 0 -type d); do
 	printf "${COLOR_SET}"
 	echo "*** git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
-	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_mdb | tee -a ${JSTTS}
+	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_${USR} | tee -a ${JSTTS}
 	grep -i 'pull' ${JSTTS} > /dev/null
 	if [[ $? -eq 0 ]]; then
 		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${JRPRT}
