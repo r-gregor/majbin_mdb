@@ -20,8 +20,7 @@ fi
 tmpstmp=$(date +"%Y%m%d_%H%M")_${usr}
 desc="$msg ${tmpstmp}"
 
-# /usr/bin/git commit --dry-run -m "$desc"
 echo "/usr/bin/git commit -m \"$desc\""
 read -p "OK?"
-$cmd --dry-run -m "$desc"
+$cmd -m "$desc"
 
