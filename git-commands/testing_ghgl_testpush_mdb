@@ -6,25 +6,25 @@
 COLOR_SET="\e[1;38;5;75m"
 COLOR_RESET="\e[0m"
 USR="mdb"
-TDEST=${HOME}/majstaf/coding2/testing
-TSTTS=${TMP}/${USR}_testing_status
-TRPRT=${TMP}/${USR}_testing_report
-> ${TSTTS}
-> ${TRPRT}
+DEST=${HOME}/majstaf/coding2/testing
+STTS=${TMP}/${USR}_testing_status
+RPRT=${TMP}/${USR}_testing_report
+> ${STTS}
+> ${RPRT}
 
 CURRDIR=$PWD
-cd ${TDEST}
+cd ${DEST}
 for DDD in $(ls -d *); do
 	echo ""
 	printf "${COLOR_SET}"
 	echo "*** git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
-	cd $DDD &>/dev/null && ${HOME}/.local/bin/ghgl_testpush_${USR} | tee -a ${TSTTS}
-	grep -i 'pull' ${TSTTS} > /dev/null
+	cd $DDD &>/dev/null && ${HOME}/.local/bin/ghgl_testpush_${USR} | tee -a ${STTS}
+	grep -i 'pull' ${STTS} > /dev/null
 	if [[ $? -eq 0 ]]; then
-		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${TRPRT}
+		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${RPRT}
 	fi
-	> ${TSTTS}
+	> ${STTS}
 	cd ..
 done
 
@@ -32,12 +32,12 @@ echo ""
 printf "${COLOR_SET}"
 echo "*** REPORT ***"
 printf "${COLOR_RESET}"
-if [ -s ${TRPRT} ]; then
-	cat ${TRPRT}
+if [ -s ${RPRT} ]; then
+	cat ${RPRT}
 else
 	echo "[INFO] No action required"
 fi
-rm ${TRPRT} ${TSTTS} 2>/dev/null
+rm ${RPRT} ${STTS} 2>/dev/null
 
 cd ${CURRDIR}
 

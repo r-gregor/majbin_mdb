@@ -6,26 +6,26 @@
 # COLOR_SET="\e[1;34m"
 COLOR_SET="\e[1;38;5;75m"
 COLOR_RESET="\e[0m"
-JDEST=${HOME}/majstaf/mdbgit/
-JSTTS=${TMP}/mdbgit_status
-JRPRT=${TMP}/mdbgit_report
+DEST=${HOME}/majstaf/mdbgit/
+STTS=${TMP}/mdbgit_status
+RPRT=${TMP}/mdbgit_report
 USR="mdb"
-> ${JSTTS}
-> ${JRPRT}
+> ${STTS}
+> ${RPRT}
 
 CURRDIR=$PWD
-cd ${JDEST}
+cd ${DEST}
 for DDD in $(find * -maxdepth 0 -type d); do
 	echo ""
 	printf "${COLOR_SET}"
 	echo "*** git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
-	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_${USR} | tee -a ${JSTTS}
-	grep -i 'pull' ${JSTTS} > /dev/null
+	cd $DDD &>/dev/null && ~/.local/bin/ghgl_testpush_${USR} | tee -a ${STTS}
+	grep -i 'pull' ${STTS} > /dev/null
 	if [[ $? -eq 0 ]]; then
-		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${JRPRT}
+		echo -e "[INFO] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE\n" >> ${RPRT}
 	fi
-	> ${JSTTS}
+	> ${STTS}
 	cd ..
 done
 
@@ -33,12 +33,12 @@ echo ""
 printf "${COLOR_SET}"
 echo "*** REPORT ***"
 printf "${COLOR_RESET}"
-if [ -s ${JRPRT} ]; then
-	cat ${JRPRT}
+if [ -s ${RPRT} ]; then
+	cat ${RPRT}
 else
 	echo "[INFO] No action required"
 fi
-rm ${JRPRT} ${JSTTS} 2>/dev/null
+rm ${RPRT} ${STTS} 2>/dev/null
 
 cd ${CURRDIR}
 

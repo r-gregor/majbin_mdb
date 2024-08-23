@@ -2,8 +2,10 @@
 # mdbgt_run_all
 # last change: 20240821_mdb
 
-mdbgt_status
-mdbgt_testpush
+HST="mdb"
+
+${HST}gt_status
+${HST}gt_testpush
 
 
 
