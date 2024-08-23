@@ -1,14 +1,14 @@
 #! /usr/bin/env bash
 # mdbgt_status
-# last change: 20240821_mdb
+# last change: 20240823
 
 
-USR="mdb"
+HST="mdb"
 COLOR_SET="\e[1;92m"
 COLOR_RESET="\e[0m"
 CURRDIR=$PWD
-TRPRT=${TMP}/testing_report
-> ${TRPRT}
+RPRT=${TMP}/testing_report
+> ${RPRT}
 
 
 function get_status() {
@@ -23,15 +23,15 @@ function get_status() {
 	else
 		echo "---"
 		printf "${COLOR_SET}"
-		printf "[INFO] checking git status in ${DDD} ... NEED TO ADD and/or COMMIT\n" | tee -a ${TRPRT}
+		printf "[INFO] checking git status in ${DDD} ... NEED TO ADD and/or COMMIT\n" | tee -a ${RPRT}
 		printf "${COLOR_RESET}"
 		${cmd} status
 		echo "---"
 	fi
 }
 
-cd ~/majstaf/mdbgit/
-for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_${USR}'); do
+cd ~/majstaf/${HST}git/
+for DDD in $(find * -maxdepth 0 -type d | grep -v "vlpprs_${HST}"); do
 	cd $DDD &> /dev/null
 
 	get_status "/usr/bin/git"
@@ -39,21 +39,21 @@ for DDD in $(find * -maxdepth 0 -type d | grep -v 'vlpprs_${USR}'); do
 done
 
 # volpejpers
-DDD="vlpprs_${USR}"
-MDBVOLGITDIR="${HOME}/majstaf/mdbgit/vlpprs_${USR}"
-MDBVOLWORKTREE="${HOME}/majstaf/majvolpejpers"
-get_status="/usr/bin/git --git-dir=${MDBVOLGITDIR} --work-tree=${MDBVOLWORKTREE}"
+DDD="vlpprs_${HST}"
+VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
+VOLWORKTREE="${HOME}/majstaf/majvolpejpers"
+get_status "/usr/bin/git --git-dir=${VOLGITDIR} --work-tree=${VOLWORKTREE}"
 
 echo ""
 printf "${COLOR_SET}"
 echo "*** REPORT ***"
 printf "${COLOR_RESET}"
-if [ -s ${TRPRT} ]; then
-	cat ${TRPRT}
+if [ -s ${RPRT} ]; then
+	cat ${RPRT}
 else
 	echo "[INFO] No action required"
 fi
 
-rm ${TRPRT} 2>/dev/null
+rm ${RPRT} 2>/dev/null
 cd ${CURRDIR}
 
