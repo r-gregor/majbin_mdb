@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # testing_ghgl_testpush_mdb
-# last change: 20240601_mdb
+# last change: 20240601
 
 # COLOR_SET="\e[1;94m"
 COLOR_SET="\e[1;38;5;75m"

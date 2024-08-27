@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # mdbgt_run_all
-# last change: 20240821_mdb
+# last change: 20240821
 
 HST="mdb"
 
