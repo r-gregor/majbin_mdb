@@ -7,6 +7,6 @@ gcmt="${HOME}/.local/bin/gcommit_timestamp_mdb"
 
 
 # display commands
-echo -n "${gcmd} ... " && ${gcmd}
-echo -n "${gcmt} ... " && ${gcmt}
+echo -en "${gcmd}\n\t" && ${gcmd}
+echo -en "${gcmt}\n\t" && ${gcmt}
 
