@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 # mdbgt_status
-# last change: 20240823
-
+# last change: 20241017
 
 HST="mdb"
 COLOR_SET="\e[1;92m"
@@ -9,7 +8,6 @@ COLOR_RESET="\e[0m"
 CURRDIR=$PWD
 RPRT=${TMP}/testing_report
 > ${RPRT}
-
 
 function get_status() {
 	cmd=$1
