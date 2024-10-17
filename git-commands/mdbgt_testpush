@@ -39,7 +39,7 @@ if [ -s ${RPRT} ]; then
 		echo "*** ${LINE} ***"
 	done < ${RPRT}
 else
-	echo "[REPORT] No action required"
+	echo "*** [REPORT] No action required ***"
 fi
 printf "${COLOR_RESET}"
 rm ${RPRT} ${STTS} 2>/dev/null
