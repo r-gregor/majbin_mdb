@@ -21,7 +21,8 @@ echo "============================================"
 for DDD in $(ls -d *); do
 	printf "${COLOR_SET}"
 	# echo "*** git testpush in ${DDD} ... ***"
-	echo "[INFO] git testpush in ${DDD} ... ***"
+	#echo "[INFO] git testpush in ${DDD} ... ***"
+	echo "***    git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
 	cd $DDD &>/dev/null && ${HOME}/.local/bin/ghgl_testpush_${USR} | tee -a ${STTS}
 	grep -i 'pull' ${STTS} > /dev/null
