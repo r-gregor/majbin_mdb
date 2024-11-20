@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+yes | gadd_gcmt_mdb && ghgl_push_mdb
+
