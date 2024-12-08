@@ -11,8 +11,6 @@ function tms() {
     echo -n "[ $(date +%Y%m%d_%H%M%S) ] "
 }
 
-# Start
-tms; echo "Started: $0"
 
 # check the number of parameters
 if [ $# -ne 1 ]; then
@@ -21,10 +19,16 @@ if [ $# -ne 1 ]; then
 fi
 
 my_URL=$1
+
+# Start
+# tms; echo "Started: $0"
+tms; echo "Looking for file with URL: $my_URL ..."
+
 function mycmd() {
 	tmpf=$(mktemp)
     # ls $PWD | xargs -IS grep -s --color -Hn $my_URL S | tee $tmpf
-    \ls $PWD | xargs -IS grep -s -Hn ${my_URL} S > ${tmpf}
+    # \ls $PWD | xargs -IS grep -s -Hn ${my_URL} S > ${tmpf}
+	find $PWD -type f -iname "*.txt" | xargs -I{} grep -s -Hn $my_URL {} > $tmpf
 	num=$(cat ${tmpf} | wc -l)
 	if [ ${num} -eq 0 ]; then
 		tms; echo "No files with that URL found!"
