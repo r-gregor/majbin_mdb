@@ -25,6 +25,7 @@ for DDD in $(ls -d *); do
 	printf "${COLOR_SET}"
 	echo "***    git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
+	cd $DDD &>/dev/null
 	readarray -t output < <(~/.local/bin/ghgl_testpush_${HST})
 	for i in $(seq 0 $((${#output[@]} - 1))); do
 		if [[ "${output[$i]}" =~ "pull" ]]; then
