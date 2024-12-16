@@ -1,0 +1,54 @@
+#! /usr/bin/env bash
+# testing_ghgl_testpush_mdb
+# last change: 20241216
+
+HST="mdb"
+
+# COLOR_SET="\e[1;94m"
+COLOR_SET="\e[1;38;5;75m"
+COLOR_RESET="\e[0m"
+DEST=${HOME}/majstaf/coding2/testing
+
+unset output
+unset report
+
+output=()
+report=()
+
+CURRDIR=$PWD
+cd ${DEST}
+
+echo "============================================"
+echo "[INFO] running testing_ghgl_testpush_mdb ..."
+echo "============================================"
+for DDD in $(ls -d *); do
+	printf "${COLOR_SET}"
+	echo "***    git testpush in ${DDD} ... ***"
+	printf "${COLOR_RESET}"
+	readarray -t output < <(~/.local/bin/ghgl_testpush_${HST})
+	for i in $(seq 0 $((${#output[@]} - 1))); do
+		if [[ "${output[$i]}" =~ "pull" ]]; then
+			msg="$(echo -e "[REPORT] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE")"
+			readarray -t -O "${#report[@]}" report < <(echo -e "$msg")
+			exit
+		else
+			echo -e ${output[$i]}
+		fi
+	done
+	cd ..
+done
+
+printf "${COLOR_SET}"
+if [ ${#report[@]} -gt 0 ]; then
+	for j in $(seq 0 $((${#report[@]} - 1))); do
+		echo "*** ${report[$j]} ***"
+	done
+else
+	echo "*** [REPORT] No action required ***"
+fi
+printf "${COLOR_RESET}"
+
+cd ${CURRDIR}
+
+echo ""
+
