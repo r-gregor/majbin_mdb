@@ -7,7 +7,7 @@ COLOR_RESET="\e[0m"
 CURRDIR=$PWD
 
 
-function get_status() {
+get_status() {
 	cmd=$1
 	OUTPUT=$(${cmd} status)
 

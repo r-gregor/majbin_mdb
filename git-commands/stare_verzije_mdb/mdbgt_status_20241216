@@ -9,7 +9,7 @@ CURRDIR=$PWD
 RPRT=${TMP}/testing_report
 > ${RPRT}
 
-function get_status() {
+get_status() {
 	cmd=$1
 	OUTPUT=$(${cmd} status)
 

@@ -17,7 +17,7 @@ DRPBO_d=/home/rgregor/majstaf/mdbgit/knowledgedb
 DEST1="C_and_Cpp,JAVA,PYTHON,CS_and_other_PL,GIT,VIM,DOCKER,LINUX_SYSTEM,BASH,TXT"
 DEST2="C_and_Cpp JAVA PYTHON CS_and_other_PL GIT VIM DOCKER LINUX_SYSTEM BASH TXT"
 
-function usage() {
+usage() {
 MSG=$(cat << HDOC
 
 Usage: $0 [args]

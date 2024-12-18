@@ -9,13 +9,13 @@ gr_FROM2="$HOME/majstaf/java"
 gr_TO2="$HOME/Dropbox/ODPRTO/home_username_java_d"
 
 # timestamp
-function tms() {
+tms() {
     echo -n "[ $(date +%Y%m%d_%H%M%S) ] "
 }
 
 crtcn=3
 
-function crtc() {
+crtc() {
     for ((i=1; i<=$1; i++)); do
         echo -n "-"
     done
@@ -25,7 +25,7 @@ function crtc() {
 # command
 CMDN="rsync -n -rltDv --delete --progress"
 
-function mcdn_d() {
+mcdn_d() {
 	myDir="$1"
 	mySrc="${gr_FROM1}/${myDir}"
 	myDest="${gr_TO1}/${myDir}"
@@ -37,7 +37,7 @@ function mcdn_d() {
 }
 
 # run
-function runBackups() {
+runBackups() {
     for gr_DIR in majbin coding; do
 		mcdn_d ${gr_DIR}
     tms; crtc ${crtcn}
