@@ -36,7 +36,7 @@ for DDD in $(ls -d *); do
 			echo -e ${output[$i]}
 			break
 		else
-			echo -e ${output[$i]}
+			 echo -e ${output[$i]}
 		fi
 	done
 	cd ..
