@@ -3,7 +3,8 @@
 # 20241216: store output of commands into array instead of external filea
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
-# last change: 20241218
+# 20250301: correct output messaging
+# last change: 20250301
 
 HST="mdb"
 TSTDST=${HOME}/majstaf/coding2/testing
