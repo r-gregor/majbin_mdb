@@ -14,8 +14,8 @@ DRPBO_d=/home/rgregor/majstaf/mdbgit/knowledgedb
 # _AWK_SED, _BASH, _C_and_Cpp, _CS_and_other_PL, _Cygwin, _DOCKER, _GIT, _GO, _JAVA, _JS, _LINUX_SYSTEM, \
 # _PYTHON, _RPi, _RUST, _TMUX, _TXT, _VIM,
 
-DEST1="C_and_Cpp,JAVA,PYTHON,CS_and_other_PL,GIT,VIM,DOCKER,LINUX_SYSTEM,BASH,TXT"
-DEST2="C_and_Cpp JAVA PYTHON CS_and_other_PL GIT VIM DOCKER LINUX_SYSTEM BASH TXT"
+DEST1="C_and_Cpp,JAVA,PYTHON,CS_and_other_PL,GIT,VIM,LINUX_SYSTEM,BASH,ZIG,GO"
+DEST2="C_and_Cpp JAVA PYTHON CS_and_other_PL GIT VIM LINUX_SYSTEM BASH ZIG GO"
 
 usage() {
 MSG=$(cat << HDOC
