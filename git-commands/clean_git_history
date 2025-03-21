@@ -33,7 +33,7 @@ mv ${GTMP}/.git ${GTMP}/dot_git
 echo "[INFO] Trying to clean git repository in ${gitdirname}"
 
 echo "[INFO] cd into ${gitdirname} ..."
-cd ${gitdirname}
+cd ./${gitdirname}
 
 
 echo "[INFO] storing existing remotes into array ..."
@@ -76,7 +76,7 @@ git clone ${GHPTH}
 
 
 echo "[INFO] cd into cleaned ${gitdirname} ..."
-cd ${gitdirname}
+cd ./${gitdirname}
 
 echo "[INFO] adding remotes ..."
 echo "git remote add ${rmts[0]} git@github.com:r-gregor/${gitdirname}.git"
