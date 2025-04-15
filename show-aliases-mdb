@@ -7,7 +7,7 @@ if [ $# -gt 0 ]; then
 	pattern="$1"
 	shift
 	params="$@"
-	echo $params
+	# echo $params
 	for param in $params; do
 		pattern="$pattern\|$param"
 	done
