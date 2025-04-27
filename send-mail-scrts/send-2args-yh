@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
-### (PYTHON3 !!)
+
+# send-2args-yh
+# 20250426
+# ----------------------
 
 # importing python modules:
 import smtplib
@@ -8,7 +11,7 @@ import argparse
 import sys
 
 # import local email settings:
-import send_config_d as scd
+import send_config_yh as scd
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
