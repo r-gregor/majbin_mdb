@@ -40,7 +40,7 @@ single_repo_setup() {
 	cd ../
 }
 
-for repo in majbin majrcs metsys; do
+for repo in majbin majrcs metsys dotfiles; do
 	single_repo_setup ${repo}
 done
 
