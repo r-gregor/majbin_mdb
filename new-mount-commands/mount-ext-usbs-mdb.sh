@@ -12,7 +12,7 @@ usbs=()
 readarray -t usbs < <(find /dev/disk/by-path -name "*-usb-*part*" -exec readlink -f {} \;)
 
 if [ ${#usbs[@]} -eq 0 ]; then
-	echo "[ERROR] No externa USB-s plugged"
+	echo "[ERROR] No external USB-s plugged"
 	exit
 fi
 
