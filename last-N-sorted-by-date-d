@@ -6,8 +6,8 @@
 ###
 
 
-CMD1=~/.local/bin/rsort-by-enddate_g
-CMD2=~/.local/bin/rsort-by-tmstmp_c
+CMD1=~/.local/bin/rsort-by-enddate-g
+CMD2=~/.local/bin/rsort-by-tmstmp-c
 DRPBO_d=/home/rgregor/majstaf/mdbgit/knowledgedb
 
 # list of all:
