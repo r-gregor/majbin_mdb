@@ -11,6 +11,9 @@ usbs=()
 # cmd2
 readarray -t usbs < <(find /dev/disk/by-path -name "*-usb-*part*" -exec readlink -f {} \;)
 
+# ALTERNATIVE:
+# readarray -t usbs < <(ls -1 /dev/disk/by-path/* | grep -E "usb.*part" | xargs -I{} realpath {})
+
 if [ ${#usbs[@]} -eq 0 ]; then
 	echo "[ERROR] No external USB-s plugged"
 	exit
