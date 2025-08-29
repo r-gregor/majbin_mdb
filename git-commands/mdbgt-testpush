@@ -18,6 +18,7 @@ unset report
 
 output=()
 report=()
+> $MDBGIT_TPUSH_REPORTS
 
 CURRDIR=$PWD
 cd ${DEST}
@@ -48,7 +49,8 @@ printf "${COLOR_SET}"
 if [ ${#report[@]} -gt 0 ]; then
 	echo
 	for (( j=0; j<${#report[@]}; j++)); do
-		echo "*** ${report[$j]} ***"
+		# echo "*** ${report[$j]} ***"
+		echo "*** ${report[$j]} ***" | tee -a $MDBGIT_TPUSH_REPORTS
 	done
 else
 	echo
