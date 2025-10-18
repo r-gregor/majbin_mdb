@@ -13,12 +13,32 @@ declare -A apps=(["Firefox"]="/usr/bin/firefox" \
                  ["ArandR"]="/usr/bin/arandr" \
                  ["VLC"]="/usr/bin/vlc")
 
+declare -a keys=("Firefox" \
+	             "Google Chrome" \
+				 "Mate calculator" \
+				 "Mousepad" \
+				 "Thunar FM" \
+				 # "Double Commander" \
+                 "Transmission" \
+				 "ArandR" \
+				 "VLC" \
+				 "q (quit)")
+
 # TEST
 # echo "apps values only: ${apps[@]}"
 # echo "apps keys only:   ${!apps[@]}"
 # echo "apps length:      ${#apps[@]}"
 
-selection=$(for app in "${!apps[@]}"; do echo "$app"; done | fzf --reverse +c --info=hidden --prompt="launch: ")
+# selection=$(for app in "${!apps[@]}"; do echo "$app"; done | fzf --reverse +c --info=hidden --prompt="launch: ")
+
+selection=$(for key in "${!keys[@]}"; do echo "${keys[$key]}"; done | \
+			fzf \
+			--reverse \
+			--border=rounded \
+			--info=hidden \
+			--height=15 \
+			+c \
+			--prompt="launch: ")
 
 # TEST 2
 # echo "selection: $selection"
