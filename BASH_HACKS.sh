@@ -1,4 +1,8 @@
 #! /usr/bin/env bash
+# v1 20251014 d
+# v1 20251027 d
+# last: 20251027
+
 path_full="/home/gregor.redelonghi/majstaf/_NERAZPOREJENO/__DANES__/maj-fajl.txt"
 
 path_only=${path_full%\/*}           # OK
@@ -36,7 +40,7 @@ echo 'cmd=$1'
 echo 'output=()'
 echo 'readarray -t -O ${#output[@]} output < <(cmd)'
 
-cat << EOF1
+cat << 'EOF1'
 
 	***
 	Description:
@@ -60,7 +64,7 @@ echo 'for (( i=0; i<${#output[@]}; i++ )); do'
 echo '	echo -e ">\t${output[$i]}"'
 echo 'done'
 
-cat <<EOF2
+cat << 'EOF2'
 
 ---
 single-line example:
