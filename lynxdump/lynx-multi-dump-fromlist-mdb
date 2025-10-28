@@ -1,30 +1,37 @@
 #! /usr/bin/env bash
 
-dumplist="$HOME/majstaf/majbin/lynxdump/multi-dump-list.dat"
+# filename: lynx-multi-dump-fromlist-mdb
+# 20250925 v1 en: remove option to use dumplist
+# 20251028 v2  d: convert from en to mdb
+# last: 20251028
+# ---
 
 if [ $# -eq 1 ]; then
 	gr_seznam=$1
+	gr_name="default-fname"
 	if [ ! -f $gr_seznam ]; then
-		gr_seznam=${dumplist}
-		echo "No such file. Destination: ${dumplist}"
+		echo "[ERROR] no such file: ${gr_seznam}"
+		exit
 	fi
+elif [ $# -eq 2 ]; then
+	gr_seznam=$1
+	if [ ! -f $gr_seznam ]; then
+		echo "[ERROR] no such file: ${gr_seznam}"
+		exit
+	fi
+	gr_name=$2
 else
-	gr_seznam=${dumplist}
+	echo -e " Usage:"
+	echo -e "      \t$(basename $0) <list> <name>"
+	echo -e "    or:"
+	echo -e "      \t$(basename $0) <list> [default-fname]"
+	echo -e ""
+	exit
 fi
 
 gr_dest="$PWD"
-gr_d_filename="default-filename"
 gr_dejt=$(date +%Y%m%d)
-
-echo "Enter filename [no spaces, only hypens] :"
-read gr_ANS
-
-if [ -z ${gr_ANS} ]; then
-	gr_filename=${gr_d_filename}-multyf-${gr_dejt}.txt
-else
-	gr_imef=$(echo "${gr_ANS}" | tr ' ' '-') 
-	gr_filename=${gr_imef}-multif-${gr_dejt}.txt
-fi
+gr_filename=${gr_name}-multif-${gr_dejt}.txt
 
 # destination ...
 gr_goto="${PWD}"
