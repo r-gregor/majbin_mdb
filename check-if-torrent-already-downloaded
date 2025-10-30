@@ -3,7 +3,7 @@
 torent_dir="/home/rgregor/majstaf/majmedia/_yts_torrents"
 
 if [ ! $PWD == ${torent_dir} ]; then
-	echo "[ERROR] must be in \"${torent_dir}\""
+	echo -e "[ERROR] must be in \"${torent_dir}\"\n"
 	echo
 	exit
 fi
