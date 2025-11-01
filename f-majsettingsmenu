@@ -29,7 +29,7 @@ case $choice in
 		;;
 	
 	*)
-		echo -n "Not a valid choice"
+		echo -e "Not a valid choice\n"
 		exit
 		;;
 esac

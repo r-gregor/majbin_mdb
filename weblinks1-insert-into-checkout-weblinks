@@ -38,7 +38,7 @@ ls -1 ${gr_IZE}/*.txt
 if [ $? -ne 0 ]; then
 	echo
 	echo "there are NO *.txt files in  ${gr_IZE}"
-	echo "Exiting ..."
+	echo -e "Exiting ...\n"
 	exit 1
 fi
 

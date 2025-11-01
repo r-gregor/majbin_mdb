@@ -4,8 +4,7 @@ clear
 gr_dejt=$(date +%Y%m%d)
 
 if [ $# -ne 2 ]; then
-	echo 'USAGE: <scriptmname> [web-URL] [filename-with-dashes]'
-	echo
+	echo -e "USAGE: <scriptmname> [web-URL] [filename-with-dashes]\n"
 	exit
 fi
 

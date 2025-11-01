@@ -51,7 +51,7 @@ fi
 readarray -t -O "${#list[@]}" list < <(find ${SRCDIR} -newermt "${DEJT} ${HR}:00:00" -type f | grep -v '\.git')
 
 if [ ${#list[@]} -le 0 ]; then
-	echo "[INFO] No files found"
+	echo -e "[INFO] No files found\n"
 	exit
 fi
 
