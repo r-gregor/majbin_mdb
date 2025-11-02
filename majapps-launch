@@ -5,6 +5,9 @@
 #              -- keys in separate index-ed array to keep display order
 # last: 20251020 (d)
 
+# clear the screen:
+printf "\033[H\033[2J"
+
 declare -A apps=(["Firefox"]="/usr/bin/firefox" \
                  ["ArandR"]="/usr/bin/arandr" \
                  ["Atril"]="/usr/bin/atril" \
@@ -59,7 +62,7 @@ while true; do
 				--reverse \
 				--border=rounded \
 				--info=hidden \
-				--height=15 \
+				--height=25 \
 				--prompt="launch (q to quit): ")
 
 	if [ "x${selection}" == "x" ]; then
