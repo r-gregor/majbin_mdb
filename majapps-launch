@@ -58,7 +58,7 @@ while true; do
 
 	# add +c option to reverse highlight
 	selection=$(for key in "${!keys[@]}"; do echo "${keys[$key]}"; done | \
-				fzf \
+				fzf -e \
 				--reverse \
 				--border=rounded \
 				--info=hidden \
