@@ -6,25 +6,50 @@
 # last: 20251020 (d)
 
 declare -A apps=(["Firefox"]="/usr/bin/firefox" \
+                 ["ArandR"]="/usr/bin/arandr" \
+                 ["Atril"]="/usr/bin/atril" \
+                 ["Gimp"]="/usr/bin/gimp" \
                  ["Google Chrome"]="/usr/bin/google-chrome" \
+                 ["Gparted"]="/usr/sbin/gparted" \
+                 ["Kitty"]="/usr/bin/kitty" \
+                 ["KODI"]="/usr/bin/kodi" \
+                 ["LxAppearance"]="/usr/bin/lxappearance" \
+                 ["LxTask"]="/usr/bin/lxtask" \
                  ["Mate calculator"]="/usr/bin/mate-calculator" \
                  ["Mousepad"]="/usr/bin/mousepad" \
+                 ["Nitrogen"]="/usr/bin/nitrogen" \
+                 ["PavucControl"]="/usr/bin/pavucontrol" \
+                 ["PCmanFM"]="/usr/bin/pcmanfm" \
+                 ["Pinta"]="/usr/bin/pinta" \
                  ["Thunar FM"]="/usr/bin/thunar" \
-                 # ["Double Commander"]="/usr/bin/doublecmd" \
                  ["Transmission"]="/usr/bin/transmission-gtk" \
-                 ["ArandR"]="/usr/bin/arandr" \
-                 ["VLC"]="/usr/bin/vlc")
+                 ["Ulauncher"]="/usr/bin/ulauncher" \
+                 ["VLC"]="/usr/bin/vlc" \
+                 ["Xsane"]="/usr/bin/xsane" \
+                 ["q (quit)"]="")
 
 declare -a keys=("Firefox" \
-	             "Google Chrome" \
-				 "Mate calculator" \
-				 "Mousepad" \
-				 "Thunar FM" \
-				 # "Double Commander" \
+                 "ArandR" \
+                 "Atril" \
+                 "Gimp" \
+                 "Google Chrome" \
+                 "Gparted" \
+                 "Kitty" \
+                 "KODI" \
+                 "LxAppearance" \
+                 "LxTask" \
+                 "Mate calculator" \
+                 "Mousepad" \
+                 "Nitrogen" \
+                 "PavucControl" \
+                 "PCmanFM" \
+                 "Pinta" \
+                 "Thunar FM" \
                  "Transmission" \
-				 "ArandR" \
-				 "VLC" \
-				 "q (quit)")
+                 "Ulauncher" \
+                 "VLC" \
+                 "Xsane" \
+                 "q (quit)")
 
 while true; do
 
@@ -35,7 +60,7 @@ while true; do
 				--border=rounded \
 				--info=hidden \
 				--height=15 \
-				--prompt="launch: ")
+				--prompt="launch (q to quit): ")
 
 	if [ "x${selection}" == "x" ]; then
 		echo -e "[ERROR] no aplication selected\n"
