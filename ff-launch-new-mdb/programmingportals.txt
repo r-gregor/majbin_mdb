@@ -1,4 +1,5 @@
 --- 20251029-1519-en ---
+--- 20251117-2031-d  ---
 https://pedropark99.github.io/zig-book/                   -- Zig manual
 https://lemire.me/blog/                                   -- programming
 https://www.rfleury.com/                                  -- programming
@@ -9,4 +10,6 @@ https://nrk.neocities.org/                                -- programming: portal
 https://learnbyexample.github.io/                         -- programming stuf
 https://eli.thegreenplace.net/                            -- programming stuf
 https://johnnysswlab.com/                                 -- programming stuf
+---
+https://ysap.sh/                                          -- BASH (mostly), 5++
 
