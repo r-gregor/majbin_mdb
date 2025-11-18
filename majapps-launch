@@ -30,6 +30,7 @@ declare -A apps=(["Firefox"]="/usr/bin/firefox" \
                  ["Ulauncher"]="/usr/bin/ulauncher" \
                  ["VLC"]="/usr/bin/vlc" \
                  ["Xsane"]="/usr/bin/xsane" \
+                 ["Double Commander"]="/usr/bin/doublecmd" \
                  ["q (quit)"]="")
 
 declare -a keys=("Firefox" \
@@ -54,6 +55,7 @@ declare -a keys=("Firefox" \
                  "Ulauncher" \
                  "VLC" \
                  "Xsane" \
+                 "Double Commander" \
                  "q (quit)")
 
 while true; do
