@@ -16,6 +16,7 @@ declare -A apps=(["Firefox"]="/usr/bin/firefox" \
                  ["Gparted"]="/usr/sbin/gparted" \
                  ["Kitty"]="/usr/bin/kitty" \
                  ["Urxvt"]="/usr/bin/urxvt" \
+                 ["xfce4-terminal"]="/usr/bin/xfce4-terminal" \
                  ["KODI"]="/usr/bin/kodi" \
                  ["LxAppearance"]="/usr/bin/lxappearance" \
                  ["LxTask"]="/usr/bin/lxtask" \
@@ -41,6 +42,7 @@ declare -a keys=("Firefox" \
                  "Gparted" \
                  "Kitty" \
                  "Urxvt" \
+                 "xfce4-terminal" \
                  "KODI" \
                  "LxAppearance" \
                  "LxTask" \
