@@ -25,4 +25,5 @@ EOF
 done
 
 /usr/bin/ls --color=always -t "${DEST}" | head -n "${NUM}"
+# /usr/bin/ls -t ${DEST} | head -n ${NUM} | xargs -I{} echo "${DEST}/{}"
 
