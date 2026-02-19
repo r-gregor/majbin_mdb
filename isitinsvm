@@ -12,3 +12,7 @@ fi
 
 grep -i "$PTRN" $PTH
 
+if [ $? -ne 0 ]; then
+	echo "NOT IN THE _DSVM: ${PTRN}"
+fi
+
