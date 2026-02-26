@@ -3,6 +3,6 @@
 # last change: 20250402
 HST="mdb"
 
-testing-ghgl-status-${HST}
-testing-ghgl-testpush-${HST}
+testing-status-${HST}
+testing-testpush-${HST}
 
