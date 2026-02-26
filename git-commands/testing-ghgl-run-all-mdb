@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-# filename: testing-ghgl-run-all-mdb
-# last change: 20250402
-HST="mdb"
-
-testing-ghgl-status-${HST}
-testing-ghgl-testpush-${HST}
-
