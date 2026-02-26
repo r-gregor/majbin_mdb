@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filrname: ff-launch--en
+# filename: ff-launch--en
 # 20251117 v1 en
 # 20251117 v2 en: :associative array --> no case statement needed
 # 20251117 v3 en: ALL --> cat all txt files into process subst ...
