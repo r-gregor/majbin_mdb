@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: ff-personal-launch-en
+# filename: ff-personal-launch-mdb-v5
 # from ff-launch-en
 # 20260216 en
 # 20260229 jbe v2: add info what was selected
@@ -9,8 +9,7 @@
 # 20260303 mdb v4: added $delline
 # 20260304 jbe v5: $delline calculated from longest KEY line with get_longest function
 #                  sorted output to fzf command
-# 20260305  en v6: extract KEYS from URLS
-# last: 20260305
+# last: 20260304
 #---
 
 clear
@@ -23,7 +22,22 @@ SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 # FZFCMD="fzf -e --reverse --height 50% --border rounded"
 FZFCMD='fzf -e --reverse --border rounded'
 
-# assoc array
+# arrays
+declare KEYS=(
+	"Moj račun Energetika Ljubljana"
+	"ELEKTRO-LJUBLJANA -- Prijava v portal Moja energija"
+	"Moj Petrol - elektrika (Valvasorjeva 5)"
+	"ZD za študente: dr. Darja Marija ŽNIDARŠIČ"
+	"Prijava | doZdravnika.si"
+	"eAsistent - Špela"
+	"T-2: login"
+	"TRIGLAV Zavarovalnica: login"
+	"moja POŠTA.si: login"
+	"T-2 tv2go: login"
+	"URBANA JHL: login"
+	"eInženir IZS.si: login"
+)
+
 declare -A URLS=(
 	["Moj račun Energetika Ljubljana"]="https://mojracun.energetika-lj.si/login"
 	["ELEKTRO-LJUBLJANA -- Prijava v portal Moja energija"]="https://me.elektro-energija.si/Prijava"
@@ -38,9 +52,6 @@ declare -A URLS=(
 	["URBANA JHL: login"]="https://urbana.jhl.si"
 	["eInženir IZS.si: login"]="https://einzenir.izs.si/m_login.cfm"
 )
-
-# array of keys from ORLS
-KEYS=("${!URLS[@]}")
 
 # functions
 get_longest() {
@@ -75,7 +86,7 @@ ff_personallaunch() {
 	fi
 
 	if [ "${selection}" == "Quit" ]; then
-		# echo -e "[INFO] leaving\n"
+		echo -e "[INFO] leaving\n"
 		exit 0
 	fi
 
