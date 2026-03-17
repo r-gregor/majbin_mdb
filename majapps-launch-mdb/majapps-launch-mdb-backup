@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: majapps-launch
+# filename: majapps-launch-mdb
 # 20250917 (d)
 # 20251020 (d) -- run inside infinite loop and added 'q' to quit
 #              -- keys in separate index-ed array to keep display order
