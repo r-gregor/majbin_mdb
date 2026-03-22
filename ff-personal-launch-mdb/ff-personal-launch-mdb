@@ -38,6 +38,7 @@ declare -A URLS=(
 	["T-2 tv2go: login"]="https://tv2go.t-2.net"
 	["URBANA JHL: login"]="https://urbana.jhl.si"
 	["eInženir IZS.si: login"]="https://einzenir.izs.si/m_login.cfm"
+	["Evinjeta (DARS)"]="https://evinjeta.dars.si/selfcare/sl"
 )
 
 # array of keys from ORLS
