@@ -3,7 +3,8 @@
 # 20250917 (d)
 # 20251020 (d) -- run inside infinite loop and added 'q' to quit
 #              -- keys in separate index-ed array to keep display order
-# last: 20251020 (d)
+# 20260325 (d) -- added slelection_info() function
+# last: 20260325
 
 # clear the screen:
 printf "\033[H\033[2J"
@@ -59,6 +60,11 @@ get_longest() {
 
 	echo "${longest}"
 }
+
+selection_info() {
+	printf "[INFO] selected: $1\n"
+}
+
 # MAIN # v3
 longest_l=$(get_longest keys)                                         # v3
 delline=$(for((i = 0; i < ${#longest_l}; i++)); do printf "-"; done)  # v3
@@ -87,6 +93,7 @@ while true; do
 	fi
 
 	eval "nohup ${apps["${selection}"]} >&/dev/null &"
+	selection_info "${selection}"
 
 done
 
