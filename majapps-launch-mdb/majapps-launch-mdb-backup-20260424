@@ -65,8 +65,20 @@ selection_info() {
 	printf "[INFO] selected: $1\n"
 }
 
-# v6
-majaps_run() {
+# MAIN # v3
+longest_l=$(get_longest keys)                                         # v3
+delline=$(for((i = 0; i < ${#longest_l}; i++)); do printf "-"; done)  # v3
+
+while true; do
+
+	# add +c option to reverse highlight
+	selection=$((for key in "${!keys[@]}"; do echo "${keys[$key]}"; done | sort; echo "${delline}"; echo "Quit") | \
+				fzf -e \
+				--reverse \
+				--border=rounded \
+				--info=hidden \
+				--prompt="launch (q to quit): ")
+
 	if [ "x${selection}" == "x" ]; then
 		echo -e "[INFO] no selection\n"
 		exit
@@ -82,50 +94,6 @@ majaps_run() {
 
 	eval "nohup ${apps["${selection}"]} >&/dev/null &"
 	selection_info "${selection}"
-}
 
-# MAIN # v3
-longest_l=$(get_longest keys)                                         # v3
-delline=$(for((i = 0; i < ${#longest_l}; i++)); do printf "-"; done)  # v3
-
-# v6
-if [ $# -eq 1 ]; then
-	declare -a options
-	# ${varname,,} -- convert string to all lowercase ...
-	for key in "${keys[@]}"; do
-		if [[ "${key,,}" =~ "${1,,}" ]]; then
-			options+=("${key}")
-		fi
-	done
-
-	if [ "${#options[@]}" -gt 1 ]; then
-		printf "[ERROR] multiple selections:\n"
-		for OPT in "${options[@]}"; do
-			printf "${OPT}\n"
-		done
-		printf "[INFO] redefine parameter\n\n"
-		exit
-	elif [ "${#options[@]}" -eq 0 ]; then
-		printf "[ERROR] no selection\n\n"
-		exit
-	else
-		selection="${options[0]}"
-	fi
-
-	read -p "[INFO] launch: ${selection} ... OK?"
-	majaps_run
-	exit
-fi
-
-while true; do
-	# add +c option to reverse highlight
-	selection=$((for key in "${!keys[@]}"; do echo "${keys[$key]}"; done | sort; echo "${delline}"; echo "Quit") | \
-				fzf -e \
-				--reverse \
-				--border=rounded \
-				--info=hidden \
-				--prompt="launch (q to quit): ")
-
-	majaps_run
 done
 
