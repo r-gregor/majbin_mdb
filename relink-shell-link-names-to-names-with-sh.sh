@@ -12,7 +12,7 @@ while IFS=';' read slink spath; do
 		# printf "mv -v ${ULB}/${slink} ${ULB}/${slink}.sh\n"
 		#REAL DEAL
 		ln -snf "${spath}.sh" "${ULB}/${slink}"
-		mv -v "${ULB}/${slink}" "${ULB}/${slink}.sh"
+		# mv -v "${ULB}/${slink}" "${ULB}/${slink}.sh"
 	fi
 done < sflinks.txt
 
