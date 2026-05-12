@@ -3,7 +3,7 @@
 
 HST="mdb"
 for DDD in majbin majrcs metsys; do
-	check-git-diffs-${HST} $DDD;
+	check-git-diffs-${HST}.sh $DDD;
 done
 
 
