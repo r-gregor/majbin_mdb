@@ -3,7 +3,7 @@
 # last change: 20250402
 
 gcmd="/usr/bin/git add --verbose ."
-gcmt="${HOME}/.local/bin/gcommit-timestamp-mdb.sh"
+gcmt="${HOME}/.local/bin/gcommit-timestamp-mdb"
 
 # display commands
 echo -en "running: ${gcmd}\n" && ${gcmd}
