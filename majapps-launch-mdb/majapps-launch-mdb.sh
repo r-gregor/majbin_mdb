@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: majapps-launch-mdb
+# filename: majapps-launch-mdb.sh
 # v1_20250917
 # v2_20251020 run inside infinite loop and added 'q' to quit
 #             keys in separate index-ed array to keep display order
@@ -25,7 +25,6 @@ FPTH=${SRCDIR}/${FNAME}         # v6
 
 # assoc array
 declare -A majapps
-
 
 # functions
 # v6
