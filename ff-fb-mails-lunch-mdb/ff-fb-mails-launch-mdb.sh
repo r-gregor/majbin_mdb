@@ -8,9 +8,9 @@
 # ---
 
 # globals
-FFCMD='/usr/bin/firefox'
 SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 # FZFCMD="fzf -e --reverse --height 50% --border rounded"
+FFCMD='/usr/bin/firefox'
 FZFCMD="fzf -e --reverse --border rounded"
 fb_files_list="${SRCDIR}/fb_files_list.txt"
 
