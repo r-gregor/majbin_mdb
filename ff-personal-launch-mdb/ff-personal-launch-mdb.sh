@@ -78,7 +78,7 @@ ff_personallaunch() {
 	if [ "${selection}" != "${delline}" ]; then
 		echo "[INFO] selected: ${selection}"
 		# nohup ${FFCMD} "${URLS["${selection}"]}" >&/dev/null &
-		(nohup ${FFCMD} "${URLS["${selection}"]}" &)  &/dev/null 2>&1
+		(nohup ${FFCMD} "${URLS["${selection}"]}" &) > /dev/null 2>&1
 	fi
 }
 

@@ -47,7 +47,8 @@ ff_launch() {
 
 	path=$(echo "${selection}" | cut -d ' ' -f1)
 	echo "[INFO] selected: ${path}"
-	nohup ${FFCMD} "${path}" >&/dev/null &
+	# nohup ${FFCMD} "${path}" >&/dev/null &
+	(nohup ${FFCMD} "${path}" &) > /dev/null 2>&1
 }
 
 # v5
