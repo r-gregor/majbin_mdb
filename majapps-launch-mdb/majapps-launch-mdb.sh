@@ -73,6 +73,7 @@ majapps_run() {
 	fi
 
 	if [ "${selection}" == "Quit" ]; then
+		printf "\n"
 		exit
 	fi
 
@@ -151,4 +152,4 @@ while true; do
 	get_selection_jbe
 	majapps_run
 done
-
+printf "\n"
