@@ -67,7 +67,7 @@ fb_launch() {
 
 	echo "[INFO] selected: ${selection} <${fb_files["${selection}"]}>"
 	# nohup ${FFCMD} "${fb_files["${selection}"]}" >&/dev/null &
-	(nohup ${FFCMD} "${fb_files["${selection}"]} $)" > /dev/null 2>&1
+	(nohup ${FFCMD} "${fb_files["${selection}"]}" &) >/dev/null 2>&1
 }
 
 while true; do
