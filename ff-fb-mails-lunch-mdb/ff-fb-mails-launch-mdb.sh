@@ -65,7 +65,7 @@ fb_launch() {
 		exit 0
 	fi
 
-	echo "[INFO] selected: ${selection} <${fb_files["${selection}"]}>"
+	echo "[INFO] selected: ${selection} | ${fb_files["${selection}"]}"
 	# nohup ${FFCMD} "${fb_files["${selection}"]}" >&/dev/null &
 	(nohup ${FFCMD} "${fb_files["${selection}"]}" &) >/dev/null 2>&1
 }
