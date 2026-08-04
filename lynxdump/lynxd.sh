@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 # fname: lynxd.sh
-# v1_20250925 remove option to use dumplist
-# v2 20260731 implement fname_string_adjustment function
+# 20250925 v1 remove option to use dumplist
+# 20260731 v2 implement fname_string_adjustment function
 #             add prefix option
 # last: 20260731
 # ---
@@ -63,23 +63,3 @@ lynx -dump -width=110 ${weburl} >> ${flnm}
 echo -e "\n\n---\n" >> ${flnm}
 
 printf "[INFO] done\n"
-
-#################################################################
-# gr_weburl="$1"
-# gr_fjl="$2"
-# gr_flnm="${gr_fjl}-${today}.txt"
-# 
-# printf "%-20s%s\n" "Web URL:" "${gr_weburl}"
-# printf "%-20s%s\n\n" "filename:" "${gr_flnm}"
-# 
-# read -p "Press <enter> to proceed or <ctrl-c> to quit"
-# 
-# echo "filename: ${gr_flnm}" >> ${gr_flnm}
-# echo -e "${gr_weburl}\n\n" >> ${gr_flnm}
-# lynx -dump -width=110 ${gr_weburl} >> ${gr_flnm}
-# echo -e "\n\n---\n" >> ${gr_flnm}
-# 
-# echo
-# echo -e 'DONE!\n'
-# 
-#################################################################
