@@ -1,9 +1,10 @@
 #! /usr/bin/env bash
-# fname: lynxd.sh
+# fname: lynxd-mdb.sh
 # 20250925 v1 remove option to use dumplist
-# 20260731 v2 implement fname_string_adjustment function
+# 20260731 v2 implement fname_string_adjustment() function
 #             add prefix option
-# last: 20260731
+# 20260804 v3 move 'lynx dump' command into dump_command() function
+# last: 20260804
 # ---
 
 fname_string_adjustment() {
@@ -24,8 +25,13 @@ fname_string_adjustment() {
 	printf "${fname_str_updated}-${today}.txt"
 }
 
+
 usage() {
 	printf "\n\tUSAGE: <scriptmname> [web-URL] \"[fname inside double quotes]\" [prefix: c, go, bash, ...(optional)]\n\n"
+}
+
+dump_command() {
+	lynx -dump -width=110 "$@"
 }
 
 # MAIN
@@ -59,7 +65,9 @@ read ANS
 # echo -e "${weburl}\n\n" >> ${flnm}
 printf "filename: ${flnm}\n" >> ${flnm}
 printf "${weburl}\n\n" >> ${flnm}
-lynx -dump -width=110 ${weburl} >> ${flnm}
+# lynx -dump -width=110 ${weburl} >> ${flnm}
+dump_command ${weburl} >> ${flnm}
 echo -e "\n\n---\n" >> ${flnm}
 
 printf "[INFO] done\n"
+

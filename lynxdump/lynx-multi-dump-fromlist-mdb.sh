@@ -1,11 +1,10 @@
 #! /usr/bin/env bash
-
-# filename: lynx-multi-dump-fromlist-mdb
-# 20250925 v1 en: remove option to use dumplist
-# 20251028 v2  d: convert from en to mdb
-# 20260803 v3 implement fname_string_adjustment function
+# filename: lynx-multi-dump-fromlist-mdb.sh
+# v1_20250925 remove option to use dumplist
+# v2 20260731 implement fname_string_adjustment() function
 #             add prefix option
-# last: 20260803
+# 20260804 v3 move 'lynx dump' command into dump_command() function
+# last: 20260804
 # ---
 
 fname_string_adjustment() {
@@ -23,15 +22,18 @@ fname_string_adjustment() {
 		tr '[[:upper:]]' '[[:lower:]]'
 	)
 
-	printf "${fname_str_updated}-multif-${today}.txt"
+	printf "${fname_str_updated}-${today}.txt"
 }
 
 usage() {
 	printf "\n\tUSAGE: <scriptmname> [list] \"[fname inside double quotes]\" [prefix: c, go, bash, ...(optional)]\n\n"
 }
 
+dump_command() {
+	lynx -dump -width=110 "$@"
+}
+
 #MAIN
-clear
 
 if [ $# -lt 2 ]; then
 	usage
@@ -71,14 +73,12 @@ touch ${ffname}
 
 printf "filename: ${ffname}\n" >> ${ffname}
 
-# for FFF in $(cat ${seznam}); do printf "[INFO] inserting $FFF into ${ffname}\n"; done
-# for FFF in $(cat ${seznam}); do printf "$FFF\n" >> ${ffname}; lynx -dump -width=110 $FFF >> ${ffname}; echo -e "\n\n\n---" >> ${ffname}; done
-
 for FFF in $(cat ${seznam}); do
 	printf "[INFO] inserting $FFF into ${ffname}\n"
 	printf "$FFF\n" >> ${ffname}
-	lynx -dump -width=110 $FFF >> ${ffname}
-	echo -e "\n\n\n---" >> ${ffname};
+	# lynx -dump -width=110 $FFF >> ${ffname}
+	dump_command $FFF >> ${ffname}
+	printf "\n\n\n---\n" >> ${ffname}
 done
 
 printf "[INFO] done\n"
