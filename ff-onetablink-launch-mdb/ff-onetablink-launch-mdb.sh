@@ -14,7 +14,7 @@
 # ---
 
 # globals
-SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
+# SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 FFCMD='/usr/bin/firefox'
 FZFCMD="fzf -e --reverse --border rounded"
 
@@ -42,14 +42,14 @@ else
 fi
 
 # load lines from file into array
-while IFS= read LINE; do
+while IFS= read -r LINE; do
 	if [ "${#LINE}" -lt 2 ]; then
 		continue
 	fi
 
 	# converted_line="$(echo $LINE | sed -e 's/\([^ ]\+\) | \(.*\)/\1;\2/' -e 's/([[:digit:]]\+) //' -e '/\S/!d'  -e 's/ - YouTube//')"
 	# v5
-	converted_line="$(echo $LINE | sed -e 's/\([^ ]\+\) | \(.*\)/\1;\2/' -e 's/([[:digit:]]\+) //' -e '/\S/!d')"
+	converted_line="$(echo "$LINE" | sed -e 's/\([^ ]\+\) | \(.*\)/\1;\2/' -e 's/([[:digit:]]\+) //' -e '/\S/!d')"
 	url=${converted_line%%;*}
 	dscr=${converted_line#*;}
 
@@ -60,16 +60,16 @@ done < "${fjl}"
 #v4
 ff_onetablink_launch() {
 	# selection - fzf
-	selection=$((for descrp in "${llist[@]}"; do echo "${descrp}"; done; echo '----'; echo 'Quit') | ${FZFCMD}) #v4
+	selection=$( (for descrp in "${llist[@]}"; do echo "${descrp}"; done; echo '----'; echo 'Quit') | ${FZFCMD} ) #v4
 
 	#v4
-	if [ "x${selection}" == "x" ]; then
+	if [ "${selection}" == "" ]; then
 		printf "[INFO] nothing selected\n"
 		exit 0
 	fi
 
-	if  [ "${selected}" == "----" ]; then
-		continue
+	if  [ "${selection}" == "----" ]; then
+		return
 	fi
 
 	if [ "${selection}" == "Quit" ]; then
@@ -78,9 +78,9 @@ ff_onetablink_launch() {
 	fi
 
 	# run
-	for URL in ${!llist[@]}; do
-		if [[ "${llist["${URL}"]}" =~ "${selection}" ]]; then
-			printf "[INFO] selected: ${selection}\n" #v4
+	for URL in "${!llist[@]}"; do
+		if [[ "${llist["${URL}"]}" =~ ${selection} ]]; then
+			printf "[INFO] selected: %s\n" "${selection}" #v4
 			(nohup ${FFCMD} "${URL}" &) > /dev/null 2>&1
 			# exit #v4
 		fi
