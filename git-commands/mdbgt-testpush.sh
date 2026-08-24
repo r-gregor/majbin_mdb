@@ -4,7 +4,8 @@
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
 # 20250301: correct output messaging
-# last change: 20250402
+# 20260818: added codeberg.org/r-gregor remote
+# last change: 20260818
 
 
 # COLOR_SET="\e[1;94m"
