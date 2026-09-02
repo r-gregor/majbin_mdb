@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 # fname: get-date-from-days-diff.sh
 # 20260902 v1
+# 20260902 v2 fixed value of start_date if days_diff is  lower tham or equal to zero
+#             with retruning from function
 # ---
 
 	if [ $# -ne 1 ]; then
@@ -43,11 +45,14 @@ get_start_date_from_daysdiff() {
 		days_diff="$1"
 	fi
 
+	# v2
 	if [ "${days_diff}" -le 0 ]; then
 		start_date="${currdt}"
+		printf "start date: %s\n" "${start_date}"
+		return
 	fi
 
-	if [ "${days_diff}" -ge 365 ]; then
+	if [ "${days_diff}" -ge ${year_days} ]; then
 		printf "[ERROR] to many days back (over a whole year)\n\n"
 		exit
 	fi
@@ -59,10 +64,11 @@ get_start_date_from_daysdiff() {
 		while [ "${month_days["${startmn}"]}" -lt "${days_diff}" ]; do
 			(( startmn-- ))
 			(( days_diff -= "${month_days["${startmn}"]}" ))
-			(( iteration++ ))
 		done
+		startdy=$(( "${month_days["${startmn}"]}" - "${days_diff}" ))
+	else
+		startdy=$(( ${currdy} - ${days_diff} ))
 	fi
-	startdy=$(( "${month_days["${startmn}"]}" - "${days_diff}" ))
 
 	if [ ${startdy} -eq 0 ]; then
 		(( startmn-- ))
