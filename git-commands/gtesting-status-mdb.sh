@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: testing-ghgl-status-mdb
+# filename: gtesting-status-mdb.sh
 # 20241216: store output of commands into array instead of external filea
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
