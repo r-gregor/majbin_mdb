@@ -1,14 +1,15 @@
 #! /usr/bin/env bash
 # filename: ff-launch--en
-# 20251117 v1 en
-# 20251117 v2 en: :associative array --> no case statement needed
-# 20251117 v3 en: ALL --> cat all txt files into process subst ...
-#                 no 'all.txt' needed
-# 20251118 v4 en: single "sites.txt" with "[section name]" headers parsing
-# 20251118 v5 en: get 'categories' from 'sites.txt' file directly
-# 20260305 v6 en: put main into infinite while loop
-#                 output selected to stdot
-# last: 20260305
+# 20251117 v1
+# 20251117 v2: :associative array --> no case statement needed
+# 20251117 v3: ALL --> cat all txt files into process subst ...
+#              no 'all.txt' needed
+# 20251118 v4: single "sites.txt" with "[section name]" headers parsing
+# 20251118 v5: get 'categories' from 'sites.txt' file directly
+# 20260305 v6: put main into infinite while loop
+#              output selected to stdot
+# 20260917 v7: move FZFCMD command into FZFCMD() function
+# last: 20260917
 
 clear
 
@@ -16,7 +17,10 @@ clear
 FFCMD='/usr/bin/firefox'
 SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 SITES="${SRCDIR}/sites.txt"
-FZFCMD="fzf -e --reverse --height 50% --border rounded"
+
+FZFCMD() {
+	fzf -e --reverse --height 50% --border rounded
+}
 
 ff_launch() {
 	if [ "$1" == "all" ]; then
@@ -28,7 +32,7 @@ ff_launch() {
 		readarray -t URLS < <(sed -n "/\[${site}\]/,/^$/p" ${SITES})
 	fi
 
-	selection=$(for URL in "${URLS[@]}"; do echo "$URL"; done 2>/dev/null | ${FZFCMD})
+	selection=$(for URL in "${URLS[@]}"; do echo "$URL"; done 2>/dev/null | FZFCMD)
 
 	if [ "x${selection}" == "x" ]; then
 		echo -e "[INFO] nothing selected\n"

@@ -1,21 +1,25 @@
 #! /usr/bin/env bash
 # filename: get-fb-mails.sh
-# 20260216 en v1
-# 20260223 en v2
-# 20260306 en v3: add 'sort -nr' in 'selection=...' to sort by datestamp
-#                 rename directory and filename from get-fb-mails-en to: ff-fb-mails-launch-en
-# last: 20260306
+# 20260216 v1
+# 20260223 v2
+# 20260306 v3: add 'sort -nr' in 'selection=...' to sort by datestamp
+#              rename directory and filename from get-fb-mails-en to: ff-fb-mails-launch-en
+# 20260917 v3: move FZFCMD command into FZFCMD() function
+# last: 20260917
 # ---
 
 # globals
 SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 # FZFCMD="fzf -e --reverse --height 50% --border rounded"
 FFCMD='/usr/bin/firefox'
-FZFCMD="fzf -e --reverse --border rounded"
 fb_files_list="${SRCDIR}/fb_files_list.txt"
 
 unset fb_files
 declare -A fb_files=()
+
+FZFCMD() {
+	fzf -e --reverse --border rounded
+}
 
 fb_files_list_update() {
 	> ${fb_files_list}
@@ -53,8 +57,8 @@ else
 fi
 
 fb_launch() {
-	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | ${FZFCMD})
-	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | ${FZFCMD}) # SORT BY TIMESTAMP
+	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | FZFCMD)
+	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | FZFCMD) # SORT BY TIMESTAMP
 
 	if [ "x${selection}" == "x" ]; then
 		echo -e "[INFO] nothing selected\n"

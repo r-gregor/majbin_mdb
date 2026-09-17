@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 # filename: ff-fb-from-mbox-launch-mdb.sh
-# v1_20260721
-# last: 20260721
+# 20260721 v1
+# 20260917 v2: move FZFCMD command into FZFCMD() function
+# last: 20260917
 # ---
 
 # globals
@@ -10,8 +11,11 @@ SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 # FZFCMD_EN="fzf -e --reverse" # cygwin version does not support --width option
 
 FFCMD='/usr/bin/firefox'
-FZFCMD="fzf -e --reverse --border rounded"
 fb_files_list="${SRCDIR}/data/fb_files_list_from_mbox.txt"
+
+FZFCMD() {
+	fzf -e --reverse --border rounded
+}
 
 unset fb_files
 declare -A fb_files=()
@@ -58,7 +62,7 @@ fi
 
 fb_launch() {
 	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | ${FZFCMD_EN})
-	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | ${FZFCMD})
+	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | FZFCMD)
 
 	if [ "x${selection}" == "x" ]; then
 		echo -e "[INFO] nothing selected\n"

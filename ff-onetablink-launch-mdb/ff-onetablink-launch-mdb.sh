@@ -1,22 +1,22 @@
 #! /usr/bin/env bash
 # fname: ff-onetablink-launch-mdb.sh
-# 20260529 v1 converts a line:
+# 20260529 v1: converts a line:
 #             https://www.youtube.com/results?search_query=salsa+hand+toss+flip | (7) salsa hand toss flip - YouTube
 #             ... to ...
 #             https://www.youtube.com/results?search_query=salsa+hand+toss+flip;salsa hand toss flip
-# 20260529 v2 output into array
-# 20260529 v3 output into associative array
-# 20260729 v4 added 'Quit' and checks for false selections
+# 20260529 v2: output into array
+# 20260529 v3: output into associative array
+# 20260729 v4: added 'Quit' and checks for false selections
 #             put everything into while loop
 #             changed 'echo -e' into 'printf'
 # 20260817 v5 remove '- Youtube' from sed remplace to include youtube videos ...
-# last 20260817
+# 20260917 v6: move FZFCMD command into FZFCMD() function
+# last: 20260917
 # ---
 
 # globals
 # SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 FFCMD='/usr/bin/firefox'
-FZFCMD="fzf -e --reverse --border rounded"
 
 unset llist
 declare -A llist
@@ -28,6 +28,9 @@ usage() {
 EOF
 }
 
+FZFCMD() {
+	fzf -e --reverse --border rounded
+}
 
 # MAIN
 if [ $# -ne 1 ]; then
@@ -60,7 +63,7 @@ done < "${fjl}"
 #v4
 ff_onetablink_launch() {
 	# selection - fzf
-	selection=$( (for descrp in "${llist[@]}"; do echo "${descrp}"; done; echo '----'; echo 'Quit') | ${FZFCMD} ) #v4
+	selection=$( (for descrp in "${llist[@]}"; do echo "${descrp}"; done; echo '----'; echo 'Quit') | FZFCMD ) #v4
 
 	#v4
 	if [ "${selection}" == "" ]; then

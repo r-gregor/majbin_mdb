@@ -1,11 +1,12 @@
 #! /usr/bin/env bash
 # fname: lvedit-scripts-by-last-timestamp_mdb.sh
-# v1_20260520
-# v2_20260520 add fzf single selection
-# v3_20260220 fzf to multiple selections to open in vim
-# v4_20260521 refactor parts of code into functions and introduce main()
-# v5_20260521 open in vim
-# last: 20260521
+# 20260520 v1 
+# 20260520 v2: add fzf single selection
+# 20260220 v3: fzf to multiple selections to open in vim
+# 20260521 v4: refactor parts of code into functions and introduce main()
+# 20260521 v5: open in vim
+# 20260917 v6: move FZFCMD command into FZFCMD() function
+# last: 20260917
 # ---
 
 unset fjls_lst
@@ -17,7 +18,6 @@ declare -a selections
 currdtstmp=$(date +"%Y%m%d")
 
 dest_mdb="/home/rgregor/majstaf/majbin"
-FZFCMD='fzf -e -m --reverse --border rounded'
 VIM_CMD="/usr/bin/vim"
 
 usage() {
@@ -29,6 +29,9 @@ cat << "EOF"
 EOF
 }
 
+FZFCMD() {
+	fzf -e -m --reverse --border rounded
+}
 
 load_files_into_list() {
 	for FFF in $(find ${dest_mdb}/* -name "*\.sh" | grep -v 'src/'); do
@@ -70,7 +73,7 @@ main() {
 		while IFS=';' read fname dtstmp; do
 			echo "${fname}"
 		done < <(echo ${FJL})
-	done) | ${FZFCMD})
+	done) | FZFCMD)
 
 	if [ "${#selections[@]}" -eq 0 ]; then
 		printf "[INFO] nothing selected\n\n"

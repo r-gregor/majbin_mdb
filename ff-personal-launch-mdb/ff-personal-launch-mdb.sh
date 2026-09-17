@@ -1,18 +1,19 @@
 #! /usr/bin/env bash
 # filename: ff-personal-launch-en
 # from ff-launch-en
-# 20260216 en
-# 20260229 jbe v2: add info what was selected
-#                  change the fzf display to full height
-#                  inside infinite while loop --> Quit to quit
-# 20260229 jbe v3: keys in separate array for arranged order with 'Quit' as last option
-# 20260303 mdb v4: added $delline
-# 20260304 jbe v5: $delline calculated from longest KEY line with get_longest function
-#                  sorted output to fzf command
-# 20260305  en v6: extract KEYS from URLS
+# 20260216
+# 20260229 v2: add info what was selected
+#              change the fzf display to full height
+#              inside infinite while loop --> Quit to quit
+# 20260229 v3: keys in separate array for arranged order with 'Quit' as last option
+# 20260303 v4: added $delline
+# 20260304 v5: $delline calculated from longest KEY line with get_longest function
+#              sorted output to fzf command
+# 20260305 v6: extract KEYS from URLS
 # 20260508 v7: move links to external (csv format with ';' delimiter) file and add load_links_into_array()
 #              function to load links from file into associative array
-# last: 20260508
+# 20260917 v8: move FZFCMD command into FZFCMD() function
+# last: 20260917
 #---
 
 clear
@@ -22,9 +23,6 @@ unset KEYS
 # globals
 FFCMD='/usr/bin/firefox'
 SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
-# FZFCMD_EN="fzf -e --reverse"   # cygwin version does not support --width option
-# FZFCMD="fzf -e --reverse --height 50% --border rounded"
-FZFCMD='fzf -e --reverse --border rounded'
 FNAME="personal_links_list_mdb" # v7
 FPTH=${SRCDIR}/${FNAME}         # v7
 
@@ -32,6 +30,11 @@ FPTH=${SRCDIR}/${FNAME}         # v7
 declare -A URLS
 
 # functions
+
+FZFCMD() {
+	fzf -e --reverse --border rounded
+}
+
 # v7
 load_links_into_array() {
 	while IFS=';' read key value; do
