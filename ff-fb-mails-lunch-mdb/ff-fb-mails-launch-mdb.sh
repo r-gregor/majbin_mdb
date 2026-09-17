@@ -9,7 +9,7 @@
 # ---
 
 # globals
-SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
+SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 # FZFCMD="fzf -e --reverse --height 50% --border rounded"
 FFCMD='/usr/bin/firefox'
 fb_files_list="${SRCDIR}/fb_files_list.txt"
@@ -22,27 +22,33 @@ FZFCMD() {
 }
 
 fb_files_list_update() {
-	> ${fb_files_list}
-	for FFF in ${SRCDIR}/messages/*; do
-		local fb_url=$(grep '^https://www.facebook.com/share' "$FFF")
+	local fb_url
+	local fb_fname
+
+	> "${fb_files_list}" 
+	for FFF in "${SRCDIR}"/messages/*; do
+		fb_url=$(grep '^https://www.facebook.com/share' "$FFF")
 		fb_url=$(echo ${fb_url// /})
 		if [ x"${fb_url}" == "x" ]; then
 			continue
 		else
-			local fb_fname="$(echo "${FFF##*/}")"
-			fb_fname="$(echo "${fb_fname//.txt/}")"
+			fb_fname="${FFF##*/}"
+			fb_fname="${fb_fname//.txt/}"
 			printf "%s;%s\n" "${fb_url}" "${fb_fname}" >> "${fb_files_list}"
 		fi
 	done
 }
 
 fb_files_load() {
+	local fb_url
+	local fb_fname
+
 	echo "[INFO] loading messages ..."
 	while IFS= read -r LINE; do
-		local fb_url="$(echo "${LINE%;*}")"
-		local fb_fname="$(echo "${LINE#*;}")"
+		fb_url="${LINE%;*}"
+		fb_fname="${LINE#*;}"
 		fb_files+=(["${fb_fname}"]="${fb_url}")
-	done < ${fb_files_list}
+	done <"${fb_files_list}"
 	fb_files+=(["Quit"]="Quit")
 }
 
@@ -60,7 +66,7 @@ fb_launch() {
 	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | FZFCMD)
 	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | FZFCMD) # SORT BY TIMESTAMP
 
-	if [ "x${selection}" == "x" ]; then
+	if [ "${selection}" == "" ]; then
 		echo -e "[INFO] nothing selected\n"
 		exit 0
 	fi

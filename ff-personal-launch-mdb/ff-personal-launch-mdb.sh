@@ -37,7 +37,7 @@ FZFCMD() {
 
 # v7
 load_links_into_array() {
-	while IFS=';' read key value; do
+	while IFS=';' read -r key value; do
 		URLS["${key}"]="${value}"
 	done < "${FPTH}"
 }
@@ -68,7 +68,7 @@ get_longest() {
 ff_personallaunch() {
 	local selection=$((for KEY in "${KEYS[@]}"; do echo "$KEY"; done | sort; echo "${delline}" ; echo "Quit") | fzf --reverse)
 
-	if [ "x${selection}" == "x" ]; then
+	if [ "${selection}" == "" ]; then
 		echo -e "[INFO] nothing selected\n"
 		exit 0
 	fi

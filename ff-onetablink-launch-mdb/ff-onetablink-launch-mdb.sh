@@ -37,7 +37,7 @@ if [ $# -ne 1 ]; then
 	usage
 	exit
 else
-	fjl=$1
+	fjl="$1"
 	if [ ! -f "${fjl}" ]; then
 		printf "%s\n\n" "[ERROR] No such file: ${fjl}"
 		exit

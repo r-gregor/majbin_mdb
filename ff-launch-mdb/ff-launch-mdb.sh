@@ -15,7 +15,7 @@ clear
 
 # globals
 FFCMD='/usr/bin/firefox'
-SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
+SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 SITES="${SRCDIR}/sites.txt"
 
 FZFCMD() {
@@ -24,27 +24,27 @@ FZFCMD() {
 
 ff_launch() {
 	if [ "$1" == "all" ]; then
-		readarray -t URLS < <(cat ${SITES})
+		readarray -t URLS < <(cat "${SITES}")
 	else
-		site=$1
+		site="$1"
 		# v4
 		# readarray -t URLS < <(sed -n "/\[${site}\]/,/^$/p" ${SITES} | sed -n '2,$'p)
-		readarray -t URLS < <(sed -n "/\[${site}\]/,/^$/p" ${SITES})
+		readarray -t URLS < <(sed -n "/\[${site}\]/,/^$/p" "${SITES}")
 	fi
 
 	selection=$(for URL in "${URLS[@]}"; do echo "$URL"; done 2>/dev/null | FZFCMD)
 
-	if [ "x${selection}" == "x" ]; then
+	if [ "${selection}" == "" ]; then
 		echo -e "[INFO] nothing selected\n"
 		exit
 	fi
 
-	if [[ ${selection} =~ ^(---) ]]; then
+	if [[ "${selection}" =~ ^(---) ]]; then
 		echo -e "[INFO] nothing selected\n"
 		exit
 	fi
 
-	if [[ ${selection} =~ ^\[.*\] ]]; then
+	if [[ "${selection}" =~ ^\[.*\] ]]; then
 		echo -e "[INFO] nothing selected\n"
 		exit
 	fi
@@ -61,9 +61,9 @@ categories+=("ALL")
 categories+=("q (quit)")
 
 while true; do
-	selected=$(for WAY in "${categories[@]}"; do echo $WAY; done | fzf +c --reverse)
+	selected=$(for WAY in "${categories[@]}"; do echo "${WAY}"; done | fzf +c --reverse)
 
-	if [ "x${selected}" == "x" ]; then
+	if [ "${selected}" == "" ]; then
 		echo -e "[INFO] nothing selected\n"
 		exit
 	fi

@@ -34,10 +34,10 @@ FZFCMD() {
 }
 
 load_files_into_list() {
-	for FFF in $(find ${dest_mdb}/* -name "*\.sh" | grep -v 'src/'); do
+	for FFF in $(find "${dest_mdb}"/* -name "*\.sh" | grep -v 'src/'); do
 		dtstmp=$(grep last "$FFF" | grep -Eo "[0-9]{8}")
 		if [ $? -eq 0 ]; then
-			if [[ ${dtstmp} =~ ${djt} ]]; then
+			if [[ "${dtstmp}" =~ ${djt} ]]; then
 				fjls_lst+=("${FFF};${dtstmp}")
 			else
 				continue
@@ -47,7 +47,7 @@ load_files_into_list() {
 		fi
 	done
 
-	if [ ${#fjls_lst[@]} -eq 0 ]; then
+	if [ "${#fjls_lst[@]}" -eq 0 ]; then
 		printf "[INFO] no file with datestamp: '%s' found\n\n" "${dtstmp}"
 		exit 1
 	fi
@@ -61,7 +61,7 @@ main() {
 	if [ $# -ne 1 ]; then
 		usage
 		exit 1
-	elif [ ${#1} -gt 8 ] || [ ${#1} -lt 6 ]; then
+	elif [ "${#1}" -gt 8 ] || [ "${#1}" -lt 6 ]; then
 		usage
 		exit 1
 	else
@@ -69,10 +69,10 @@ main() {
 		load_files_into_list
 	fi
 
-	selections+=$((for FJL in ${fjls_lst[@]}; do
+	selections+=$((for FJL in "${fjls_lst[@]}"; do
 		while IFS=';' read fname dtstmp; do
 			echo "${fname}"
-		done < <(echo ${FJL})
+		done < <(echo "${FJL}")
 	done) | FZFCMD)
 
 	if [ "${#selections[@]}" -eq 0 ]; then
@@ -80,7 +80,7 @@ main() {
 		exit 1
 	fi
 
-	for selection1 in ${selections[@]}; do
+	for selection1 in "${selections[@]}"; do
 		if [[ "${selection1}" == "Quit" ]]; then
 			printf "[INFO] nothing selected\n\n"
 			exit 1
@@ -89,13 +89,13 @@ main() {
 
 	# info
 	printf "[INFO] Selected:\n"
-	for selection2 in ${selections[@]}; do
+	for selection2 in "${selections[@]}"; do
 		printf "${selection2}\n"
 	done
 	printf "\n"
 
 	# open in vim
-	for selection2 in ${selections[@]}; do
+	for selection2 in "${selections[@]}"; do
 		printf "${selection2} "
 	done | xargs -ro ${VIM_CMD}
 	printf "\n"
