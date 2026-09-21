@@ -1,17 +1,21 @@
 #! /usr/bin/env bash
+# filename: grefresh-fjl-to-git-repo.sh
+# descpt: git refresh/update file/dir from src to git-repository
+# 20260921
+# last: 20260921
 
 if [ $# -ne 1 ]; then
 	echo -e "Usage: $0 <file_name>\n\n"
 	exit
 else
-	fname=$1
-	usr=mdb
+	fname="$1"
+	HST=mdb
 fi
 
 curdir="$(basename $PWD)"
-destdir="$(echo $PWD | sed "s:majstaf/\(.*\):majstaf/${usr}git/\1_${usr}:" | sed "s:\.config:majstaf/${usr}git/dotfiles_${usr}/.config:")"
-echo $destdir
+destdir="$(echo $PWD | sed "s:majstaf/\(.*\):majstaf/${HST}git/\1_${HST}:" | sed "s:\.config:majstaf/${HST}git/dotfiles_${HST}/.config:")"
+echo"$destdir" 
 
 read -p "cp -i ./${fname} ${destdir}/${fname} ?"
-cp -v ./${fname} ${destdir}/${fname}
+cp -v ./"${fname}" "${destdir}/${fname}"
 

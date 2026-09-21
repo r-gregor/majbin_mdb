@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # flename: mdbgt-check-reports
+# descpt: Check git reports
 # last change: 20250829
 
 echo "[INFO] checking reports for git staus commands ..."

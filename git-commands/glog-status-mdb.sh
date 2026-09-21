@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: glog-status-mdb
+# descpt: Git-log fancy status report
 # last change: 20250402
 
 # for myopt in raw numstat shortstat dirstat summary name-only name-status check; do

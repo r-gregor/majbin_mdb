@@ -1,12 +1,13 @@
 #! /usr/bin/env bash
 # fname: gupdate-file-mdb
+# descpt: update src file to git-repository
 # 20260313 v1 mdb
 # 20260408 v2 mdb: added 'OK?' check into update_file_to_git() function
 # last: 20260408
 # ---
 
 HST="mdb"
-SRCDIR=$PWD
+SRCDIR="$PWD"
 
 if [[ ! "${SRCDIR}" =~ "majstaf" ]]; then
 	printf "[ERROR] not working outside ~/majstaf/\n"
@@ -30,7 +31,7 @@ if [[ ! -f ./"${fname}" ]]; then
 fi
 
 SRCF="${SRCDIR}/${fname}"
-DSTF=$(echo $SRCDIR/${fname} | sed "s/\(.*majstaf\)\/\([[:alpha:]]\+\)\/\(.*\)/\1\/${HST}git\/\2_${HST}\/\3/")
+DSTF=$(echo "$SRCDIR/${fname}" | sed "s/\(.*majstaf\)\/\([[:alpha:]]\+\)\/\(.*\)/\1\/${HST}git\/\2_${HST}\/\3/")
 
 update_file_to_git() {
 	printf "%s\n%s\n%s\n" \
@@ -45,3 +46,4 @@ update_file_to_git() {
 update_file_to_git
 
 printf "\n"
+

@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: gtesting-testpush-mdb.sh
+# descpt: git-test-push to all testing repositories to check if PULL from rmeotes is needed
 # 20241216: store output of cmd into array instead of external file
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
@@ -30,16 +31,16 @@ for DDD in $(ls -d *); do
 	printf "${COLOR_SET}"
 	echo "***    git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
-	cd $DDD &>/dev/null
+	cd "$DDD" &>/dev/null
 	readarray -t output < <(~/.local/bin/ghgl-testpush-${HST})
 	for (( i=0; i<${#output[@]}; i++)); do
 		if [[ "${output[$i]}" =~ "PULL" ]]; then
 			msg="$(echo -e "[REPORT] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE")"
 			readarray -t -O "${#report[@]}" report < <(echo -e "$msg")
-			echo -e ${output[$i]}
+			echo -e "${output[$i]}"
 			break
 		else
-			 echo -e ${output[$i]}
+			 echo -e "${output[$i]}"
 		fi
 	done
 	cd ..
@@ -58,7 +59,7 @@ else
 fi
 printf "${COLOR_RESET}"
 
-cd ${CURRDIR}
+cd "${CURRDIR}"
 
 echo ""
 

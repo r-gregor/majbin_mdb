@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # gall-testpush-mdb.sh
+# descpt: Test-push to check if pull from all remotes is needed
 # last change: 20260818
 
 
@@ -11,7 +12,7 @@ COLOR_RESET="\e[0m"
 for rmt in "${rmts[@]}"
 do
 	echo -n "[INFO] git testpush in: $(git remote get-url ${rmt}) ..."
-	output=$(/usr/bin/git push --dry-run ${rmt} main 2>&1)
+	output=$(/usr/bin/git push --dry-run "${rmt}" main 2>&1)
 	echo $output | grep 'reject\|pull' &> /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf " ${COLOR_RED} NEED TO PULL FROM REMOTE\n"

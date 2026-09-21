@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: gtesting-status-mdb.sh
+# descpt: git-status to all testing repositories
 # 20241216: store output of commands into array instead of external filea
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
@@ -7,10 +8,10 @@
 # last change: 20250402
 
 HST="mdb"
-TSTDST=${HOME}/majstaf/coding2/testing
+TSTDST="${HOME}/majstaf/coding2/testing"
 COLOR_SET="\e[1;92m"
 COLOR_RESET="\e[0m"
-CURRDIR=$PWD
+CURRDIR="$PWD"
 
 unset msg
 unset report
@@ -19,10 +20,10 @@ report=()
 > $TESTING_STATUS_REPORTS
 
 get_status() {
-	cmd=$1
+	cmd="$1"
 	output=()
-	readarray -t -O ${#output[@]} output < <(${cmd} status)
-	echo ${output[@]} | grep -i "git push\|untracked\|modified\|deleted" > /dev/null
+	readarray -t -O "${#output[@]}" output < <("${cmd}" status)
+	echo "${output[@]}" | grep -i "git push\|untracked\|modified\|deleted" > /dev/null
 
 	if [[ $? -ne 0 ]]; then
 		echo -n "[INFO] checking git status in ${DDD} ..."
@@ -46,9 +47,9 @@ get_status() {
 echo "========================================"
 echo "[INFO] running mdbgt-status ..."
 echo "========================================"
-cd ${TSTDST}
+cd "${TSTDST}" || exit 1
 for DDD in $(find * -maxdepth 0 -type d | grep -v "vlpprs_${HST}"); do
-	cd $DDD &> /dev/null
+	cd "$DDD" &> /dev/null
 
 	get_status "/usr/bin/git"
 	cd ..
@@ -69,7 +70,7 @@ else
 fi
 printf "${COLOR_RESET}"
 
-cd ${CURRDIR}
+cd "${CURRDIR}" || exit 1
 
 echo ""
 

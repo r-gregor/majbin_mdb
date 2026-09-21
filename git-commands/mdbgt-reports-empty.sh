@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # flename: mdbgt-empty-reports
+# descpt: Empty git reports
 # last change: 20250829
 
 echo "[INFO] emty-ing reports for git staus commands ..."
