@@ -21,7 +21,7 @@ report=()
 get_status() {
 	cmd="$1"
 	output=()
-	readarray -t -O ${#output[@]} output < <("${cmd}" status)
+	readarray -t -O ${#output[@]} output < <(${cmd} status)
 	echo "${output[@]}" | grep -i "git push\|untracked\|modified\|deleted" > /dev/null
 
 	if [[ $? -ne 0 ]]; then
