@@ -38,10 +38,10 @@ for DDD in $(find * -maxdepth 0 -type d); do
 		if [[ "${output[$i]}" =~ "PULL" ]]; then
 			msg="$(echo -e "[REPORT] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE")"
 			readarray -t -O "${#report[@]}" report < <(echo -e "$msg")
-			echo -e"${output[$i]}"
+			echo -e "${output[$i]}"
 			break
 		else
-			echo -e"${output[$i]}"
+			echo -e "${output[$i]}"
 		fi
 	done
 	cd ..
