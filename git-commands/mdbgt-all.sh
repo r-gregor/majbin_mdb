@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
-# descpt: run git-status and git-testpush
 # filename: mdbgt-all.sh
+# descpt: run git-status and git-testpush
 # last change: 20250402
 
 HST="mdb"
