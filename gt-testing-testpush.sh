@@ -1,39 +1,39 @@
 #! /usr/bin/env bash
-# filename: mdbgt-testpush
-# descpt: git-test-push to all mdbgit repositories to check if PULL from rmeotes is needed
+# filename: gt-testing-testpush.sh
+# descpt: git-test-push to all testing repositories to check if PULL from rmeotes is needed
 # 20241216: store output of cmd into array instead of external file
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
 # 20250301: correct output messaging
-# 20260818: added codeberg.org/r-gregor remote
-# last change: 20260818
-
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 # COLOR_SET="\e[1;94m"
-# COLOR_SET="\e[1;34m"
 COLOR_SET="\e[1;38;5;75m"
 COLOR_RESET="\e[0m"
-HST="mdb"
-DEST=${HOME}/majstaf/${HST}git/
+DEST=${HOME}/majstaf/coding2/testing
+
 unset output
 unset report
 
 output=()
 report=()
-> $MDBGIT_TPUSH_REPORTS
+> $TESTING_TPUSH_REPORTS
 
-CURRDIR="$PWD"
-cd "${DEST}" || exit 1
+CURRDIR=$PWD
+cd ${DEST}
 
-echo "========================================"
-echo "[INFO] running mdbgt-testpush ..."
-echo "========================================"
-for DDD in $(find * -maxdepth 0 -type d); do
+echo "============================================"
+echo "[INFO] running gt-testing-testpush ..."
+echo "============================================"
+for DDD in $(ls -d *); do
 	printf "${COLOR_SET}"
 	echo "***    git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
 	cd "$DDD" &>/dev/null
-	readarray -t output < <(~/.local/bin/ghgl-testpush-${HST})
+	readarray -t output < <(~/.local/bin/ gt-testing-testpush)
 	for (( i=0; i<${#output[@]}; i++)); do
 		if [[ "${output[$i]}" =~ "PULL" ]]; then
 			msg="$(echo -e "[REPORT] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE")"
@@ -41,7 +41,7 @@ for DDD in $(find * -maxdepth 0 -type d); do
 			echo -e "${output[$i]}"
 			break
 		else
-			echo -e "${output[$i]}"
+			 echo -e "${output[$i]}"
 		fi
 	done
 	cd ..
@@ -52,7 +52,7 @@ if [ ${#report[@]} -gt 0 ]; then
 	echo
 	for (( j=0; j<${#report[@]}; j++)); do
 		# echo "*** ${report[$j]} ***"
-		echo "*** ${report[$j]} ***" | tee -a $MDBGIT_TPUSH_REPORTS
+		echo "*** ${report[$j]} ***" | tee -a $TESTING_TPUSH_REPORTS
 	done
 else
 	echo
@@ -60,7 +60,7 @@ else
 fi
 printf "${COLOR_RESET}"
 
-cd "${CURRDIR}" || exit 1
+cd "${CURRDIR}"
 
 echo ""
 

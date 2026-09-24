@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: dwnld-gthb-sfnm
+# filename: gt-dwnld-gthb-sfnm.sh
 # descpt: Download single filename from https://github.com/r-gregor into github_r-regor/repo/<[dirname/]filename>
 # 20260421 v1
 # last: 20260421

@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
-# ghgl-testpush-mdb
-# descpt: Test-push to check if need to PULL from remotes
-# last change: 20250402
+# filename: gt-all-remotes-testpush.sh
+# descpt: Test-push to check if pull from all remotes is needed
+# last change: 20260818
+
 
 rmts=( $(git remote) )
 
@@ -11,8 +12,8 @@ COLOR_RESET="\e[0m"
 for rmt in "${rmts[@]}"
 do
 	echo -n "[INFO] git testpush in: $(git remote get-url ${rmt}) ..."
-	output="$(/usr/bin/git push --dry-run ${rmt} main 2>&1)"
-	echo "$output" | grep 'reject\|pull' &> /dev/null
+	output=$(/usr/bin/git push --dry-run "${rmt}" main 2>&1)
+	echo $output | grep 'reject\|pull' &> /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf " ${COLOR_RED} NEED TO PULL FROM REMOTE\n"
 		printf "${COLOR_RESET}"

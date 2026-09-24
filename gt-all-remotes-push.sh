@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
-# filename: ghgl-push-mdb
+# filename: gt-all-remotes-push.sh
 # descpt: PUSH to all remotes
-# last change: 20250402
+# last: 20260924
 
 rmts=( $(git remote) )
 

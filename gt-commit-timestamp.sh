@@ -1,13 +1,11 @@
 #! /usr/bin/env bash
-# filename: gcommit-timestamp-mdb
+# filename: gt-commit-timestamp.sh
 # descpt: git-commit staged files/dirs with timestamp
 # last change 20250402
 
 cmd() {
 	/usr/bin/git commit "$@"
 }
-
-HST="mdb"
 
 if [ $# -eq 1 ]; then
 	if [ $1 == "-a" ]; then

@@ -1,10 +1,8 @@
 #! /usr/bin/env bash
-# filename: mdbgt-all.sh
+# filename: gt-all.sh
 # descpt: run git-status and git-testpush
 # last change: 20250402
 
-HST="mdb"
-
-${HST}gt-status
-${HST}gt-testpush
+gt-status
+gt-testpush
 

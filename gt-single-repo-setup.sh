@@ -1,11 +1,10 @@
 #! /usr/bin/env bash
-# filename: mdbgit-single-repo-setup
+# filename: gt-single-repo-setup.sh
 # descpt: Single git repository setup
 # 20250430
 # -------------------
 
 # globals
-hst="mdb"
 gh_clone_addr="https://github.com/r-gregor"
 gl_clone_addr="https://gitlab.com/r-gregor"
 
@@ -19,12 +18,12 @@ else
 	repo="$1"
 fi
 
-repo_name="${repo}_${hst}"
+repo_name="${repo}_${HST}"
 
 # single repo clone and setup
 echo "[INFO] cloning/setting up repository: ${repo_name}"
 git clone "${gh_clone_addr}/${repo_name}.git"
-cd "${repo}_${hst}"
+cd "${repo}_${HST}"
 
 git branch -m main
 git remote add "gh_${repo_name}" "${gh_rmt_addr}/${repo_name}.git"

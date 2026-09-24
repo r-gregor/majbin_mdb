@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
-# filename: gall-push-mdb.sh
+# filename: gt-all-push.sh
 # descpt: Test-push to all remnotes
-# last change: 20260818
+# last: 20260818
 
 rmts=( $(git remote) )
 

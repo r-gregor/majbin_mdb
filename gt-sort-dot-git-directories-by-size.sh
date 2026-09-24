@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: sort-dot-git-directories-by-size.sh
+# filename: gt-sort-dot-git-directories-by-size.sh
 # descpt: Sort .git repositories by size
 # last 20260921
 # ---

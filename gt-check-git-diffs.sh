@@ -1,14 +1,13 @@
 #! /usr/bin/env bash
-# filename: check-git-diffs-mdb
+# filename: gt-check-git-diffs.sh
 # descpt: Check git-diffs for all files in git-repository with src-files
-# 20241106 v2 jbe
-# 20241106 v3 mdb
-# 20250417 v4 mdb
-# 20260305 v5 mdb
+# 20241106 v2
+# 20241106 v3
+# 20250417 v4
+# 20260305 v5
 # last: 20260305
 # ---
 
-HST="mdb"
 src_path=${HOME}/majstaf
 dst_path=${HOME}/majstaf/${HST}git
 

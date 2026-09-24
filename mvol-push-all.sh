@@ -3,8 +3,6 @@
 # descpt: PUSH majvolpejprs to remote
 # last update: 20250402
 
-HST="mdb"
-
 export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
 export VOLWORKDIR="${HOME}/majstaf/majvolpejpers"
 

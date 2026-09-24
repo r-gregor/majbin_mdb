@@ -4,8 +4,6 @@
 # 20260818: added git@codeberg.org:r-gregor/vlpprs ... remote repository
 # last: 20260818
 
-HST="mdb"
-
 export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
 export VOLWORKDIR="${HOME}/majstaf/majvolpejpers"
 

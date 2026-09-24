@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: glog-status-mdb
+# filename: gt-log-status.sh
 # descpt: Git-log fancy status report
 # last change: 20250402
 

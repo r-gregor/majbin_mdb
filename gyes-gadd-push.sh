@@ -1,7 +1,9 @@
 #! /usr/bin/env bash
-# fname: gyes-gadd-push-mdb.sh
+# fname: gyes-gadd-push.sh
 # descpt: git-add, git-commit and git-push to remote
 # 20260921
 # last: 20260921
 
-yes | gadd-gcmt-mdb && ghgl-push-mdb
+yes | gt-add-gcmt && gt-all-remotes-push.sh
+
+

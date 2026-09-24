@@ -1,12 +1,11 @@
 #! /usr/bin/env bash
-# fname: gupdate-file-mdb
+# fname: gt-update-file.sh
 # descpt: Update src file to git-repository
 # 20260313 v1
 # 20260408 v2: added 'OK?' check into update_file_to_git() function
 # last: 20260408
 # ---
 
-HST="mdb"
 SRCDIR="$PWD"
 
 if [[ ! "${SRCDIR}" =~ "majstaf" ]]; then
