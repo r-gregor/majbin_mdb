@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
-# fname: vexport-dot-vimrc-mappings-into-file-mdb.sh
+# fname: vexport-dot-vimrc-mappings-into-file.sh
 # 20260915 v2 added check for program parameters and check for PREFIX existance
-# last: 20260915
+# 20260924
+# last: 20260924
 # ---
 
 if [ $# -ne 1 ]; then
@@ -17,7 +18,6 @@ fi
 
 
 
-HST=mdb
 TMSTMP=$(date +"%Y%m%d-%H%M%S")
 DESTF="${PREFIX}/dot-vimrc-${HST}-mappings-with-explanations-${TMSTMP}.txt"
 

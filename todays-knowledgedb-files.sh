@@ -1,13 +1,18 @@
 #! /usr/bin/env bash
+# filename: todays-knowledgedb-files-mdb.sh
+# descpt: List todays from KNOWLEDGEDB added today
 # 20250304_d  v2
 # 20250305_en v3
+# 20260924
+# last 20260924
+# ---
 
 unset list
 list=()
 
 TODAY=$(date +"%Y%m%d")
 NOW=$(date +"%H")
-SRCDIR="${KNOWLEDGEDB:-/home/rgregor/majstaf/mdbgit/knowledgedb}"
+SRCDIR="${KNOWLEDGEDB:-/home/rgregor/majstaf/${HST}git/knowledgedb}"
 
 if [ $# -eq 1 ]; then
 	HR=$1

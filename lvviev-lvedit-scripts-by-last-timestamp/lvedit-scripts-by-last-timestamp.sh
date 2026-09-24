@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
-# fname: lvedit-scripts-by-last-timestamp_mdb.sh
-# 20260520 v1 
+# fname:lvedit-scripts-by-last-timestamp.sh
+# 20260520 v1
 # 20260520 v2: add fzf single selection
 # 20260220 v3: fzf to multiple selections to open in vim
 # 20260521 v4: refactor parts of code into functions and introduce main()
@@ -17,7 +17,7 @@ declare -a selections
 
 currdtstmp=$(date +"%Y%m%d")
 
-dest_mdb="/home/rgregor/majstaf/majbin"
+dest_mjbn="/home/rgregor/majstaf/majbin"
 VIM_CMD="/usr/bin/vim"
 
 usage() {
@@ -34,7 +34,7 @@ FZFCMD() {
 }
 
 load_files_into_list() {
-	for FFF in $(find "${dest_mdb}"/* -name "*\.sh" | grep -v 'src/'); do
+	for FFF in $(find "${dest_mjbn}"/* -name "*\.sh" | grep -v 'src/'); do
 		dtstmp=$(grep last "$FFF" | grep -Eo "[0-9]{8}")
 		if [ $? -eq 0 ]; then
 			if [[ "${dtstmp}" =~ ${djt} ]]; then
