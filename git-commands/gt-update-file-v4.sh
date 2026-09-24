@@ -5,6 +5,8 @@
 # 20260401 v2: added 'OK?' check into update_file_to_git() function
 # 20260924 v3: can be run from anywhere for any file
 #              checks for SRC and DEST directories/files
+# 20260924 v4: unified scripts for linux
+#              HST and system info from exported global variable
 # last: 20260924
 # ---
 

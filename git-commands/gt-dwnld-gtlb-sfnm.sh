@@ -2,7 +2,9 @@
 # filename: gt-dwnld-gtlb-sfnm.sh
 # descpt: Download single filename from https://gitlab.com/r-gregor into: gitlab_r-regor/repo/<[dirname/]filename>
 # 20260421 v1
-# last: 20260421
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
 # ---
 
 HUB=gitlab

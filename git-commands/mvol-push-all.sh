@@ -1,7 +1,10 @@
 #! /usr/bin/env bash
 # filename: mvol-push-all
 # descpt: PUSH majvolpejprs to remote
-# last update: 20250402
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
 export VOLWORKDIR="${HOME}/majstaf/majvolpejpers"

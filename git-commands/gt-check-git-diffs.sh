@@ -5,7 +5,9 @@
 # 20241106 v3
 # 20250417 v4
 # 20260305 v5
-# last: 20260305
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
 # ---
 
 src_path=${HOME}/majstaf

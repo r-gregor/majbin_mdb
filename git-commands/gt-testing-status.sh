@@ -5,7 +5,10 @@
 # 20241218: read output of cmd directly into array, no more need to run cmd twice
 #           c-style for loop
 # 20250301: correct output messaging
-# last change: 20250402
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 TSTDST="${HOME}/majstaf/coding2/testing"
 COLOR_SET="\e[1;92m"

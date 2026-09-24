@@ -1,8 +1,10 @@
 #! /usr/bin/env bash
 # filename: gt-all-remotes-testpush.sh
 # descpt: Test-push to check if pull from all remotes is needed
-# last change: 20260818
-
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 rmts=( $(git remote) )
 

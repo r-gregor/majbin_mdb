@@ -1,7 +1,10 @@
 #! /usr/bin/env bash
 # filename: gt-commit-timestamp.sh
 # descpt: git-commit staged files/dirs with timestamp
-# last change 20250402
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 cmd() {
 	/usr/bin/git commit "$@"

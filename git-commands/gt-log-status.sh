@@ -1,7 +1,10 @@
 #! /usr/bin/env bash
 # filename: gt-log-status.sh
 # descpt: Git-log fancy status report
-# last change: 20250402
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 # for myopt in raw numstat shortstat dirstat summary name-only name-status check; do
 # 	echo -e "*** git log --${myopt} ***"

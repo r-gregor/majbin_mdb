@@ -33,7 +33,7 @@ for DDD in $(ls -d *); do
 	echo "***    git testpush in ${DDD} ... ***"
 	printf "${COLOR_RESET}"
 	cd "$DDD" &>/dev/null
-	readarray -t output < <(~/.local/bin/ gt-testing-testpush)
+	readarray -t output < <(~/.local/bin/gt-all-remotes-testpush)
 	for (( i=0; i<${#output[@]}; i++)); do
 		if [[ "${output[$i]}" =~ "PULL" ]]; then
 			msg="$(echo -e "[REPORT] git testpush in: ${DDD} ... NEED TO PULL FROM REMOTE")"

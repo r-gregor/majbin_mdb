@@ -2,7 +2,10 @@
 # filename: gt-single-repo-setup.sh
 # descpt: Single git repository setup
 # 20250430
-# -------------------
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 # globals
 gh_clone_addr="https://github.com/r-gregor"

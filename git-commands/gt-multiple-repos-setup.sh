@@ -2,6 +2,9 @@
 # filename: gt-multiple-repos-setup.sh
 # descpt: Multiple git repositories setup
 # 20250430
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
 # ---
 
 # globals

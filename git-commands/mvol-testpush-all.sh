@@ -2,7 +2,10 @@
 # filename: mvol-testpush-all
 # descpt: Test-push majvolpejpers to remotes
 # 20260818: added git@codeberg.org:r-gregor/vlpprs ... remote repository
-# last: 20260818
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
 export VOLWORKDIR="${HOME}/majstaf/majvolpejpers"

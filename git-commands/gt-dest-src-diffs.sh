@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 # filename: gt-dest-src-diffs.sh
 # 20260924
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
 # last: 20260924
 # ---
 

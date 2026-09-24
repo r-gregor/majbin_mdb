@@ -2,7 +2,9 @@
 # filename: clean-git-history.sh
 # descpt: Clean git-history from git-repository
 # 20260921 v1
-# last: 20260921
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
 # ---
 
 if [ $# -ne 1 ]; then

@@ -1,7 +1,10 @@
 #! /usr/bin/env bash
 # flename: gt-reports-empty.sh
 # descpt: Empty git reports
-# last change: 20250829
+# 20260924: unified scripts for linux
+#           HST and system info from exported global variable
+# last: 20260924
+# ---
 
 echo "[INFO] emty-ing reports for git staus commands ..."
 > $GT_STATUS_REPORTS
