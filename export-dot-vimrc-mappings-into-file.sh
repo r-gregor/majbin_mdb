@@ -3,7 +3,6 @@
 # ---
 
 PREFIX="."
-HST=mdb
 TMSTMP=$(date +"%Y%m%d-%H%M%S")
 DESTF="${PREFIX}/dot-vimrc-${HST}-mappings-with-explanations-${TMSTMP}.txt"
 
