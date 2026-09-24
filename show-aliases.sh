@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 PDD=20
-PTH="${HOME}/majstaf/majrcs/aliases-muadib"
+PTH="${HOME}/majstaf/majrcs/aliases-${HSTLONG}"
 
 
 if [ $# -gt 0 ]; then

@@ -1,10 +1,11 @@
 #! /usr/bin/env bash
-# fname: lynxd-mdb.sh
+# fname: lynxd.sh
 # 20250925 v1 remove option to use dumplist
 # 20260731 v2 implement fname_string_adjustment() function
 #             add prefix option
 # 20260804 v3 move 'lynx dump' command into dump_command() function
-# last: 20260804
+# 20260924
+# last: 20260924
 # ---
 
 fname_string_adjustment() {

@@ -1,10 +1,11 @@
 #! /usr/bin/env bash
-# filename: lynx-multi-dump-fromlist-mdb.sh
+# filename: lynx-multi-dump-fromlist.sh
 # v1_20250925 remove option to use dumplist
 # v2 20260731 implement fname_string_adjustment() function
 #             add prefix option
 # 20260804 v3 move 'lynx dump' command into dump_command() function
-# last: 20260804
+# 20260924
+# last: 20260924
 # ---
 
 fname_string_adjustment() {
