@@ -8,7 +8,7 @@
 # last: 20260811
 # ---
 
-HNM=mdb
+HST=mdb
 HNML=muadib
 SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 SEZNAMI_DIR="$HOME/majstaf/seznami"
@@ -27,7 +27,7 @@ readarray -t CMMNDS < <(cat ${SEZNAMI_DIR}/hstl-${HNML}-${CURRYR}* | cut -b 28- 
 printf "[INFO] cleaning final ${dest_fname} ...\n"
 for LINE in "${CMMNDS[@]}"; do
 	echo "${LINE}"
-done | cut -b 9- | grep -v -f "${SRCDIR}/excludes-hstl-${HNM}.txt" > ${SEZNAMI_DIR}/${dest_fname}
+done | cut -b 9- | grep -v -f "${SRCDIR}/excludes-hstl-${HST}.txt" > ${SEZNAMI_DIR}/${dest_fname}
 # done | cut -b 9- | grep -v -f "${SRCDIR}/excludes-hstl-${HNM}.txt"
 
 printf "[INFO] done\n"
