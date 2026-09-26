@@ -8,19 +8,17 @@
 
 # globals
 SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-FFCMD='/usr/bin/firefox'
 checkout_files_list="${SRCDIR}/data/checkout-sites-list.txt"
 
 unset checkout_files
 declare -A checkout_files
 
 FZFCMD() {
-	fzf -e --reverse --border rounded
+	fzf -e --reverse
 }
 
 
 # MAIN
-
 if [ $# -eq 1 ]; then
 	checkout_files_list="$1"
 	if [ ! -f "${checkout_files_list}" ]; then
@@ -61,7 +59,8 @@ ff_checkout_launch() {
 	for URL in "${!checkout_files[@]}"; do
 		if [[ "${checkout_files["${URL}"]}" == "${selection}" ]]; then
 		printf "[INFO] selected: %s\n" "${selection}"
-		(nohup "${FFCMD}" "${URL}" &) >/dev/null 2>&1
+		# cygstart "${FFCMD}" "${URL}" #cygwin
+		(nohup "${FFCMD}" "${URL}" &) >/dev/null 2>&1 # linux
 		fi
 	done
 }
