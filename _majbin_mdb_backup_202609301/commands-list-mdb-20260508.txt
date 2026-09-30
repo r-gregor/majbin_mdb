@@ -1,0 +1,453 @@
+2listulb2
+30najvecjih
+add-file-to-prenos-mdb
+bankovci-kovanci
+BASH_HACKS.sh
+b-convert-txt-to-pdf
+bekap1-d-lh
+bekap3-d-db-lh
+bekap3-d-db-lh.ORIGINAL
+b-find-lnx-executables
+b-find-win-executables
+biggestdirs
+biggestfile
+binds-from-i3
+bkpall
+b-padec
+broken-symlinks-list
+
+BrthReminder-c/
+	bb
+	bbc
+	BrthReminder-c
+	BrthReminder-c-colors
+	ROJSTNIDNEVI.txt
+
+check4emptyd
+check-if-downloaded-movie-in-list
+check-if-installed
+check-if-mvs-in-both-dirs
+check-if-mvs-in-Seivom-and-Movies
+check-if-torrent-already-downloaded
+check-remote-sync
+clean-and-replace-fname
+clean-and-replace-fname-case
+clean-ff-gc-bookmarks
+
+cmpr-local-remote/
+	cmpr-local-remote
+
+cnvrtb-txt-to-pdf-en
+cnvrtb-txt-to-pdf-v2
+
+coding-diffs-d/
+	coding-diffs-d/
+		SETUP.txt
+
+color10bit
+color10bit.sh
+console-select-terminus-font
+contains
+copy-files-to-multiple-dirs
+c-sizes
+danes-check
+dbox-by-year
+dbx-sts
+dclean-movie-dname
+
+dirlist/
+	dirlist
+	dirlist-abs
+	dirlist-abs-sort
+	dirlist-rv
+	dirlist-rv-abs
+	dirlist-rv-abs-sort
+	dirlist-sort
+	f-info
+	f-info-single
+	fjl-info
+	fjl-info-single
+	ndirlist
+	ndirlist-rv
+
+dirs-by-size
+
+displays/
+	dsplys-jbez0rg-to-HDTV
+	dsplys-jbez0rg-to-LGMNTR
+	dsplys-normal
+	dsplys-normal-1-1
+	dsplys-scale-1-2
+	dsplys-scale-1-4
+	dsplys-scale-1-6
+	dsplys-scale-2-0
+	settings/
+		scales-of-displays.py
+		xrandr-scale-2x2-settings-20210427.txt
+
+d-logout-menu
+d-majsettingsmenu
+download-ytb-mpe
+duh
+duh-hidden
+escape-sequences-test
+
+ext-backup-scripts/
+	SAMSUNG_SSD_860_EVO_500Gb/
+		DRYRUN-rsync-jbez0rg_SSD_SAMSUNG_EVO_500G
+		DRYRUN-rsync-SLIKE_SSD_SAMSUNG_EVO_500G
+		RUN-rsync-jbez0rg_SSD_SAMSUNG_EVO_500G
+		RUN-rsync-SLIKE_SSD_SAMSUNG_EVO_500G
+	SEAGATE_1-5Tb/
+		DRYRUN-rsync-jbez0rg_SEAGATE_1-5Tb
+		DRYRUN-rsync-muadib_SEAGATE_1-5Tb
+		DRYRUN-rsync-OLDHDD_SEAGATE-1-5Tb
+		DRYRUN-rsync-SLIKE_SEAGATE_1-5Tb
+		RUN-rsync-jbez0rg_SEAGATE_1-5Tb
+		RUN-rsync-muadib_SEAGATE_1-5Tb
+		RUN-rsync-OLDHDD_SEAGATE-1-5Tb
+		RUN-rsync-SLIKE_SEAGATE_1-5Tb
+	WD_5Tb/
+		DRYRUN-rsync-jbez0rg_WD_5Tb
+		DRYRUN-rsync-muadib_WD_5Tb
+		RUN-rsync-jbez0rg_WD_5Tb
+		RUN-rsync-muadib_WD_5Tb
+
+fclean-movie-fname
+ff
+
+ff-fb-mails-lunch-mdb/
+	ff-fb-mails-launch-mdb
+
+ff-launch-mdb/
+	ff-launch-mdb
+
+ffn
+
+ff-personal-launch-mdb/
+	ff-personal-launch-mdb
+
+ffsize
+filename-to-lower-with-hypens
+files-in-curdir-sorted-by-size
+find-all-shell-scripts
+
+flist/
+	flist
+	flist-rv
+	nflist
+	nflist-rv
+
+floatings
+floatings-dmn
+floatings-rofi
+f-logout-menu
+f-majsettingsmenu
+
+fname-dname-manipulations-mdb/
+	dname-rename-hypens-to-underscores
+	dname-rename-to-underscores-with-hypens
+	dname-rename-underscores-to-hypens
+	fname-convert-4-spaces-to-tabs
+	fname-hypens-to-underscores
+	fname-rename-hypens-to-underscores
+	fname-rename-spaces-to-hypens
+	fname-rename-spaces-to-hypens-no-confirm
+	fname-rename-to-lower-with-hypens
+	fname-rename-underscores-to-hypens
+	fname-rename-underscores-to-hypens-no-confirm
+	fname-to-lower-with-hypens
+
+fnd/
+	fnd-dupfls
+	fnd-file-by-bword
+	fnd-filenames-by-word-d.py
+	fnd-python-files-by-time
+	fnd-txt-latest-files-by-time
+
+fsort-files
+fsplit
+
+fview-fvedit-commands/
+	vd-mf
+	vd-mfe
+	vd-sf
+	vd-sfe
+	vv-mf
+	vv-mfe
+	vv-sf
+	vv-sfe
+
+get-mdbdiffs
+get-saved-link-address-and-name-by-timestamp
+get-terminal
+
+git-commands/
+	check-git-diffs-mdb
+	clean-git-history
+	dwnld-gthb-sfnm
+	dwnld-gtlb-sfnm
+	gadd-gcmt-mdb
+	gcommit-timestamp-mdb
+	ghgl-push-mdb
+	ghgl-testpush-mdb
+	glog-status-mdb
+	grefresh-fjl-to-git-repo
+	gupdate-file-mdb
+	gyes-gadd-push-mdb
+	mdbgt-all
+	mdbgt-diffs-check-all
+	mdbgt-multiple-repos-setup
+	mdbgt-reports-check
+	mdbgt-reports-empty
+	mdbgt-single-repo-setup
+	mdbgt-status
+	mdbgt-testpush
+	mvol-push-all
+	mvol-testpush-all
+	sort-dot-git-directories-by-size
+	testing-all-mdb
+	testing-status-mdb
+	testing-testpush-mdb
+
+gocleanmodcache
+go-project-env-d
+gth
+hiddendirs
+howmanyfilesindir
+hstl
+i3-keybindings-show
+iconv1-SLO-srt-WIN-to-UTF8
+iconv2-SLO-srt-UTF8-to-WIN
+isitinsvm
+jarrun
+jarxrun
+jarxrun-en
+jrun
+jvfx-compile
+jvfx-run
+
+kndb-files-from-tmst-mdb/
+	kndb-files-from-tmst-in-mnth-mdb
+	kndb-files-from-tmst-till-today-mdb
+	kndb-files-from-yr-tmst-in-mnth-mdb
+	kndb-files-from-yr-tmst-till-today-mdb
+
+knowledgebase-by-age/
+	g-knowledgebase-by-age
+	j-knowledgebase-by-age
+	knowledgebase-by-age
+	p-knowledgebase-by-age
+	t-knowledgebase-by-age
+
+knowledgedb-file-to-category/
+	knowledgedb-copy-file-to-category
+	knowledgedb-move-file-to-category
+
+kty
+last-disp
+lastdisp-over1G
+last-N-sorted-by-date-d
+list-dupfilenames
+list-dupfilenames-in-dbot
+list-files-numpart-gt-param
+list-last-20-by-tmstmp
+listulb
+logout-menu
+logout-menu-dmn
+logout-menu-rofi
+longest-filename-in-curdir
+lsth
+
+lynxdump/
+	lynxd
+	lynxdump-USERAGENT-webpage-to-file
+	lynx-multi-dump-fromlist-mdb
+
+majapps-launch-mdb/
+	majapps-launch-mdb
+
+make-random-test-moviedir
+mntm
+mvalgrind-test
+new-c-project-setup
+
+new-ls/
+	nlc
+	nlct
+	nls
+	nlst
+
+new-mount-commands/
+	mount-ext-usbs-mdb.sh
+
+neww
+nifs
+
+_NOVO-from-en/
+	bankovci-kovanci
+	check-if-installed
+	clean-ff-bookmarks
+	danes-check-colors
+	download-ytb-mpe
+	ftp-access
+	get-public-ip
+	lsth
+	re-link-tu-ulb
+	remove-all-commented-lines-c
+	remove-end-py
+	remove-end-sh
+	repl-bash-en-V1-20180109
+	rewrapp-n
+
+odpni-spsl
+oifs
+pagesnum
+pcm-kill
+pcm-reload
+pdf-reduce-size
+pdf-unlock
+pocisti-var-crash
+pokazi50najvecjih
+prepare-fjl-for-knowledgebase-d
+print256colours
+print256colours.sh
+pripni-spsl
+pwf
+
+python-venv-and-pip-setup/
+	venv-s0-mkvnv-inst
+	venv-s1-makevenv
+	venv-s2-pip-update-and-install
+	venv-s3-remove-venv
+
+rbt
+reload-picom
+rename-to-basename-with-new-ext
+
+renaming-programming-folders/
+	renamedir-from-d-to-n
+	renamedir-from-n-to-d
+	renamedir-to-BRISI
+
+repair1-quotation-marks
+repair2-inplace-quotation-marks
+resolution-display-change-dmn
+resolution-display-change-fzf
+resolution-display-change-rofi
+restart-picom
+return-null-missing
+rewrapp
+rf
+rfp
+rsort-by-accdate-c
+rsort-by-enddate-g
+rsort-by-mdfdate-c
+rsort-by-tmstmp-absp-c
+rsort-by-tmstmp-c
+search-by1-or-2
+search-by1-or-more
+seivom-clean
+
+send-mail-scrts/
+	send-1url-d
+	send-1url-gg
+	send-1url-yh
+	send-2args-gg
+	send-2args-yh
+	send-3args-d
+	send-3args-gg
+	send-3args-yh
+	send_config_gg.py
+	send_config_gg.sh
+	send_config_yh.py
+	send_config_yh.sh
+	sendf1-gg
+	sendf1-yh
+	sendf2-mailx-gg
+	sendf2-mailx-yh
+
+shorten-movie-name
+shorten-tvshow-name
+show-aliases-mdb
+show-exports-mdb
+show-subdirs-tree
+show-terminal-colors
+show-trees-of-subdirs
+show-vim-mappings
+showw
+single-file-rename-and-relink
+single-file-underscores-to-hypens-d
+slike-kopiraj-hdlink
+slistulb
+softlink1-fname-to-ulb
+sort-files-by-end-date
+sort-movies-by-year-b
+sort-movies-by-year-p
+sort-shell-scripts-by-numlines
+spela-movies
+spela-single-movie
+square-brackets-num-bookmarks-find-and-remove
+std
+stn
+
+string-manipulations/docs/
+	find_read_commands_20241002.txt
+	string-hypens-to-underscores
+	string-lower-to-upper
+	string-spaces-to-hypens
+	string-spaces-to-underscores
+	string-to-lower-with-hypens
+	string-underscores-to-hypens
+	string-upper-to-lower
+	_test.sh_en
+	txt-fjls-from-unix2dos
+
+subtitles/
+	m_correct_time.py
+	subs-correct
+
+term_xfce4font_szch
+tmxks
+tmxns
+todays-knowledgedb-files-mdb
+tt
+update-dotfiles
+
+urxvt-font-size/
+	ufsc
+
+valgrind-test
+vedit-files-from-vim-history
+vmf
+vmf-e
+volpejprsafler
+
+vtt-to-srt/
+	vttA-to-srt
+	vttB-to-srt
+
+vview-vedit-commands/
+	vedit-files-from-vim-history
+	vedit-mfjl-efzf
+	vedit-mfjl-fzf
+	vedit-sfjl-efzf
+	vedit-sfjl-fzf
+	vview-files-from-vim-history
+	vview-mfjl-efzf
+	vview-mfjl-fzf
+	vview-sfjl-efzf
+	vview-sfjl-fzf
+
+w3mdump/
+	w3md
+	w3m-multi-dump-fromlist
+
+weblinks1-insert-into-checkout-weblinks
+weblinks2-update-checkout-weblinks
+wp-changer
+ydownload-list
+
+zig-commands/
+	zig-clean
+

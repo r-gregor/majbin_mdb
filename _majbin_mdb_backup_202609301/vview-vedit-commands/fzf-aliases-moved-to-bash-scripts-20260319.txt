@@ -1,0 +1,8 @@
+vedit-sfjl-fzf      'fzf --reverse | xargs -ro vim'
+vedit-sfjl-efzf     'fzf --reverse -e | xargs -ro vim'
+vedit-mfjl-fzf      'fzf -m --reverse | xargs -ro vim -p'
+vedit-mfjl-efzf     'fzf -m --reverse -e | xargs -ro vim -p'
+vview-sfjl-fzf      'fzf --reverse | xargs -ro vim -M'
+vview-sfjl-efzf     'fzf --reverse -e | xargs -ro vim -M'
+vview-mfjl-fzf      'fzf -m --reverse | xargs -ro vim -Mp'
+vview-mfjl-efzf     'fzf -m --reverse -e | xargs -ro vim -Mp'
