@@ -46,7 +46,7 @@ fi
 
 if [ ! -f "${DSTF}" ]; then
 	printf "[W] no such file on destination: %s\n" "${DSTF##*/}"
-	read -r -p "Continue?"
+	read -r -p "[?] Continue?"
 fi
 
 update_log() {
@@ -73,7 +73,7 @@ update_file_to_git() {
 		"[i] from: ${SRCF}" \
 		"[i] to:   ${DSTF}" \
 		"[i] ---"
-	read -p "[?] OK?"
+	read -r -p "[?] OK?"
 	cp -iv "${SRCF}" "${DSTF}"
 
 	# new 20260930

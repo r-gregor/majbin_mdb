@@ -31,7 +31,7 @@ mcdn_d() {
 	myDest="${gr_TO1}/${myDir}"
     	tms; echo "from: ${mySrc}"
     	tms; echo "to:   ${myDest}"
-	read -p "Continue?"
+	read -r -p "[?] Continue?"
 	# ${CMDN} ${mySrc}/ ${myDest}/ | while read line; do if [[ $line != "" ]]; then (tms; echo $line); fi; done
 	${CMDN}  --exclude="**/send_config*" ${mySrc}/ ${myDest}/ | grep -v '^[[:space:]]*$' | while read -r line; do echo $line | sed "s/.*/[ $(date +%Y%m%d_%H%M%S) ] rsync: &/"; done
 }

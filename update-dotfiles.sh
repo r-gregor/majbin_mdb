@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-echo "[INFO] updating ~/majstaf/mdbgit/dotfiles_mdb ..."
+echo "[i] updating ~/majstaf/mdbgit/dotfiles_mdb ..."
 
 CURRDIR=$PWD
 cd ${HOME}/majstaf/mdbgit/dotfiles_mdb

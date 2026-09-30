@@ -3,7 +3,7 @@
 PTH="/home/rgregor/majstaf/majmedia/_DSVM.txt"
 
 if [ $# -ne 1 ]; then
-	printf "[ERROR] must supply a part of movie name\n\n"
+	printf "[E] must supply a part of movie name\n\n"
 	exit 1
 else
 	PTRN="$1"
