@@ -42,5 +42,7 @@ for check_dir in majbin majrcs metsys; do
 	cd $HOME
 done
 
+printf "\n"
+
 cd ${CURRDIR}
 
