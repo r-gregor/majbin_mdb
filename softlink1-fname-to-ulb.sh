@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# filename:     softlink1_fname_to_ulb.sh
+# filename:     softlink1-filename-to-ulb.sh
 # version:      V1 -- 20190131
 #
 
@@ -13,7 +13,7 @@ if [ ! $# -eq 1 ]; then
 fi
 
 source_path=$(dirname $1)
-dest_path="$HOME/.local/bin"
+dest_path="${HOME}/.local/bin"
 
 fname_full=$(basename $1)
 fname=${fname_full%%.*}
@@ -35,6 +35,6 @@ if [ ! -e ${source_path}/${fname_full} ]; then
 fi
 
 # execute
-echo "Soft-linking ${fname_full} to ~/.local/bin/ ..."
+echo "Soft-linking ${fname_full} to ${HOME}/.local/bin/ ..."
 ln -sv $(realpath ${source_path}/${fname_full}) ${dest_path}/${fname}
 

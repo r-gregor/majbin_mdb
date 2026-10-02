@@ -1,20 +1,21 @@
 #! /usr/bin/env bash
 # fname: fname-rename-spaces-to-hypens-no-confirm
+# descpt: rename file from spaces  to hypens -- NO CONFIRM
 # 20226031
 # last: 20260331
 # ---
 
 ARG="$@"
 
-if [ "x${ARG}" = "x" ]; then
-	echo -e "[E] -- no filename as argument\n"
+if [ "${ARG}" = "" ]; then
+	printf "[E] -- no filename as argument\n"
 	exit
 else
 	FNAME="$ARG"
 fi
 
 if [ ! -f "${FNAME}" ]; then
-	echo -e "[E] -- no such file\n"
+	printf "[E] -- no such file\n"
 	exit
 fi
 

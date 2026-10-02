@@ -1,12 +1,13 @@
 #! /usr/bin/env bash
 # fname: fname-rename-underscores-to-hypens-no-confirm
+# descpt: rename file from underscores to hypens -- NO CONFIRM
 # 20226031
 # last: 20260331
 # ---
 
 ARG="$@"
 
-if [ "x${ARG}" = "x" ]; then
+if [ "${ARG}" = "" ]; then
 	printf "[E] -- no filename as argument\n"
 	exit
 else

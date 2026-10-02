@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+# filename: hstl-en.sh
+# descpt: copy all history commands into '$SZNM/hstl-' file
+# 20251120 v1 create history commands snapshot
+# last: 20251120
+# ---
+
+
+shopt -s histappend
+HISTFILE=~/.bash_history
+HISTCONTROL=erasedups
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=5000
+export HISTTIMEFORMAT='%F %T '
+
+HSTL_PATH="$HOME/majstaf/seznami/hstl-${HST}-$(date +'%Y%m%d-%H%M%S').txt"
+set -o history
+history -r
+history -a
+history -w
+history >> ${HSTL_PATH}
+set +o history
+printf "[i] succesfully added commands from HISTORY to '%s'\n\n" "${HSTL_PATH}"
+

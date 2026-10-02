@@ -7,6 +7,6 @@ if [ $# -eq 1 ]; then
 	cd $PTH
 fi
 
-# additional flag -r to xargs: if nothing selected DO NOT run command
+# adding -r to xargs: if no selection don't run the command!
 find . | fzf | xargs -r -o vim
 

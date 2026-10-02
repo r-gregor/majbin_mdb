@@ -1,0 +1,4 @@
+grep -rl 'redelonghi' * | grep -v "messages\|archive\|\.exe\|cygwin-only" | sort | uniq
+for FFF in $(find -type f -name "*\.sh"); do grep -rl 'redelonghi' $FFF; done | grep -v "messages\|archive\|\.exe\|en-only" | sort | uniq
+
+

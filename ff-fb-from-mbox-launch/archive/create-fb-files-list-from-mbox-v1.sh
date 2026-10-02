@@ -17,15 +17,15 @@ SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
 tdj=$(date +"%Y%m%d_%H%M")
 
 if [ $# -ne 1 ]; then
-	printf "[E] no sorce *.mbox file supplied\n"
-	printf "[i] Usage: create-fb-files-list-from-mbox <mbox file>\n\n"
+	printf "[ERROR] no sorce *.mbox file supplied\n"
+	printf "[INFO] Usage: create-fb-files-list-from-mbox <mbox file>\n\n"
 	exit
 else
 	src="${SRCDIR}/${1}"
 fi
 
 if [ ! -f "${src}" ]; then
-	printf "[E] no such file: %s\n\n" "${src}"
+	printf "[ERROR] no such file: %s\n\n" "${src}"
 	exit
 fi
 
@@ -42,13 +42,13 @@ if [ ! -f "${dst}" ]; then
 	touch "${dst}"
 fi
 
-printf "[i] Making backup of '%s' to '%s' ...\n" "${dst_local}" "${bkp_local}"
+printf "[INFO] Making backup of '%s' to '%s' ...\n" "${dst_local}" "${bkp_local}"
 cp "${dst}" "${fbf_backup}"
 
-printf "[i] Cleaning up '%s' ...\n" "${dst_local}"
+printf "[INFO] Cleaning up '%s' ...\n" "${dst_local}"
 > ${dst}
 
-printf "[i] Loading info from *.mbox file into '%s' ...\n" "${dst_local}"
+printf "[INFO] Loading info from *.mbox file into '%s' ...\n" "${dst_local}"
 while read -r LINE2; do
 	if [[ $LINE2 =~ "Date" ]]; then
 		yr=$(echo "$LINE2" | cut -d' ' -f5)
@@ -68,5 +68,5 @@ while read -r LINE2; do
 	fi
 done < "${src}"
 
-printf "[i] Done!\n"
+printf "[INFO] Done!\n"
 

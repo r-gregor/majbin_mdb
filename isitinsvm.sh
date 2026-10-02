@@ -1,6 +1,12 @@
 #! /usr/bin/env bash
+# fname: isitinsvm.sh
+# descpt: check if part of movie name is in $SVM
+# 20260929 v1
+# last: 20260929
+# ---
 
-PTH="/home/rgregor/majstaf/majmedia/_DSVM.txt"
+
+PTH="${HOME}/majstaf/${HST}ngit/prenos/_DSVM.txt"
 
 if [ $# -ne 1 ]; then
 	printf "[E] must supply a part of movie name\n\n"
@@ -9,10 +15,11 @@ else
 	PTRN="$1"
 fi
 
-printf "%-60s --> " "${PTRN}"
-grep -i "${PTRN}" "${PTH}"
+grep -i "$PTRN" "${PTH}"
 
 if [ $? -ne 0 ]; then
-	printf "NOT IN THE _DSVM: %s\n" "${PTRN}"
+	echo "[i] NOT IN THE _DSVM: ${PTRN}"
 fi
+
+printf "\n"
 

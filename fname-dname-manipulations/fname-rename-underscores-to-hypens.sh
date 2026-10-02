@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # fname: fname-rename-underscores-to-hypens
-# descpt: rename file: convert underscores to hypens
+# descpt: rename file from underscores to hypens
 # 20226031
 # last: 20260331
 # ---

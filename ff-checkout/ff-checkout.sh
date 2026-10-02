@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: ff-checkout-mdb.sh
+# filename: ff-checkout.sh
 # descpt: Launch www-sites from external file in format: 'http-link;decription'
 # from: ff-fb-mails-from-mbox-launch-en.sh
 # 20260923
@@ -59,8 +59,7 @@ ff_checkout_launch() {
 	for URL in "${!checkout_files[@]}"; do
 		if [[ "${checkout_files["${URL}"]}" == "${selection}" ]]; then
 		printf "[i] selected: %s\n" "${selection}"
-		# cygstart "${FFCMD}" "${URL}" #cygwin
-		(nohup "${FFCMD}" "${URL}" &) >/dev/null 2>&1 # linux
+		(nohup "${FFCMD}" "${URL}" &) >/dev/null 2>&1
 		fi
 	done
 }

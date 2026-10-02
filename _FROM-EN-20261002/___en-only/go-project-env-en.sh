@@ -1,0 +1,76 @@
+#! /usr/bin/env bash
+# fname: go-project-env.sh
+# descpt: setup go-project env
+# 20260929 v1
+# last: 20260929
+# ---
+
+
+usage_msg="Usage: go-project-env <project_name>"
+
+# if no <project_name> supplied
+if [ $# -ne 1 ]; then
+    printf "${usage_msg}\n"
+    exit 1
+fi
+
+# initial setup
+project_nm="$1"
+gostart="$PWD"
+
+if [ -d "src/example.com/rgregor/${project_nm}" ]; then
+    printf "src/example.com/rgregor/${project_nm} exists!\n"
+    exit 1
+fi
+
+read -r -d '' test_main <<-EOF
+package main
+
+import "fmt"
+
+func main() {
+    project_nm := "${project_nm}"
+    fmt.Println("Project: ", project_nm)
+    fmt.Println("SUCCESS!!")
+}
+
+EOF
+
+
+env_f=env-settings.txt
+
+godir="example.com/rgregor/${project_nm}"
+gomain="${godir}/${project_nm}.go"
+
+mkdir -pv "${gostart}/{src,bin,pkg}"
+mkdir -pv "${gostart}/src/${godir}"
+
+# gomain="example.com/rgregor/${project_nm}/${project_nm}.go"
+touch "src/${gomain}"
+echo "${test_main}" > "src/${gomain}"
+
+
+printf "\nThe contents of src/${gomain}:"
+cat "src/${gomain}"
+
+printf "\n"
+/usr/bin/tree --charset ASCI --noreport "${gostart}"
+
+touch "${env_f}"
+> "${env_f}"
+
+go_path="GOPATH=\"$(cygpath -w ${gostart})\""
+
+echo "${go_path}" >> "${env_f}"
+echo "${go_bin}" >> "${env_f}"
+
+printf "\nTest run:" >> "${env_f}"
+echo "${go_path} go run ./src/${gomain}" >> "${env_f}"
+
+printf "\nRun:" >> "${env_f}"
+echo "${go_path} go install ./src/${godir}" >> "${env_f}"
+
+printf "\n"
+printf "The contents of '%s'\n" "${env_f}"
+cat "${env_f}"
+

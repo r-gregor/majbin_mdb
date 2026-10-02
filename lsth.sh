@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # fname: lsth
+# descpt: list last n(15) files by modification time
 # 20260126 d: added optarg for path and number
 # last: 20260126
 # ---
@@ -25,5 +26,4 @@ EOF
 done
 
 /usr/bin/ls --color=always -t "${DEST}" | head -n "${NUM}"
-# /usr/bin/ls -t ${DEST} | head -n ${NUM} | xargs -I{} echo "${DEST}/{}"
 

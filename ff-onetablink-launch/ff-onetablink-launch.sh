@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
-# fname: ff-onetablink-launch-mdb.sh
+# fname: ff-onetablink-launch.sh
+# descpt: open onetablinks in Firefox with fzf list from external file
 # 20260529 v1: converts a line:
 #             https://www.youtube.com/results?search_query=salsa+hand+toss+flip | (7) salsa hand toss flip - YouTube
 #             ... to ...
@@ -16,20 +17,18 @@
 
 # globals
 # SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-FFCMD='/usr/bin/firefox'
-
 unset llist
 declare -A llist
 
 usage() {
 	cat <<"EOF"
-	Usage: ff-onetablink-launch-jbe <filename>
+	Usage: ff-onetablink-launch <filename>
 
 EOF
 }
 
 FZFCMD() {
-	fzf -e --reverse --border rounded
+	fzf -e --reverse
 }
 
 # MAIN

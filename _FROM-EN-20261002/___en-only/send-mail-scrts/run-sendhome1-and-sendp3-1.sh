@@ -1,0 +1,35 @@
+#! /bin/bash
+# fname: run-sendhome1-and-sendp3-1.sh
+# ---
+
+# timestamp
+function tms() {
+    echo -n "[ $(date +%Y%m%d_%H%M%S) ] "
+}
+
+tms; echo "Starting $0 ..." 
+
+gPth="$HOME/majstaf/majbin/send_mail"
+
+sendsc1=${gPth}/sendhome1list
+sendsc2=${gPth}/sendp3-1-lnk-en
+
+if [ $# -ne 1 ]; then
+    tms; echo -e "Usage $0 [ \"URL\" ]\n"
+    exit 1
+fi
+
+U="$1"
+
+$sendsc1 ${U} && $sendsc2 ${U}
+
+# if [ $? -eq 0 ]; then
+#     tms; echo -e 'Done!\n'
+# else
+#     tms; echo "Something went wrong!"
+# fi
+
+if [ $? -ne 0 ]; then
+    tms; echo "Something went wrong!"
+fi
+

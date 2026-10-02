@@ -1,27 +1,24 @@
 #! /usr/bin/env bash
-# fname: show-aliases.sh
-# descpt: display all aliases from bashrc_* files
-# 20261002 v1
-# last: 20261002
+# filename: show-aliases-en.sh
+# descpt: Show all aliases from $MRCS
+# last: 20260922
 # ---
 
-
 PDD=20
-PTH="${HOME}/majstaf/majrcs/aliases-${HSTLONG}"
-
+PTH="${HOME}/majstaf/majrcs/aliases-*"
 
 if [ $# -gt 0 ]; then
 	pattern="$1"
 	shift
 	params="$@"
-	# echo $params
+	echo $params
 	for param in $params; do
 		pattern="$pattern\|$param"
 	done
 
-	cmd='cat ${PTH} | \grep "^alias" | sed -e "/^#/d" -e "/^$/d" | sed "s/^alias //" | grep "${pattern}"'
+	cmd='cat ${PTH} | \grep "^alias" | sed -e "/^#/d" -e "/^$/d" | sed "s/^alias //" | grep "${pattern}" | sorti | uniq'
 else
-	cmd='cat ${PTH} | \grep "^alias" | sed -e "/^#/d" -e "/^$/d" | sed "s/^alias //"'
+	cmd='cat ${PTH} | \grep "^alias" | sed -e "/^#/d" -e "/^$/d" | sed "s/^alias //" | sort | uniq'
 fi
 
 while read LINE; do

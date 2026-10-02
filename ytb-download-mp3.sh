@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+	echo -e "Usage: $0 <youtube with music URL>\n"
+	exit
+fi
+
+URL=$1
+yt-dlp --proxy $PRXY -x --audio-format mp3 "${URL}"
+

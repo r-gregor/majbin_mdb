@@ -1,0 +1,24 @@
+#! /usr/bin/env bash
+# fname: rbekap-PROJEKTI-copy-mega-gren.sh
+# descpt: Rclone sellected files/dirs to mega_gren:
+# 20251021 v1
+# 20251218 v2 += CURRYR
+# last: 20251218
+# ---
+
+CURRYR=2026
+
+SRC="/c/Users/gregor.redelonghi/${CURRYR}/_${CURRYR}_1_PROJEKTI"
+DST="mega_gren:ENERGETIKA/_${CURRYR}_1_PROJEKTI"
+
+if [ $# -eq 1 ] && [ "${1}" == "-y" ]; then
+	echo "[INFO] backup/copy '${SRC}' to 'MEGA.nz (mega_gren)'"
+	yes | rclone copy --update $(cygpath -w "${SRC}") ${DST} --progress
+else
+	echo "[INFO] backup/copy '${SRC}' to 'MEGA.nz (mega_gren)'"
+	read -p "[INFO] Confirm? "
+
+	rclone copy --update $(cygpath -w "${SRC}") ${DST} --progress
+fi
+
+

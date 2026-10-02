@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # fname: list-new-files-from-n-days-from-today-en.sh
+# descpt: list new files from n-days back till today
 # 20260731 v1
 # 20260809 v2 refine find command to prune (not desend into unwanted drectories
 # 20260810 v3 add options to select path and days difference
@@ -18,12 +19,16 @@ usage() {
 
 # v7
 list_new_files() {
+	local PTH
+	local ddiff
+	local newdate
+
 	if [ $# -eq 2 ]; then
 		PTH="${1}"
-		ddiff=${2}
+		ddiff="${2}"
 	elif [ $# -eq 1 ]; then
 		PTH='.'
-		ddiff=${1}
+		ddiff="${1}"
 	else
 		usage
 		printf "\n"
@@ -41,7 +46,7 @@ list_new_files() {
 		exit 1
 	fi
 
-	newdate="$(get_start_date_from_daysdiff ${ddiff})"
+	newdate="$(get_start_date_from_daysdiff "${ddiff}")"
 	# if [[ ! ${newdate} =~ '^[0-9]+$' ]]; then
 	# 	printf "[E] new date is not a nuber\n"
 	# 	exit 1
@@ -61,6 +66,21 @@ list_new_files() {
 }
 
 get_start_date_from_daysdiff() {
+	local days_diff
+	local curr_yr_str
+	local curr_mn_str
+	local curr_dy_str
+	local curr_dt
+	local curr_mn
+	local curr_dy
+	local curr_yr
+	local start_mn
+	local start_dy
+	local start_yr
+	local year_days
+	local month_days
+	local start_date
+
 	days_diff=0
 
 	if [ $# -ne 1 ]; then
@@ -100,25 +120,25 @@ get_start_date_from_daysdiff() {
 		return
 	fi
 
-	if [ "${days_diff}" -ge ${year_days} ]; then
+	if [ "${days_diff}" -ge "${year_days}" ]; then
 		printf "[E] to many days back (over a whole year)\n\n"
 		exit 1
 	fi
 
-	if [ ${start_dy} -le ${days_diff} ]; then
+	if [ "${start_dy}" -le "${days_diff}" ]; then
 		(( start_mn-- ))
-		(( days_diff -= ${start_dy} ))
-		start_dy=${month_days["${start_mn}"]}
+		(( days_diff -= "${start_dy}" ))
+		start_dy="${month_days["${start_mn}"]}"
 		while [ "${month_days["${start_mn}"]}" -lt "${days_diff}" ]; do
 			(( start_mn-- ))
 			(( days_diff -= "${month_days["${start_mn}"]}" ))
 		done
 		start_dy=$(( "${month_days["${start_mn}"]}" - "${days_diff}" ))
 	else
-		start_dy=$(( ${curr_dy} - ${days_diff} ))
+		start_dy=$(( "${curr_dy}" - "${days_diff}" ))
 	fi
 
-	if [ ${start_dy} -eq 0 ]; then
+	if [ "${start_dy}" -eq 0 ]; then
 		(( start_mn-- ))
 		start_dy="${month_days["${start_mn}"]}"
 	fi

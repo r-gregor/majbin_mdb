@@ -1,12 +1,16 @@
 #! /usr/bin/env bash
-# get_saved_link_address_and_name_by_timestamp.sh
-# 20240531_en
+# fname: get-saved-link-address-and-name-by-timestamp.sh
+# descpt: ???
+# 20240531
+# 20240605: added test if it is piped to (test -p /dev/stream)
+# last: 20240605
+# ---
 
 if [ ! -p /dev/stdin ] || [ $# -ne 1 ]; then
 	echo "  Usage: cli command | <get_saved_link_address_and_name_by_timestamp.sh> <datestamp>"
 	echo "		- cli command: cat, or any file stream display command"
 	echo "		- datestamp in format: yyyymmdd"
-	echo "  "
+	echo ""
 	exit
 else
 	dtsmmp=$1

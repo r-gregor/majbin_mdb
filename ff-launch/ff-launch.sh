@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: ff-launch--en
+# descpt: open url-links in Firefox with fzf list from external file
 # 20251117 v1
 # 20251117 v2: :associative array --> no case statement needed
 # 20251117 v3: ALL --> cat all txt files into process subst ...
@@ -14,12 +15,11 @@
 clear
 
 # globals
-FFCMD='/usr/bin/firefox'
 SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 SITES="${SRCDIR}/sites.txt"
 
 FZFCMD() {
-	fzf -e --reverse --height 50% --border rounded
+	fzf -e --reverse
 }
 
 ff_launch() {
@@ -35,22 +35,22 @@ ff_launch() {
 	selection=$(for URL in "${URLS[@]}"; do echo "$URL"; done 2>/dev/null | FZFCMD)
 
 	if [ "${selection}" == "" ]; then
-		echo -e "[i] nothing selected\n"
+		printf "[i] nothing selected\n"
 		exit
 	fi
 
 	if [[ "${selection}" =~ ^(---) ]]; then
-		echo -e "[i] nothing selected\n"
+		printf "[i] nothing selected\n"
 		exit
 	fi
 
 	if [[ "${selection}" =~ ^\[.*\] ]]; then
-		echo -e "[i] nothing selected\n"
+		printf "[i] nothing selected\n"
 		exit
 	fi
 
 	path=$(echo "${selection}" | cut -d ' ' -f1)
-	echo "[i] selected: ${path}"
+	printf "[i] selected: ${path}\n"
 	# nohup ${FFCMD} "${path}" >&/dev/null &
 	(nohup ${FFCMD} "${path}" &) > /dev/null 2>&1
 }
@@ -64,7 +64,7 @@ while true; do
 	selected=$(for WAY in "${categories[@]}"; do echo "${WAY}"; done | fzf +c --reverse)
 
 	if [ "${selected}" == "" ]; then
-		echo -e "[i] nothing selected\n"
+		printf "[i] nothing selected\n"
 		exit
 	fi
 

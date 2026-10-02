@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: ff-fb-from-mbox-launch-mdb.sh
+# descpt: open fb-link in Firefox from fzf list from mbox file
 # 20260721 v1
 # 20260917 v2: move FZFCMD command into FZFCMD() function
 # last: 20260917
@@ -7,14 +8,10 @@
 
 # globals
 SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-# FFCMD_EN=/c/Users/gregor.redelonghi/majstaf_en/majprogs_en/FireFox_63.0.1/FirefoxPortable.exe
-# FZFCMD_EN="fzf -e --reverse" # cygwin version does not support --width option
-
-FFCMD='/usr/bin/firefox'
 fb_files_list="${SRCDIR}/data/fb_files_list_from_mbox.txt"
 
 FZFCMD() {
-	fzf -e --reverse --border rounded
+	fzf -e --reverse
 }
 
 unset fb_files
@@ -23,7 +20,7 @@ declare -A fb_files=()
 fb_files_list_update() {
 	local fb_fname
 	local fb_url
-	> ${fb_files_list}
+	> "${fb_files_list}"
 	for FFF in "${SRCDIR}"/messages/*; do
 		fb_url=$(grep '^https://www.facebook.com/share' "$FFF")
 		fb_url="${fb_url// /}"
@@ -56,11 +53,6 @@ if [ $# -eq 1 ]; then
 else
 	fb_files_load
 fi
-
-# selection=$(for EL in "${!fb_files[@]}"; do
-#    echo "${EL}"
-# done | ${FZFCMD_EN})
-# cygstart ${FFCMD_EN} ${fb_files[${selection}]}
 
 fb_launch() {
 	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | ${FZFCMD_EN})

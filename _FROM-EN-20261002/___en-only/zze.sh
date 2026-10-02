@@ -1,0 +1,231 @@
+#!/bin/bash
+# UPDATE 20181107: Added FireFox.Portable
+# UPDATE 20181113: NUKLEUS run from ff
+# UPDATE 20200514: CmdEr.exe
+# UPDATE 20201022: ris.jhl run from MS Edge!!
+# UPDATE 20230525: added Super Launcher
+# UPDATE 20230922: added ed - new site: 'https://ris.jhl.si/'
+# UPDATE 20240201 added oc (OneCommander) an epp (Explorer++) -- new file explorers
+
+clear
+
+gr_verzija=" [ verzija-en - last update: 202401119 ] "
+gr_izbira=""
+gr_novapot="/c/users/gregor.redelonghi/majstaf_en/r.gregor.en/orodjarna/ukazi/podukazi"
+# gr_OFPOT='/c/Program Files (x86)/Microsoft Office/Office16'
+gr_OFPOT='/c/Program Files/Microsoft Office/root/Office16'
+gr_GGL="/c/Users/gregor.redelonghi/AppData/Local/Google/Chrome/Application/chrome.exe"
+gr_IE=/c/Program\ Files/Internet\ Explorer/iexplore.exe
+gr_FF=/c/Users/gregor.redelonghi/majstaf_en/majprogs_en/FireFox_63.0.1/FirefoxPortable.exe
+gr_MSE=/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe
+
+if [ $CURRENT_YEAR_ENV -ne $(date +%Y) ]; then
+		CURRYR=$CURRENT_YEAR_ENV
+	else
+		CURRYR=$(date +%Y)
+fi
+
+
+while true; do
+
+echo "${gr_verzija}"
+cat << PRINT-on-SCREEN
+ -------------------------------------------------------------------------------------------
+ 1  - MS Excel                                    ie  - Internet Explorer (IE)              
+ 2  - MS Winword                                  ee  - Microsoft Edge (MSE)                
+ 3  - MS Powerpoint                               ne  - //nukleus (ENERGETIKA)              
+ 4  - MS Outlook                                  ------------------------------------------
+ 5  - calculator (Win)                            ff  - FireFox (Portable)                  
+ 10 - Adobe Acrobat Reader 10                     gg  - Google Chrome                       
+ nt - notepad (Win)                               ------------------------------------------
+ np - notepad++                                   o24 - /c/Users/gregor.redelonghi/${CURRYR}
+ sl  - Super Launcher                             gd  - Google Drive                        
+ my - cygwin (mintty)                             cb  - Code::Blocks                        
+ -------------------------------------------------------------------------------------------
+ 24 - AutoCAD 2024                                24k - AutoCAD 2024 (King.Infra)           
+ -------------------------------------------------------------------------------------------
+ oc - OneCommander (new file explorer)            epp - Explorer++ (new file explorer)
+ -------------------------------------------------------------------------------------------
+ ure - ris.jhl - elektronska dovolilnica (EE)                                               
+ -------------------------------------------------------------------------------------------
+ S   - Sistem                                     w   - Explorer (${CURRYR})                
+ L   - ZAKLENI!                                   mcm - MultiCommander                      
+ U   - zaustavitev zunanje naprave (USB)          tgd (t-gremdomov - reboot)                
+ Z   - odjava / ponovni zagon / ZAUSTAVITEV       vgd (v-gremdomov - shutdown)              
+ ===========================================================================================
+ 0  - IZHOD
+============================================================================================
+PRINT-on-SCREEN
+
+echo -n " Vnesi st. aplikacije za zagon: "
+read gr_izbira
+
+echo
+
+case "${gr_izbira}" in
+
+
+"1" )
+cygstart "${gr_OFPOT}/EXCEL.EXE"
+;;
+
+"2" )
+cygstart "${gr_OFPOT}/WINWORD.EXE"
+;;
+
+"3" )
+cygstart "${gr_OFPOT}/POWERPNT.EXE"
+;;
+
+"4" )
+cygstart "${gr_OFPOT}/OUTLOOK.EXE"
+;;
+
+"5" )
+cygstart /c/Windows/System32/calc.exe
+;;
+
+"10" )
+### cygstart $(cygpath -u "C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe")
+cygstart /c/Program\ Files\ \(x86\)/Adobe/Acrobat\ Reader\ DC/Reader/AcroRd32.exe
+;;
+"9" )
+${gr_novapot}/clc.bat
+;;
+
+"24" )
+# cygstart /c/Program\ Files/Autodesk/AutoCAD\ 2024/acad.exe
+cygstart "C:\Program Files\Autodesk\AutoCAD 2024\acad.exe"  /product ACAD /language "en-US"
+;;
+
+"24k" )
+# cygstart /c/Program\ Files/Autodesk/AutoCAD\ 2024/acad.exe /b "/c/Program Files/SL-King/King.Infra/kinginfra.scr"
+cygstart "C:\Program Files\Autodesk\AutoCAD 2024\acad.exe" /b "C:\Program Files\SL-King\Sewer+\Sewer+Load.scr"
+;;
+
+##################################
+"oc" | "OC" )
+cygstart /c/Users/gregor.redelonghi/majstaf_en/majprogs_en/OneCommander/OneCommander.exe
+;;
+
+"epp" | "EPP" )
+cygstart /c/Users/gregor.redelonghi/majstaf_en/majprogs_en/Explorerpp/Explorer++.exe
+;;
+
+################################
+"nt" | "NT" )
+cygstart /c/Windows/System32/\notepad.exe
+;;
+
+"np" | "NP")
+cygstart /c/Users/gregor.redelonghi/majstaf_en/majprogs_en/Notepad++/notepad++.exe
+;;
+
+"w" | "W")
+cygstart explorer /E,"$(cygpath -w /c/users/gregor.redelonghi/${CURRYR})"
+;;
+
+"mcm" | "MCM")
+cygstart /c/Users/gregor.redelonghi/majstaf_en/majprogs_en/MultiCommander_X64/MultiCommander.exe
+;;
+
+"ie" | "IE")
+cygstart "$gr_IE"
+;;
+
+"ee" | "EE")
+cygstart "${gr_MSE}" www.google.com
+;;
+
+"ss" | "SS")
+cygstart /c/WINDOWS/system32/ssmypics.scr /s
+;;
+
+"ure"| "URE")
+gr_GO1="https://ris.jhl.si/"
+# gr_GO1="http://jhl-oracle-ris/prod/kadris-4.7/index.jsp?p_kateri=ris_dovolilnica"
+cygstart "$gr_MSE" ${gr_GO1}
+;;
+
+"ne" | "NE")
+# cygstart $gr_GGL "http://jpe-nukleus.jhl.si/PassAuth/AutoAuth.aspx?ReturnUrl=/nukleus/profile.aspx?id=Energetika@Ljubljana"
+cygstart $gr_FF "http://jpe-nukleus.jhl.si/PassAuth/AutoAuth.aspx?ReturnUrl=/nukleus/profile.aspx?id=Energetika@Ljubljana"
+;;
+
+"gg" | "GG")
+cygstart '/c/Program Files/Google Chrome Portable/GoogleChromePortable.exe'
+;;
+
+"ff" | "FF")
+cygstart $gr_FF
+;;
+
+"o24" | "O24")
+cygstart explorer /E, $(cygpath -w /c/users/gregor.redelonghi/${CURRYR})
+;;
+
+"my" | "MY")
+cygstart /c/users/gregor.redelonghi/majstaf_en/majprogs_en/cygwin64/bin/mintty.exe -p 300,40 -s 180,40 -
+
+;;
+
+"cb" | "CB")
+ cygstart /c/Users/gregor.redelonghi/majstaf_en/majprogs_en/CodeBlocks/codeblocks.exe
+;;
+
+
+"gd" | "GD")
+cygstart /c/Program\ Files/Google/Drive/googledrivesync.exe
+;;
+
+"sk" | "SK")
+cygstart /c/Program\ Files/Skype/Phone/Skype.exe
+;;
+
+"sl" | "SL")
+cygstart "$(cygpath -w "/c/Users/Public/below average/Super Launcher/SuperLauncher.exe")"
+;;
+
+"tgd" | "TGD" )
+t-gremdomov
+;;
+
+"vgd" | "VGD" )
+v-gremdomov
+;;
+
+# SISTEM -------------------------------------------------------------------
+"l" | "L" )
+cygstart /c/WINDOWS/System32/rundll32.exe user32.dll LockWorkStation
+;;
+
+"u" | "U" )
+cygstart /c/WINDOWS/System32/rundll32.exe  shell32.dll,Control_RunDLL hotplug.dll
+;;
+
+"z" | "Z" )
+clear && source ./izklop.sh
+break
+;;
+
+
+"0" )
+# /home/gregor.redelonghi/majstaf_en/coding2/todotoday.sh
+clear
+exit 0
+;;
+
+"*" )
+
+echo 'NOT IN THE LIST!'
+read -p 'Press any key to EXIT!'
+clear
+### exit 1
+
+;;
+
+esac
+clear
+
+done
+

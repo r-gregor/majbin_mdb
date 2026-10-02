@@ -1,12 +1,13 @@
 #! /usr/bin/env bash
 # filename: add-file-to-prenos-mdb
+# descpt: add file to prenos git-repo
 # 20260210 mdb v1
 # last: 20260210
 # ---
 
 set -e
 
-DEST="${MGPRNS}"
+PRNS_DEST="${HOME}/majstaf/${HST}git/prenos"
 
 earg=false
 jarg=false
@@ -19,40 +20,42 @@ usage() {
 cat <<USAGE
 
 usage: add-file-to-prenos -[e,j,m,a,h] -f <file name>
-		-e	add file to update_en  and/or
-		-j	add file to update_jbe and/or
-		-m	add file to update_mdb or
-		-a	add file to update_jbe and update_mdb and update_en
+        -e    add file to update_en  and/or
+        -j    add file to update_jbe and/or
+        -m    add file to update_mdb or
+        -a    add file to update_jbe and update_mdb and update_en
 
-		-f <file name> is mandatory!
+        -f    <file name> is mandatory!
 
-		-h	print this message
+        -h    print this message
 USAGE
 }
 
-NM=""
+unset NM
+declare -a NM
 
 while getopts "ejmahf:" arg; do
 	case $arg in
 		e)
 			earg=true
-			NM+=" en "
+			NM+=("en")
 			;;
 		j)
 			jarg=true
-			NM+=" jbe "
+			NM+=("jbe")
 			;;
 		m)
 			marg=true
-			NM+=" mdb "
+			NM+=("mdb")
 			;;
 		a)
 			aarg=true
-			NM="en jbe mdb"
+			NM=()
+			NM=("en jbe mdb")
 			;;
 		f)
 			farg=true
-			fname=$OPTARG
+			fname="${OPTARG}"
 			;;
 		h)
 			usage
@@ -66,28 +69,29 @@ while getopts "ejmahf:" arg; do
 done
 
 if [ "${farg}" != "true" ]; then
-	echo "[E] no file selected"
+	printf "[E] no file selected\n\n"
 	usage
-	exit
+	exit 1
 fi
 
-if [ ! -f ${fname} ]; then
-	echo "[E] no such file"
-	exit
+if [ ! -f "${fname}" ]; then
+	printf "[E] no such file\n\n"
+	exit 1
 fi
 
 if [ "${NM}" == "" ]; then
-	echo "[E] no destination"
-	exit
+	printf "[E] no destination\n\n"
+	exit 1
 fi
 
-for dest in ${NM}; do
-	PATH="${DEST}/update_${dest}"
-	if [ ! -d "${PATH}" ]; then
-		echo "[E] no such directory: ${PATH}"
-		exit
+for dest in "${NM[@]}"; do
+	UPDTDIR="${PRNS_DEST}/update_${dest// /}"
+	if [ ! -d "${UPDTDIR}" ]; then
+		printf "[E] no such directory: ${UPDTDIR}\n\n"
+		exit 1
 	fi
 
-	/usr/bin/cp -iv ${fname} ${PATH}/
+	/usr/bin/cp -iv "${fname}" "${UPDTDIR}"/
 done
 
+printf "\n"

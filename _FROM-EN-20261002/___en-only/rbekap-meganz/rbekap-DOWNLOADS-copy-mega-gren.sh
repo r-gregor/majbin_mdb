@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+# fname: rbekap-DOWNLOADS-copy-mega-gren.sh
+# descpt: Rclone sellected files/dirs to mega_gren:
+# v1_20251021
+# 20260813 v2 RENAMES to names without '_en'
+# last: 20260813
+# ---
+
+SRC="/c/Users/gregor.redelonghi/Downloads/__ARHIVIRAJ"
+DST="mega_gren:ENERGETIKA/Downloads"
+
+if [ $# -eq 1 ] && [ "${1}" == "-y" ]; then
+	echo "[INFO] backup/copy '${SRC}' to 'MEGA.nz (mega_gren)'"
+	yes | rclone copy --update $(cygpath -w "${SRC}") ${DST} --progress
+else 
+	echo "[INFO] backup/copy '${SRC}' to 'MEGA.nz (mega_gren)'"
+	read -p "[INFO] Confirm? "
+	rclone copy --update $(cygpath -w "${SRC}") ${DST} --progress
+fi
+

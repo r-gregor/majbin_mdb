@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# fname: /home/gregor.redelonghi/majstaf/_NERAZPOREJENO/__DANES__/is-leap-year.sh
+# fname: is-leap-year.sh
 # 20260902 v1
 # ---
 

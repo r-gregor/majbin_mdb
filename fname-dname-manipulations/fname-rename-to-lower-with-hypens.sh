@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # fname: fname-rename-to-lower-with-hypens
-# descpt: rename file: to lower with hypens
+# descpt: rename file to lower with hypens
 # 20260331
 # last: 20260331
 # ---
@@ -11,7 +11,7 @@ if [ "${ARG}" = "" ]; then
 	printf "[E] no filename as argument\n"
 	exit
 else
-	FNAME=$ARG
+	FNAME="$ARG"
 fi
 
 if [ ! -f "${FNAME}" ]; then
@@ -21,7 +21,7 @@ fi
 
 NEW_FNAME=$(echo "${FNAME}" |  tr '[:upper:]' '[:lower:]' | sed -e 's/: */_/g' -e 's/,//g' -e 's/ \././g' -e 's/(//' -e 's/)//' | tr ' ' '-')
 printf "[i] renaming:\n'${FNAME}' ... to\n'${NEW_FNAME}'\n"
-read -r -p "[?] OK?"
+read -r -p "[INPUT] OK?"
 printf "[i] "
 mv -v "${FNAME}" "${NEW_FNAME}"
 printf "\n"

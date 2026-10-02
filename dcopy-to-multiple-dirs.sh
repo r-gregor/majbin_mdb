@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 # filename: dcopy-to-multiple-dirs.sh
+# descpt: copy selected dirs to multiple directories. Add each source dir with option -s and each dest direcory with option -d
 # 20260506 v1 -- copy selected dirs to multiple directories. Add each source dir with option -s
 #                and each dest direcory with option -d
 # 20260507 v2 -- added until loop to cycle trough multiple parameters for single -s and -d option
@@ -58,14 +59,14 @@ while getopts "s:d:h" opt; do
 done
 
 if [ "${sarg}" != "true" ]; then
-	echo "[E] no file selected"
+	printf "[ERROR] no file selected\n"
 	usage
 	exit
 fi
 
 
 if [ "${darg}" != "true" ]; then
-	echo "[E] no directory selected"
+	printf "[ERROR] no directory selected\n"
 	usage
 	exit
 fi
@@ -73,14 +74,14 @@ IFS=$OIFS
 
 for DDD in "${dsts[@]}"; do
 	if [ ! -d "${DDD}" ]; then
-		printf "[E] no such directory: ${DDD}\n\n"
+		printf "[ERROR] no such directory: ${DDD}\n\n"
 		exit
 	fi
 done
 
 for SDD in "${srcs[@]}"; do
 	if [ ! -d "${SDD}" ]; then
-		printf "[E] no such file: ${SDD}\n\n"
+		printf "[ERROR] no such file: ${SDD}\n\n"
 		exit
 	fi
 done

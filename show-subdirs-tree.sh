@@ -1,25 +1,18 @@
 #! /usr/bin/env bash
-#! /usr/bin/env bash
 # fname: show-subdirs-tree.sh
-# descpt: display tree of subdirs
+# descpt: show tree of subdirs
 # 20261002 v1
 # last: 20261002
 # ---
 
-
-
 # set IFS to newline '\n'
 nifs() {
-	# echo -n "setting IFS to newline ..."
 	IFS=$'\n'
-	# echo " done."
 }
 
 # set IFS to orginal ' \t\n'
 oifs() {
-	# echo -n "setting IFS to original value ..."
 	IFS=$' \t\n'
-	# echo " done."
 }
 
 nifs

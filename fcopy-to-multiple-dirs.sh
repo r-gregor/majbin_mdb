@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
-# filename: fcopy-to-multiple-dirs.sh
+# fname: fcopy-to-multiple-dirs.sh
+# descpt: copy selected files to multiple directories. Add each file with option -f and each direcory with option -d
 # 20260506 v1 -- copy selected files to multiple directories. Add each file with option -f
 #                and each direcory with option -d
 # 20260507 v2 -- added until loop to cycle trough multiple parameters for single -f and -d option
@@ -57,14 +58,14 @@ while getopts "f:d:h" opt; do
 done
 
 if [ "${farg}" != "true" ]; then
-	echo "[E] no file selected"
+	printf "[E] no file selected\n"
 	usage
 	exit
 fi
 
 
 if [ "${darg}" != "true" ]; then
-	echo "[E] no directory selected"
+	printf "[E] no directory selected\n"
 	usage
 	exit
 fi

@@ -1,19 +1,19 @@
 #! /usr/bin/env bash
-# filename: knowledgedb-move-file-to-category
-# 20260409 mdb: multiple files, with checks ...
+# filename: knowledgedb-move-file-to-category.sh
+# descpt: move file to a cathegory in $KNOWLEDGEDB
+# v1_20260409 multiple files, with checks ...
 # last: 20260409
 # ---
 
-# globals
-SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
-DEST="/home/rgregor/majstaf/mdbgit/knowledgedb"
-
 if [ $# -lt 1 ]; then
-	echo -e "usage: $0 <filename>\n"
-	exit
+	printf "[E] usage: $0 <filename>\n"
+	exit 1
 fi
 
-# 20260409
+# globals
+SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+DEST="${HOME}/majstaf/${HST}git/knowledgedb"
+
 declare -a fjls;
 
 while [ "$1" ]; do
@@ -22,13 +22,13 @@ while [ "$1" ]; do
 done
 
 if [ "${#fjls[@]}" -lt 1 ]; then
-	printf "[i] No files selected"
-	exit
+	printf "[E] no files selected"
+	exit 1
 fi
 
 for ((i=0; i<"${#fjls[@]}"; i++)); do
 	if [ ! -f "${fjls[i]}" ]; then
-		printf "[E] file: '%s' does NOT exist\n" "${fjls[i]}"
+		printf "[E] no such file:'%s'\n" "${fjls[i]}"
 		printf "\n"
 		exit
 	fi
@@ -40,7 +40,7 @@ printf "[i] move selected files:\n"
 for ((j=0; j<"${#fjls[@]}"; j++)); do
 	printf "[i] '%s'\n" "${fjls[j]}"
 done
-printf "[i] to .../%s [y/n]?  " "${CATEGORY}"
+printf "[?] to .../%s (y/n)?  " "${CATEGORY}"
 read -r ans
 
 if [ "${ans}" == "y" ] || [ "${ans}" == "Y" ]; then
@@ -50,8 +50,8 @@ if [ "${ans}" == "y" ] || [ "${ans}" == "Y" ]; then
 	done
 	printf "\n"
 else
-	printf "[i] No files moved\n"
+	printf "[E] no files moved\n"
 	printf "\n"
-	exit
+	exit 1
 fi
 

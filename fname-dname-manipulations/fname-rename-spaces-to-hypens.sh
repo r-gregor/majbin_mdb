@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
-# fname: fname-rename-spaces-to-hypens.sh
-# descpt: rename file: convert  spaces to hypens
+# fname: fname-rename-spaces-to-hypens
+# descpt: rename file from spaces to hypens
 # 20226031
-# last: 20226031
+# last: 20260331
 # ---
 
 ARG="$@"
@@ -21,7 +21,7 @@ fi
 
 NEW_FNAME=$(echo "${FNAME}" | sed 's/ \././' | tr ' ' '-')
 printf "[i] renaming:\n'${FNAME}' ... to\n'${NEW_FNAME}'\n"
-read -r -p "[?] OK?"
+read -r -p "[INPUT] OK?"
 printf "[i] "
 mv -v "${FNAME}" "${NEW_FNAME}"
 printf "\n"
