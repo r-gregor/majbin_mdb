@@ -1,4 +1,10 @@
 #! /usr/bin/env bash
+# fname: show-aliases.sh
+# descpt: display all aliases from bashrc_* files
+# 20261002 v1
+# last: 20261002
+# ---
+
 
 PDD=20
 PTH="${HOME}/majstaf/majrcs/aliases-${HSTLONG}"
