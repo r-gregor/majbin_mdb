@@ -72,7 +72,7 @@ update_file_to_git() {
 	printf -- "%s\n%s\n%s\n" \
 		"[i] from: ${SRCF}" \
 		"[i] to:   ${DSTF}" \
-		"[i] ---"
+		"---"
 	read -r -p "[?] OK?"
 	cp -iv "${SRCF}" "${DSTF}"
 
