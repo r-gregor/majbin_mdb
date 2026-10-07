@@ -6,7 +6,7 @@
 # ---
 
 
-PTH="${HOME}/majstaf/${HST}ngit/prenos/_DSVM.txt"
+PTH="${HOME}/majstaf/${HST}git/prenos/seivom/_DSVM.txt"
 
 if [ $# -ne 1 ]; then
 	printf "[E] must supply a part of movie name\n\n"
