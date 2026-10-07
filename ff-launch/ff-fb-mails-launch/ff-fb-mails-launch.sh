@@ -1,21 +1,20 @@
 #! /usr/bin/env bash
 # filename: ff-fb-mails-launch.sh
 # descpt: open fb-mails links in Firefox from fzf list
-# 20260216 v1
-# 20260223 v2
-# 20260306 v3: add 'sort -nr' in 'selection=...' to sort by datestamp
-#              rename directory and filename from get-fb-mails-en to: ff-fb-mails-launch-en
-# 20260917 v3: move FZFCMD command into FZFCMD() function
-# last: 20260917
+# 20261006 v4: add sellection counter 'num_selected'
+# last: 20261006
 # ---
 
-# globals
+# === GLOBALS ===
 SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 fb_files_list="${SRCDIR}/fb_files_list.txt"
+unset num_selected
+num_selected=0
 
 unset fb_files
 declare -A fb_files=()
 
+# === FUNCTIONS ===
 FZFCMD() {
 	fzf -e --reverse
 }
@@ -51,6 +50,28 @@ fb_files_load() {
 	fb_files+=(["Quit"]="Quit")
 }
 
+fb_launch() {
+	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | FZFCMD)
+
+	if [ "${selection}" == "" ]; then
+		printf "[i] nothing selected\n\n"
+		exit 0
+	fi
+
+	if [ "${selection}" == "Quit" ]; then
+		if [ "${num_selected}" -eq 0 ]; then
+			printf "[i] nothing selected\n"
+		fi
+		printf "\n"
+		exit 0
+	fi
+
+	echo "[i] selected: ${selection} | ${fb_files["${selection}"]}"
+	(nohup ${FFCMD} "${fb_files["${selection}"]}" &) >/dev/null 2>&1
+	((num_selected++))
+}
+
+# === MAIN ===
 if [ $# -eq 1 ]; then
 	if [ "$1" == "-u" ] || [ "$1" == "--update" ]; then
 		echo "[i] updating ${fb_files_list} ..."
@@ -61,25 +82,9 @@ else
 	fb_files_load
 fi
 
-fb_launch() {
-	# selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | FZFCMD)
-	selection=$(for EL in "${!fb_files[@]}"; do echo "${EL}"; done | sort -nr | FZFCMD) # SORT BY TIMESTAMP
-
-	if [ "${selection}" == "" ]; then
-		printf "[i] nothing selected\n"
-		exit 0
-	fi
-
-	if [ "${selection}" == "Quit" ]; then
-		exit 0
-	fi
-
-	echo "[i] selected: ${selection} | ${fb_files["${selection}"]}"
-	# nohup ${FFCMD} "${fb_files["${selection}"]}" >&/dev/null &
-	(nohup ${FFCMD} "${fb_files["${selection}"]}" &) >/dev/null 2>&1
-}
-
 while true; do
 	fb_launch
 done
+
+printf "\n"
 

@@ -2,40 +2,30 @@
 # filename: ff-personal-launch.sh
 # descpt: open url-link in Firefox with fzf list from external file
 # from ff-launch
-# 20260216
-# 20260229 v2: add info what was selected
-#              change the fzf display to full height
-#              inside infinite while loop --> Quit to quit
-# 20260229 v3: keys in separate array for arranged order with 'Quit' as last option
-# 20260303 v4: added $delline
-# 20260304 v5: $delline calculated from longest KEY line with get_longest function
-#              sorted output to fzf command
-# 20260305 v6: extract KEYS from URLS
-# 20260508 v7: move links to external (csv format with ';' delimiter) file and add load_links_into_array()
-#              function to load links from file into associative array
-# 20260917 v8: move FZFCMD command into FZFCMD() function
-# last: 20260917
+# 20261006 v9: add sellection counter
+# last: 20261006
 #---
 
 clear
+
+# === GLOBALS ===
 unset URLS
 unset KEYS
 
-# globals
-SRCDIR="$(dirname $(realpath ${BASH_SOURCE[0]}))"
-FNAME="personal_links_list_mdb" # v7
-FPTH=${SRCDIR}/${FNAME}         # v7
+SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+FNAME="personal_links_list"
+FPTH="${SRCDIR}/${FNAME}"
 
-# assoc array
+unset num_selected
+num_selected=0
+
 declare -A URLS
 
-# functions
-
+# === FUNCTIONS ===
 FZFCMD() {
 	fzf -e --reverse
 }
 
-# v7
 load_links_into_array() {
 	while IFS=';' read -r key value; do
 		URLS["${key}"]="${value}"
@@ -66,28 +56,31 @@ get_longest() {
 }
 
 ff_personallaunch() {
-	local selection=$((for KEY in "${KEYS[@]}"; do echo "$KEY"; done | sort; echo "${delline}" ; echo "Quit") | fzf --reverse)
+	local selection=$( (for KEY in "${KEYS[@]}"; do echo "${KEY}"; done | sort; echo "${delline}" ; echo "Quit") | FZFCMD )
 
 	if [ "${selection}" == "" ]; then
-		printf "[i] nothing selected\n"
+		printf "[i] nothing selected\n\n"
 		exit 0
 	fi
 
 	if [ "${selection}" == "Quit" ]; then
+		if [ "${num_selected}" -eq 0 ]; then
+			printf "[i] nothing selected\n"
+		fi
+		printf "\n"
 		exit 0
 	fi
 
 	if [ "${selection}" != "${delline}" ]; then
 		printf "[i] selected: ${selection}\n"
-		# nohup ${FFCMD} "${URLS["${selection}"]}" >&/dev/null &
 		(nohup ${FFCMD} "${URLS["${selection}"]}" &) > /dev/null 2>&1
+		((num_selected++))
 	fi
 }
 
-# MAIN
-load_links_into_array # v7
+# === MAIN ===
+load_links_into_array
 
-# array of keys from URLS
 KEYS=("${!URLS[@]}")
 
 longest_l=$(get_longest KEYS)
@@ -96,4 +89,6 @@ delline=$(for((i = 0; i < ${#longest_l}; i++)); do printf "-"; done)
 while true; do
 	ff_personallaunch
 done
+
+printf "\n"
 
