@@ -1,12 +1,39 @@
 #! /usr/bin/env bash
 # fname: lynxd.sh
+# descpt: convert http-tech-site into txt-file using lynx
 # 20250925 v1 remove option to use dumplist
 # 20260731 v2 implement fname_string_adjustment() function
 #             add prefix option
 # 20260804 v3 move 'lynx dump' command into dump_command() function
-# 20260924
-# last: 20260924
+# 20261013 v4 make universal --> proxy settins only if on cygwin
+# last: 20261013
 # ---
+
+# === FUNCTIONS ===
+check_for_ostype() {
+	case "$OSTYPE" in
+		cygwin*)
+			# EN-proxy ...
+			# prx_ip=172.17.3.64
+			prx_ip=10.91.8.21
+			export http_proxy=http://${prx_ip}:80/
+			export ftp_proxy=ftp://${prx_ip}:8021/
+			export https_proxy=http://${prx_ip}:80/
+		;;
+
+		msys*)
+			# EN-proxy ...
+			# prx_ip=172.17.3.64
+			prx_ip=10.91.8.21
+			export http_proxy=http://${prx_ip}:80/
+			export ftp_proxy=ftp://${prx_ip}:8021/
+			export https_proxy=http://${prx_ip}:80/
+		;;
+		
+		*)
+		;;
+	esac
+}
 
 fname_string_adjustment() {
 	today=$(date +"%Y%m%d")
@@ -26,17 +53,18 @@ fname_string_adjustment() {
 	printf "${fname_str_updated}-${today}.txt"
 }
 
-
 usage() {
-	printf "\n\tUSAGE: <scriptmname> [web-URL] \"[fname inside double quotes]\" [prefix: c, go, bash, ...(optional)]\n\n"
+	printf "[U] usage: <scriptmname> [web-URL] \"[fname inside double quotes]\" [prefix: c, go, bash, ...(optional)]\n\n"
 }
 
 dump_command() {
 	lynx -dump -width=110 "$@"
 }
 
-# MAIN
+# === MAIN ===
 clear
+
+check_for_ostype
 
 if [ $# -lt 2 ]; then
 	usage
@@ -59,16 +87,12 @@ fi
 printf "[i] %-10s%s\n" "Web URL:" "${weburl}"
 printf "[i] %-10s%s\n" "filename:" "${flnm}"
 
-printf "[i] Press <enter> to proceed or <ctrl-c> to quit"
-read ANS
+read -r -p "[?] continue?"
 
-# echo "filename: ${flnm}" >> ${flnm}
-# echo -e "${weburl}\n\n" >> ${flnm}
-printf "filename: ${flnm}\n" >> ${flnm}
-printf "${weburl}\n\n" >> ${flnm}
-# lynx -dump -width=110 ${weburl} >> ${flnm}
-dump_command ${weburl} >> ${flnm}
-echo -e "\n\n---\n" >> ${flnm}
+printf "filename: ${flnm}\n" >> "${flnm}"
+printf "${weburl}\n\n" >> "${flnm}"
+dump_command "${weburl}" >> "${flnm}"
+printf -- "\n\n---\n" >> "${flnm}"
 
-printf "[i] done\n"
+printf "[i] done\n\n"
 
