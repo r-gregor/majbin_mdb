@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: kndb-files-from-tmst-in-mnth-mdb
+# filename: kndb-files-from-tmst-in-mnth.sh
 # descpt: List files in KNOWLEDGEDB from day in month to the end of the month
 # 20251125
 # 20260331 v1: display from newest to oldst: $(seq start end) --> $(seq end -1 start)
@@ -22,30 +22,29 @@ month_days=(0 31 29 31 30 31 30 31 31 30 31 30 31)
 
 usage() {
 cat << EOF
-	[U] usage: "${scrpt}" <month_num> <day_num>
-	
+	Usage: "${scrpt}" <month_num> <day_num>
 	
 EOF
 }
 
 if [ $# -ne 2 ]; then
-	printf "[E] must supply exactly two parameters:\n"
+	echo "Must supply exactly two parameters:"
 	usage
-	exit 1
+	exit
 else
 	mnth=$1
 	day=$2
 fi
 
 if [ "${mnth}" -lt 1 ] || [ "${mnth}" -gt 12 ]; then
-	printf "[E] month out of range (1 - 12)\n\n"
-	exit 1
+	echo "Month out of range (1 - 12)"
+	exit
 elif [ "${day}" -lt 1 ] || [ "${day}" -gt 31 ]; then
-	printf "[E] day of month out of range (1 - 31)\n\n"
-	exit 1
+	echo "Day of month out of range (1 - 31)"
+	exit
 elif [ "${mnth}" -eq "${currmn}" ] && [ "${day}" -gt "${currdy}" ]; then
-	printf "[E] day of current month out of range\n\n"
-	exit 1
+	echo "Day of current month out of range"
+	exit
 fi
 
 unset RESULT
@@ -55,8 +54,8 @@ readarray -t RESULT < <(for DYS in $(seq  "${month_days["${mnth}"]}" -1 "${day}"
 	-iname $(printf "*%d%02d%02d.txt" "${curryr}" "${mnth}" "${DYS}"); done)
 
 if [ "${RESULT[0]}" == "" ]; then
-	printf "[E] no files found\n\n"
-	exit 1
+	printf "[i] No files found\n"
+	exit
 fi
 
 unset fjls
@@ -65,15 +64,13 @@ unset fjls
 readarray -t fjls < <(for FJL in $(echo "${RESULT[@]}"); do echo "${FJL}"; done | sort -t'/' -k7 | fzf -m -e --reverse)
 
 if [ "${fjls[0]}" == "" ]; then
-	printf "[i] No files selected\n\n"
-	exit 0
+	printf "[i] No files selected\n"
+	exit
 fi
 
-printf "[i] selected:\n"
+printf "[i] Selected:\n"
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | xargs -ro vim -pM
 # v2
 for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | tee /dev/tty | xargs -ro vim -pM
-
-printf "\n"
 

@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# filename: kndb-files-from-yr-tmst-till-today-mdb
+# filename: kndb-files-from-yr-tmst-till-today.sh
 # descpt: List files in KNOWLEDGEDB from day in month in year till today
 # 20260105
 # 20260331 v1: display from newest to oldset
@@ -32,7 +32,6 @@ cat << EOF
                       <day_num>
                       (year is current year)
 
-
 EOF
 }
 
@@ -46,16 +45,16 @@ elif [ $# -eq 3 ]; then
 	slctd_dy="$3"
 else
 	usage
-	exit 1
+	exit
 fi
 
 if [ "${slctd_mt}" -lt 1 ] || [ "${slctd_mt}" -gt 12 ]; then
-	printf "[E] month out of range (1 - 12)\n\n"
-	exit 1
+	echo "Month out of range (1 - 12)"
+	exit
 elif
 	[ "${slctd_dy}" -lt 1 ] || [ "${slctd_dy}" -gt "${month_days["${slctd_mt}"]}" ]; then
-	printf "[E] day of month out of range (1 - "${month_days["${slctd_mt}"]}")\n\n"
-	exit 1
+	echo "Day of month out of range (1 - "${month_days["${slctd_mt}"]}")"
+	exit
 fi
 
 unset DAYS
@@ -88,8 +87,8 @@ unset RESULT
 readarray -t RESULT < <(for DYS in "${DAYS[@]}"; do find "${SRCDIR}" -iname "*${DYS}.txt"; done)
 
 if [ "${RESULT[0]}" == "" ]; then
-	printf "[E] no files found\n\n"
-	exit 1
+	printf "[i] No files found\n"
+	exit
 fi
 
 unset fljs
@@ -99,15 +98,13 @@ unset fljs
 readarray -t fjls < <(for FJL in $(echo "${RESULT[@]}"); do echo "${FJL}"; done | sort -t'/' -k7 | fzf -m -e --reverse)
 
 if [ "${fjls[0]}" == "" ]; then
-	printf "[i] no files selected\n\n"
-	exit 1
+	printf "[i] No files selected\n"
+	exit
 fi
 
-printf "[i] selected:\n"
+printf "[i] Selected:\n"
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | xargs -ro vim -pM
 # v2
 for FJL in $(echo "${fjls[@]}"); do echo "${FJL}"; done | tee /dev/tty | xargs -ro vim -pM
-
-printf "\n"
 
