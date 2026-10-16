@@ -7,7 +7,7 @@
 
 # === GLOBALS ===
 PTH="${HOME}/majstaf/majrcs/"
-fnc_lst="${PTH}/funclist-en"
+fnc_lst="${PTH}/funclist-${HST}"
 
 # === MAIN ===
 while read -r LINE; do
