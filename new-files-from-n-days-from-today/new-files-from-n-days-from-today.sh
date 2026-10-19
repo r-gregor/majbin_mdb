@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-# fname: list-new-files-from-n-days-from-today-en.sh
+# fname: new-files-from-n-days-from-today.sh
 # descpt: list new files from n-days back till today
 # 20260731 v1
 # 20260809 v2 refine find command to prune (not desend into unwanted drectories
@@ -13,8 +13,8 @@
 # ---
 
 usage() {
-	printf "\n\tUsage: <scriptname> <path (optional)> <days difference to go back from today>\n"
-	printf "\n\t                    if <path> nor given --> path is curr_ent directory (\".\")\n\n"
+	printf "[!] usage: <scriptname> <path (optional)> <days difference to go back from today>\n"
+	printf "                     if <path> nor given --> path is curr_ent directory (\".\")\n\n"
 }
 
 # v7
@@ -36,22 +36,21 @@ list_new_files() {
 	fi
 
 	if [ ! -d "${PTH}" ]; then
-		printf "[E] no such directory: '%s'\n\n" "${PTH}"
+		printf "[e] no such directory: '%s'\n\n" "${PTH}"
 		exit 1
 	fi
 	
 	# v7
 	if ! [[ "${ddiff}" =~ ^[0-9]+$ ]]; then
-		printf "[E] ddiff is not a nubmer\n"
+		printf "[e] ddiff is not a nubmer\n"
 		exit 1
 	fi
 
 	newdate="$(get_start_date_from_daysdiff "${ddiff}")"
 	# if [[ ! ${newdate} =~ '^[0-9]+$' ]]; then
-	# 	printf "[E] new date is not a nuber\n"
+	# 	printf "[e] new date is not a nuber\n"
 	# 	exit 1
 	# fi
-
 	printf "[i] looking for files from %s\n---\n" "${newdate}"
 	find "${PTH}" \( \
 		-path '**/.config*' \
@@ -84,7 +83,7 @@ get_start_date_from_daysdiff() {
 	days_diff=0
 
 	if [ $# -ne 1 ]; then
-		printf "\tUsage: get_start_date_from_daysdiff <daysdiff [int]>\n\n"
+		printf "[!] usage: get_start_date_from_daysdiff <daysdiff [int]>\n\n"
 		exit 1
 	else
 		days_diff="$1"
@@ -121,7 +120,7 @@ get_start_date_from_daysdiff() {
 	fi
 
 	if [ "${days_diff}" -ge "${year_days}" ]; then
-		printf "[E] to many days back (over a whole year)\n\n"
+		printf "[e] to many days back (over a whole year)\n\n"
 		exit 1
 	fi
 
