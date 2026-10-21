@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 # fname: read-latest-from-knowledgedb.sh
 # descpt: read/view todays files from $KNOWLEDGEDB from hour/12
-# 20261001 v1
-# last: 
+# 20261021
+# last: 20261021
 # ---
 
 #! /usr/bin/env bash
@@ -10,7 +10,7 @@
 DANES=$(date +"%Y%m%d")
 ZDAJ=$(date +"%H")
 URA=12
-SRC="${KNOWLEDGEDB:-${HOME}/majstaf/${HST}git/knowledgedb}"
+SRC="${KNOWLEDGEDB:-/home/gregor.redelonghi/majstaf/engit/knowledgedb}"
 
 
 if [ $# -eq 1 ]; then
@@ -27,4 +27,5 @@ printf "\tafter: ${URA}:00:00 on ${DANES}\n"
 read -r -p "[?] continue?\n"
 
 find "${SRC}" -newermt "${DANES} ${URA}:00:00" -type f | grep -v '\.git' | fzf -m --reverse | xargs -ro vim -pM
+
 

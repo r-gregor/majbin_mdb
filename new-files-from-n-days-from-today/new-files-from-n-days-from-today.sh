@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # fname: new-files-from-n-days-from-today.sh
-# descpt: list new files from n-days back till today
+# descpt: display a list of new files from n-days back till today
 # 20260731 v1
 # 20260809 v2 refine find command to prune (not desend into unwanted drectories
 # 20260810 v3 add options to select path and days difference
@@ -9,6 +9,7 @@
 # 20260902 v6 fixed value of start_date if days_diff is  lower than or equal to zero
 #             with retruning from function
 # 20260903 v7 put everithing into list_new_files() function and check if ddiff is a anumber
+# 20261013 v8 make it universal
 # last 20260810
 # ---
 
@@ -51,6 +52,7 @@ list_new_files() {
 	# 	printf "[e] new date is not a nuber\n"
 	# 	exit 1
 	# fi
+
 	printf "[i] looking for files from %s\n---\n" "${newdate}"
 	find "${PTH}" \( \
 		-path '**/.config*' \

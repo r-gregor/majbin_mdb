@@ -18,7 +18,7 @@ declare -a selections
 
 currdtstmp=$(date +"%Y%m%d")
 
-dest_en="${HOME}/majstaf/majbin"
+dest="${HOME}/majstaf/majbin"
 VIM_CMD="/usr/bin/vim"
 
 usage() {
@@ -36,7 +36,7 @@ FZFCMD() {
 }
 
 load_files_into_list() {
-	for FFF in $(find "${dest_en}/*" -name "*\.sh" | grep -v 'src/'); do
+	for FFF in $(find "${dest}/*" -name "*\.sh" | grep -v 'src/'); do
 		dtstmp=$(grep last "$FFF" | grep -Eo "[0-9]{8}")
 		if [ $? -eq 0 ]; then
 			if [[ "${dtstmp}" =~ ${djt} ]]; then

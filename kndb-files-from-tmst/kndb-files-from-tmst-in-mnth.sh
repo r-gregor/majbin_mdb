@@ -1,14 +1,15 @@
 #! /usr/bin/env bash
-# filename: kndb-files-from-tmst-in-mnth.sh
+# filename: kndb-files-from-tmst-in-mnth-mdb
 # descpt: List files in KNOWLEDGEDB from day in month to the end of the month
 # 20251125
 # 20260331 v1: display from newest to oldst: $(seq start end) --> $(seq end -1 start)
 # 20260415 v2: final printout to stdout and into xargs in one line with 'tee /dev/tty' comand
 # 20260831 v3: fzf files list sorted by cathegory
-# 20260925
-# last: 20260925
+# 20261021
+# last: 20261021
 # ---
 
+# === GLOBALS ===
 curryr=$(date +"%Y")
 currmn=$(date +"%m")
 currdy=$(date +"%d")
@@ -16,35 +17,33 @@ currdy=$(date +"%d")
 scrpt=$(basename $0)
 SRCDIR="${KNOWLEDGEDB:-${HOME}/majstaf/${HST}git/knowledgedb}"
 
-
 months=("" "January" "February" "March" "April" "May" "June" "July" "Avgust" "September" "October" "November" "December")
 month_days=(0 31 29 31 30 31 30 31 31 30 31 30 31)
 
+# === FUNCTIONS ===
 usage() {
-cat << EOF
-	Usage: "${scrpt}" <month_num> <day_num>
-	
-EOF
+	printf "[!] usage: kndb-files-from-tmst-in-mnth <month_num> <day_num>\n\n" "${scrpt}"
 }
 
+# === MAIN ===
 if [ $# -ne 2 ]; then
-	echo "Must supply exactly two parameters:"
+	printf "[e] must supply exactly two parameters:\n"
 	usage
-	exit
+	exit 1
 else
 	mnth=$1
 	day=$2
 fi
 
 if [ "${mnth}" -lt 1 ] || [ "${mnth}" -gt 12 ]; then
-	echo "Month out of range (1 - 12)"
-	exit
+	printf "[e] month out of range (1 - 12)\n\n"
+	exit 1
 elif [ "${day}" -lt 1 ] || [ "${day}" -gt 31 ]; then
-	echo "Day of month out of range (1 - 31)"
-	exit
+	printf "[e] day of month out of range (1 - 31)\n\n"
+	exit 1
 elif [ "${mnth}" -eq "${currmn}" ] && [ "${day}" -gt "${currdy}" ]; then
-	echo "Day of current month out of range"
-	exit
+	printf "[e] day of current month out of range\n\n"
+	exit 1
 fi
 
 unset RESULT
@@ -54,8 +53,8 @@ readarray -t RESULT < <(for DYS in $(seq  "${month_days["${mnth}"]}" -1 "${day}"
 	-iname $(printf "*%d%02d%02d.txt" "${curryr}" "${mnth}" "${DYS}"); done)
 
 if [ "${RESULT[0]}" == "" ]; then
-	printf "[i] No files found\n"
-	exit
+	printf "[e] no files found\n\n"
+	exit 1
 fi
 
 unset fjls
@@ -64,13 +63,15 @@ unset fjls
 readarray -t fjls < <(for FJL in $(echo "${RESULT[@]}"); do echo "${FJL}"; done | sort -t'/' -k7 | fzf -m -e --reverse)
 
 if [ "${fjls[0]}" == "" ]; then
-	printf "[i] No files selected\n"
-	exit
+	printf "[i] No files selected\n\n"
+	exit 0
 fi
 
-printf "[i] Selected:\n"
+printf "[i] selected:\n"
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | xargs -ro vim -pM
 # v2
 for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | tee /dev/tty | xargs -ro vim -pM
+
+printf "\n"
 

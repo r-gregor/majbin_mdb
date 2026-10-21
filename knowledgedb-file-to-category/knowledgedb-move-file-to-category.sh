@@ -1,20 +1,21 @@
 #! /usr/bin/env bash
 # filename: knowledgedb-move-file-to-category.sh
 # descpt: move file to a cathegory in $KNOWLEDGEDB
-# v1_20260409 multiple files, with checks ...
-# last: 20260409
+# 20260409 v1: multiple files, with checks ...
+# 20261021
+# last: 20261021
 # ---
 
-if [ $# -lt 1 ]; then
-	printf "[E] usage: $0 <filename>\n"
-	exit 1
-fi
-
-# globals
+# === GLOBALS ===
 SRCDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 DEST="${HOME}/majstaf/${HST}git/knowledgedb"
-
 declare -a fjls;
+
+# === MAIN ===
+if [ $# -lt 1 ]; then
+	printf "[e] usage: knowledgedb-move-file-to-category <filename>\n\n"
+	exit 1
+fi
 
 while [ "$1" ]; do
 	fjls+=("$1")
@@ -22,15 +23,14 @@ while [ "$1" ]; do
 done
 
 if [ "${#fjls[@]}" -lt 1 ]; then
-	printf "[E] no files selected"
-	exit 1
+	printf "[!] no files selected\n\n"
+	exit 0
 fi
 
 for ((i=0; i<"${#fjls[@]}"; i++)); do
 	if [ ! -f "${fjls[i]}" ]; then
-		printf "[E] no such file:'%s'\n" "${fjls[i]}"
-		printf "\n"
-		exit
+		printf "[e] no such file:'%s'\n" "${fjls[i]}\n\n"
+		exit 1
 	fi
 done
 
@@ -50,8 +50,9 @@ if [ "${ans}" == "y" ] || [ "${ans}" == "Y" ]; then
 	done
 	printf "\n"
 else
-	printf "[E] no files moved\n"
-	printf "\n"
-	exit 1
+	printf "[!] no files moved\n\n"
+	exit 0
 fi
+
+printf "\n"
 

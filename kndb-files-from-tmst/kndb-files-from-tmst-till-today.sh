@@ -1,49 +1,47 @@
 #! /usr/bin/env bash
-# filename: kndb-files-from-tmst-till-today.sh
+# filename: kndb-files-from-tmst-till-today-mdb
 # descpt: List files in KNOWLEDGEDB from day in month till today
 # 20260105
 # 20260331 v1: display from newest to oldset
 # 20260415 v2: final printout to stdout and into xargs in one line with 'tee /dev/tty' comand
 # 20260831 v3: fzf files list sorted by cathegory
-# 20260925
-# last: 20260925
+# 20261021
+# last: 20261021
 # ---
 
+# === GLOBALS ===
 curryr=$(date +"%Y")
 currmn=$(date +"%m")
 currdy=$(date +"%d")
 currdt=$(date +"%Y%m%d")
 
-scrpt=$(basename $0)
 SRCDIR="${KNOWLEDGEDB:-${HOME}/majstaf/${HST}git/knowledgedb}"
-
 
 months=("" "January" "February" "March" "April" "May" "June" "July" "Avgust" "September" "October" "November" "December")
 month_days=(0 31 29 31 30 31 30 31 31 30 31 30 31)
 
+# === FUNCTIONS ===
 usage() {
-cat << EOF
-    Usage: "${scrpt}" <month_num> <day_num>
-
-EOF
+	printf "[!] usage: kndb-files-from-tmst-till-today <month_num> <day_num>\n\n"
 }
 
+# === MAIN ===
 if [ $# -eq 2 ]; then
 	slctd_yr=$(date +"%Y")
 	slctd_mt=$1
 	slctd_dy=$2
 else
 	usage
-	exit
+	exit 1
 fi
 
 if [ "${slctd_mt}" -lt 1 ] || [ "${slctd_mt}" -gt 12 ]; then
-	echo "Month out of range (1 - 12)"
-	exit
+	printf "[e] month out of range (1 - 12)\n\n"
+	exit 1
 elif
 	[ "${slctd_dy}" -lt 1 ] || [ "${slctd_dy}" -gt "${month_days["${slctd_mt}"]}" ]; then
-	echo "Day of month out of range (1 - "${month_days["${slctd_mt}"]}")"
-	exit
+	printf "[e] day of month out of range (1 - "${month_days["${slctd_mt}"]}")\n\n"
+	exit 1
 fi
 
 unset DAYS
@@ -76,8 +74,8 @@ unset RESULT
 readarray -t RESULT < <(for DYS in "${DAYS[@]}"; do find "${SRCDIR}" -iname "*${DYS}.txt"; done)
 
 if [ "${RESULT[0]}" == "" ]; then
-	printf "[i] No files found\n"
-	exit
+	printf "[e] no files found\n\n"
+	exit 1
 fi
 
 unset fljs
@@ -86,13 +84,15 @@ unset fljs
 readarray -t fjls < <(for FJL in $(echo "${RESULT[@]}"); do echo "${FJL}"; done | sort -t'/' -k7 | fzf -m -e --reverse)
 
 if [ "${fjls[0]}" == "" ]; then
-	printf "[i] No files selected\n"
-	exit
+	printf "[i] no files selected\n\n"
+	exit 0
 fi
 
-printf "[i] Selected:\n"
+printf "[i] selected:\n"
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done
 # for FJL in $(echo ${fjls[@]}); do echo "$FJL"; done | xargs -ro vim -pM
 # v2
 for FJL in $(echo "${fjls[@]}"); do echo "${FJL}"; done | tee /dev/tty | xargs -ro vim -pM
+
+printf "\n"
 
