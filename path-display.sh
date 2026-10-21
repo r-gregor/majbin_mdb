@@ -11,7 +11,7 @@ hmsg="usage: path-display <filename>"
 
 # === MAIN ===
 if [ $# -ne 1 ]; then
-    printf "[E] ${hmsg}\n\n"
+    printf "[e] ${hmsg}\n\n"
     exit 1
 else
 	fjlnm="$1"
@@ -23,7 +23,7 @@ if [ -e "${fjlnm}" ]; then
     printf "[i] storing to clipboard ...\n"
     printf "%s" "${fullp}" | putclip
 else
-    printf "[E] no such file found '%s'\n\n" "${fjlnm}"
+    printf "[e] no such file found '%s'\n\n" "${fjlnm}"
     exit 1
 fi
 

@@ -31,7 +31,7 @@
 
 # === MAIN ===
 if [ $# -ne 1 ]; then
-	printf "[E] must suply single filename\n\n"
+	printf "[e] must suply single filename\n\n"
 	exit 1
 else
 	FJL="$1"

@@ -23,7 +23,7 @@ if [ -f $dest ]; then
 	echo "[INFO] renaming src file ..."
 	mv -v $fname "_brisime_${fname}"
 else
-	echo -e "[ERROR] cleaning unsuccessful\n"
+	echo -e "[e] cleaning unsuccessful\n"
 	exit
 fi
 

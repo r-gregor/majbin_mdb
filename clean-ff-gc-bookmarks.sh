@@ -26,7 +26,7 @@ if [ -f $dest ]; then
 	# cp -v ${fname} "_brisime_${fname}" # test
 	mv -v ${fname} "_brisime_${fname}"
 else
-	echo -e "[E] cleaning unsuccessful -- aborting\n"
+	echo -e "[e] cleaning unsuccessful -- aborting\n"
 	exit
 fi
 

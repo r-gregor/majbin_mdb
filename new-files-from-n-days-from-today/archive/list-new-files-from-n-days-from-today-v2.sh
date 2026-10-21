@@ -29,7 +29,7 @@ new_MN=${MN//0/}
 # read -p "OK?"
 
 if [ $new_DY -le 0 ]; then
-	printf "[ERROR] The days difference is to big\n"
+	printf "[e] The days difference is to big\n"
 	exit 1
 fi
 

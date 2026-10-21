@@ -9,7 +9,7 @@ CURRDIR="${HOME}/majstaf/majmedia/Seivom"
 unset dirlist
 
 if [ ! "$PWD" == "${CURRDIR}" ]; then
-	echo -e "[E] current dir must be: ${CURRDIR}\n"
+	echo -e "[e] current dir must be: ${CURRDIR}\n"
 	exit
 fi
 
@@ -18,7 +18,7 @@ dirlist=()
 readarray -t dirlist < <(find * -maxdepth 0 -type d -not -name "_NOVO" -a -not -name "APPROVED")
 
 if [ "${#dirlist[@]}" -eq 0 ]; then
-	echo -e "[E] no directories to remove\n"
+	echo -e "[e] no directories to remove\n"
 	exit
 fi
 

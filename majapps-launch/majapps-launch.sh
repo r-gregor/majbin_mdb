@@ -126,14 +126,14 @@ if [ $# -eq 1 ]; then
 	done
 
 	if [ "${#options[@]}" -gt 1 ]; then
-		printf "[E] multiple selections:\n"
+		printf "[e] multiple selections:\n"
 		for OPT in "${options[@]}"; do
 			printf "${OPT}\n"
 		done
 		printf "[i] redefine parameter\n\n"
 		exit
 	elif [ "${#options[@]}" -eq 0 ]; then
-		printf "[E] no selection\n\n"
+		printf "[e] no selection\n\n"
 		exit
 	else
 		selection="${options[0]}"

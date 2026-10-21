@@ -9,7 +9,7 @@ unset old_srt_fname
 unset old_movie_fname
 
 if [ $# -ne 2 ]; then
-    printf "[E] must supply existing *.srt and <movie> filename\n\n"
+    printf "[e] must supply existing *.srt and <movie> filename\n\n"
 	exit 1
 else
 	old_srt_fname="$1"
@@ -17,7 +17,7 @@ else
 fi
 
 if [ ! -f "${fname}" ]; then
-	printf "[E] must supply existing *.srt  and <movie> filename\n\n"
+	printf "[e] must supply existing *.srt  and <movie> filename\n\n"
 	exit 1
 fi
 

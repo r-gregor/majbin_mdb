@@ -6,7 +6,7 @@
 # ---
 
 if [ $# -ne 3 ]; then
-	printf "[E] \tUsage:\n\t\t$0 [pattern] [replacement] <fname>\n\n"
+	printf "[e] \tUsage:\n\t\t$0 [pattern] [replacement] <fname>\n\n"
 	exit 1
 fi
 

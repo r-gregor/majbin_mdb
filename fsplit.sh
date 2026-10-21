@@ -21,7 +21,7 @@ case "$NUMARGS" in
 	;;
 
 	*)
-		printf "[E] no filename supplied\n"
+		printf "[e] no filename supplied\n"
 		printf "Usage: $0 <fname> <n>\n"
 		printf "           fname: file name\n"
 		printf "           n:     number of parts to split fname into\n"
@@ -32,7 +32,7 @@ case "$NUMARGS" in
 esac
 
 if [ ! -f "$fname" ]; then
-	printf "[E] NO such file: '%s'\n"  "$fname"
+	printf "[e] NO such file: '%s'\n"  "$fname"
 	exit 1
 fi
 
