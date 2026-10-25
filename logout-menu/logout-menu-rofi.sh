@@ -1,4 +1,10 @@
 #! /usr/bin/env bash
+# fname: logout-menu-rofi.sh
+# descpt: logout menu -- rofi
+# 20261025 v1
+# last: 20261025
+# ---
+
 
 choice=$(echo -e "logout\nreboot\nshutdown\nquit" | rofi -dmenu -no-fixed-num-lines)
 
