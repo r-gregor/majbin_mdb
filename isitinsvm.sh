@@ -17,10 +17,11 @@ else
 	PTRN="$1"
 fi
 
-grep -i "$PTRN" "${seivom_pth}"
+grep -irh "$PTRN" "${seivom_pth}"
 
 if [ $? -ne 0 ]; then
-	echo "[i] NOT in the _DSVM.txt file: ${PTRN}"
+	printf "[!] NOT in the _DSVM.txt file: '%s'\n" "${PTRN}"
+
 fi
 
 printf "\n"
