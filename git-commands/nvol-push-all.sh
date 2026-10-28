@@ -7,7 +7,7 @@
 # last: 20260925
 # ---
 
-export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}"
+export VOLGITDIR="${HOME}/majstaf/${HST}git/vlpprs_${HST}.git"
 export VOLWORKDIR="/c/Users/gregor.redelonghi/majstaf_${HST}/${HST}_staf/majvolpejprs"
 git_nvol="/usr/bin/git --git-dir=${VOLGITDIR} --work-tree=${VOLWORKDIR}"
 
@@ -16,9 +16,9 @@ glvol="git@gitlab.com:r-gregor/vlpprs_${HST}.git"
 
 printf "[i] push to ${ghvol} ...\n"
 ${git_nvol} push ${ghvol} main
-printf "---\n"
+printf -- "---\n"
 
 printf "[i] push to ${glvol} ...\n"
 ${git_nvol} push ${glvol} main
-printf "---\n"
+printf -- "---\n"
 
