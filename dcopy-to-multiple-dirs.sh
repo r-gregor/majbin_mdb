@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 # filename: dcopy-to-multiple-dirs.sh
-# descpt: copy selected dirs to multiple directories. Add each source dir with option -s and each dest direcory with option -d
+# descpt: copy selected dirs to multiple directories. Add source dirs with option -s and dest direcories with option -d
 # 20260506 v1 -- copy selected dirs to multiple directories. Add each source dir with option -s
 #                and each dest direcory with option -d
 # 20260507 v2 -- added until loop to cycle trough multiple parameters for single -s and -d option

@@ -7,8 +7,7 @@
 
 # === GLOBALS ===
 set -e
-# PRNS_DEST="${HOME}/majstaf/${HST}git/prenos"
-PRNS_DEST="${HOME}/majstaf/testgit/testprenos"
+PRNS_DEST="${HOME}/majstaf/${HST}git/prenos"
 
 unset selections
 unset prns_dest
