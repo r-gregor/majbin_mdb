@@ -1,4 +1,10 @@
 #! /usr/bin/env bash
+# fname: new-c-project-setup.sh
+# descpt: new c project folder and files setup
+# 20261031 v1
+# last: 20261031
+# ---
+
 
 if [ $# -eq 1 ]; then
 	project_name=$1
@@ -10,12 +16,12 @@ project_path="./${project_name}"
 
 
 if [ -d ${project_path} ]; then
-	echo "${project_path} exists!"
-	exit
+	printf "[e] ${project_path} exists!\n\n"
+	exit 1
 fi
 
-echo "Creating new project: ${project_name}"
-mkdir -vp ${project_path}/{src,lib,include,tests,bin,build}
+printf "[i] creating new project: ${project_name}\n"
+mkdir -vp ${project_path}/{src,lib,include,tests,build,build}
 
 cat <<'EOF' > "${project_path}/Makefile"
 #for win
@@ -23,26 +29,26 @@ cat <<'EOF' > "${project_path}/Makefile"
 CC = gcc
 CFLAGS = -g -Wall
 RM = rm -v
-BIN = ./bin
+BUILD = ./build
 SRC = ./src
 
 SRCS = $(wildcard $(SRC)/*.c)
 # PROGS = $(patsubst %.c,%,$(SRCS))
 PROGS = $(SRCS:$(SRC)/%.c=%)
 
-all: newbindir $(PROGS)
+all: newbuilddir $(PROGS)
 
-newbindir:
-	@mkdir -p ./bin
+newbuilddir:
+	@mkdir -p ./build
 
 %: $(SRC)/%.c $(SRC)/*.h
-	$(CC) $(CFLAGS) -o $(BIN)/$@ $<
+	$(CC) $(CFLAGS) -o $(BUILD)/$@ $<
 
 %: $(SRC)/%.c
-	$(CC) $(CFLAGS) -o $(BIN)/$@ $<
+	$(CC) $(CFLAGS) -o $(BUILD)/$@ $<
 
 clean:
-	$(RM) $(BIN)/*
+	$(RM) $(BUILD)/*
 
 EOF
 
