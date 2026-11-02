@@ -16,7 +16,7 @@ else
 	old_movie_fname="$2"
 fi
 
-if [ ! -f "${fname}" ]; then
+if [ ! -f "${old_srt_fname}" ]; then
 	printf "[e] must supply existing *.srt  and <movie> filename\n\n"
 	exit 1
 fi
