@@ -1,10 +1,9 @@
 #! /usr/bin/env bash
 # fname: new-c-project-setup.sh
-# descpt: new c project folder and files setup
-# 20261031 v1
-# last: 20261031
+# descpt: new c-project default directories and files setup
+# 20261101 v1
+# last: 20261101
 # ---
-
 
 if [ $# -eq 1 ]; then
 	project_name=$1
@@ -16,16 +15,16 @@ project_path="./${project_name}"
 
 
 if [ -d ${project_path} ]; then
-	printf "[e] ${project_path} exists!\n\n"
-	exit 1
+	echo "${project_path} exists!"
+	exit
 fi
 
-printf "[i] creating new project: ${project_name}\n"
-mkdir -vp ${project_path}/{src,lib,include,tests,build,build}
+echo "Creating new project: ${project_name}"
+mkdir -vp ${project_path}/{src,lib,include,tests,archive,build/obj}
 
 cat <<'EOF' > "${project_path}/Makefile"
 #for win
-#CC=/c/Users/gregor.redelonghi/majstaf/majprogs/mingw./build/x86_64-w64-mingw32-gcc-11.1.0.exe
+#CC=/c/Users/gregor.redelonghi/majstaf/majprogs/mingw./bin/x86_64-w64-mingw32-gcc-11.1.0.exe
 CC = gcc
 CFLAGS = -g -Wall
 RM = rm -v
@@ -36,9 +35,9 @@ SRCS = $(wildcard $(SRC)/*.c)
 # PROGS = $(patsubst %.c,%,$(SRCS))
 PROGS = $(SRCS:$(SRC)/%.c=%)
 
-all: newbuilddir $(PROGS)
+all: newbindir $(PROGS)
 
-newbuilddir:
+newbindir:
 	@mkdir -p ./build
 
 %: $(SRC)/%.c $(SRC)/*.h
@@ -50,6 +49,9 @@ newbuilddir:
 clean:
 	$(RM) $(BUILD)/*
 
+run:
+	$(BUILD)/main
+
 EOF
 
 cat <<'EOF2' > ${project_path}/src/main.c
@@ -57,7 +59,7 @@ cat <<'EOF2' > ${project_path}/src/main.c
 #include <string.h>
 
 int main(void) {
-	printf("I'm ALIVE!!\n");
+	printf("I'm ALIVE!!\n\n");
 
 	return 0;
 }
