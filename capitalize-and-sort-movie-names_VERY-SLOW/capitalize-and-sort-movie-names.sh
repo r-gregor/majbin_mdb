@@ -16,7 +16,6 @@ usage() {
 }
 
 capitalize_word() {
-	local FIRST_LETTER
 	local WORD
 
 	if [ $# -ne 1 ]; then
