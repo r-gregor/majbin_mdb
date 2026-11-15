@@ -1,10 +1,18 @@
 #! /usr/bin/env bash
-# === FUNCTIONS ===
+# fname: check-if-torrent-already-downloaded.sh
+# descpt: check if torrent files in _yts_torrents or subdirs alreadi in _DSVM.txt file
+# 20261114 v2
+# last: 20261114
+# ---
+
 
 # === GLOBALS ===
 torent_dir="${HOME}/majstaf/majmedia/_yts_torrents"
 unset found_torrents
+unset downloaded_torrents
+
 declare -a found_torrents
+downloaded_torrents="false"
 
 # === MAIN ===
 if [ ! $PWD == ${torent_dir} ]; then
@@ -13,7 +21,7 @@ if [ ! $PWD == ${torent_dir} ]; then
 	exit
 fi
 
-readarray -t found_torrents < <(find _NOVO/ -iname "*\.torrent" | sed 's/_NOVO\///' | sed 's/ \[.*//')
+readarray -t found_torrents < <(find * -iname "*\.torrent" | sed 's/_NOVO\///' | sed 's/ \[.*//')
 
 if [ "${#found_torrents[@]}" -le 0 ]; then
 	printf "[!] no torrents found\n\n"
@@ -26,6 +34,7 @@ else
 		while read -r MV; do
 			if [[ "${torrent,,}" == "${MV,,}" ]]; then
 				((found++))
+				downloaded_torrents="true"
 			else
 				continue
 			fi
@@ -36,6 +45,14 @@ else
 			continue
 		fi
 	done
+	if [[ "${downloaded_torrents}" == "false" ]]; then
+		printf "[i] movies to download or to update _DSVM.txt:\n"
+		for movie in "${found_torrents[@]}"; do
+			printf "   '%s'\n"
+		done
+	else
+		printf "[i] no movies to download or to update to _DSVM.txt\n"
+	fi
 fi
 
 
