@@ -15,10 +15,6 @@ KNWLGDB=/home/rgregor/majstaf/mdbgit/knowledgedb
 unset CATEGORIES
 readarray -t CATEGORIES < <(ls -1 "${KNWLGDB}")
 
-### # TEST
-### for CAT in "${CATEGORIES[@]}"; do printf "category: ${CAT}\n"; done
-### read -r -p "[?] OK?"
-
 usage() {
 MSG=$(cat << HDOC
 
@@ -71,3 +67,4 @@ if [[ ${noargs} == "true" ]]; then
 		cd ${KNWLGDB}/${PTH} && ${CMD2} | head -n10; done
 fi
 
+printf "\n"

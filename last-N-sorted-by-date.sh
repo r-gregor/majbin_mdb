@@ -48,7 +48,7 @@ while getopts "hn:" arg; do
 		n)
 			num="${OPTARG}"
 			for PTH in "${CATEGORIES[@]}"; do
-				printf "--- ${KNWLGDB}/${PTH} ---\n"
+				printf -- "--- ${KNWLGDB}/${PTH} ---\n"
 				cd "${KNWLGDB}/${PTH}" && CMD2 | head -n "${num}"; done
 		;;
 
@@ -57,7 +57,7 @@ while getopts "hn:" arg; do
 			echo "For more options/usage run with -h!"
 			printf "\n"
 			for PTH in "${CATEGORIES[@]}"; do
-				printf "--- ${KNWLGDB}/${PTH} ---\n"
+				printf -- "--- ${KNWLGDB}/${PTH} ---\n"
 				cd "${KNWLGDB}/${PTH}" && CMD2 | head -n10; done
 		;;
 	esac
@@ -67,10 +67,10 @@ done
 
 if [[ "${noargs}" == "true" ]]; then
 	printf "Displaying last 10 files from all categories in: ${KNWLGDB}\n"
-	printf "For more options/usage run with -h!\n"
+	printf -- "For more options/usage run with -h!\n"
 	printf "\n"
 	for PTH in "${CATEGORIES[@]}"; do
-		printf "--- ${KNWLGDB}/${PTH} ---\n"
+		printf -- "--- ${KNWLGDB}/${PTH} ---\n"
 		cd "${KNWLGDB}/${PTH}" && CMD2 | head -n10; done
 fi
 
