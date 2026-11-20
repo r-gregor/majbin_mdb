@@ -1,9 +1,10 @@
 #! /usr/bin/env bash
 # fname: create-fb-files-list-from-mbox-mdb.sh
 # descpt: create fb-links file from mbox file
-# v2_20261115
-# last: 20261115
+# 20261119 v3
+# last: 20261119
 # ---
+
 # === GLOBALS ===
 unset names
 unset urls
@@ -41,6 +42,14 @@ backup_data_fbfl() {
 }
 
 create_fb_files_list() {
+	local month
+	local mnth
+	local dy
+	local tmstmp
+	local fname
+	local dname
+	local url
+
 	dos2unix "${src}" &> /dev/null
 
 	if [ ! -f "${dst}" ]; then
@@ -72,6 +81,12 @@ create_fb_files_list() {
 if [ ! -d "${SRCDIR}/${storage_local}" ]; then
 	printf "[!] no such directory: '%s', creating ..." "${storage_local}"
 	mkdir "${SRCDIR}/${storage_local}" 2>/dev/null 1>&2
+	printf " done\n"
+fi
+
+if [ ! -d "${SRCDIR}/${storage_backups}" ]; then
+	printf "[!] no such directory: '%s', creating ..." "${storage_backups}"
+	mkdir "${SRCDIR}/${storage_backups}" 2>/dev/null 1>&2
 	printf " done\n"
 fi
 
